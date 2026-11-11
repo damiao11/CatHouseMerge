@@ -36,6 +36,8 @@
 
 **循环要求**：首尾各留 2 秒可无缝衔接，导出时标 loop point。`bgm_day` 要经得起循环 20 次以上不烦——编曲上少用明显旋律，多用分解和弦。
 
+> 用 AI 音乐工具（Gemini / Lyria）出这几段时，「无缝」得自己后处理：循环长度取 4 小节整数倍、头尾 2 秒等功率交叉淡化、再归一化到 -18 LUFS。具体提示词与步骤见 [16 音乐提示词](16-音乐提示词-直接复制.md)。
+
 ## 4. SFX 清单（44 条）
 
 ### UI（6）
@@ -189,7 +191,7 @@ cat_orange, cat_calico, text_blip, bgm_day
 
 其余用同一个音效变调顶替，等有空再补。
 
-## 10. 验收清单
+## 10. 验收清单（录音/素材拿到后逐条打勾）
 
 - [ ] 连续合成 20 次，不觉得吵
 - [ ] 六只猫的叫声能闭眼区分
@@ -198,4 +200,15 @@ cat_orange, cat_calico, text_blip, bgm_day
 - [ ] 对话弹出时 BGM 会压低，结束后恢复
 - [ ] 音频总量 < 6MB
 - [ ] 所有素材来源已记录
+
+## 11. 怎么真的做出来
+
+规格到文件之间还差一步：**怎么生成**。分两条路，都写在 [16 音乐提示词](16-音乐提示词-直接复制.md)：
+
+| 类别 | 做法 | 落在哪 |
+|---|---|---|
+| 3 首循环 BGM + 2 段 sting + 2 条环境声（7 个文件） | 用 Gemini 音乐（Lyria）生成，提示词直接粘；生成后裁小节、交叉淡化、归一化 | `android-assets/audio/bgm/`、`amb/` |
+| 44 条 SFX | 音乐模型做不了 50ms 的点击；已用 Kenney + Freesound 的 CC0 素材裁好（映射与裁剪脚本 `tools/make_sfx_pack.py`，换素材可重跑） | `android-assets/audio/sfx/`（41 个）+ `build_chapter` 复用 `sting_chapter` |
+
+`docs/data/audio_prompts.json` 是 16 的机器可读版，`tools/gen_audio.py` 生成的 `audio.json` 是给代码读的清单，两者按 `id` 一一对应。
 
