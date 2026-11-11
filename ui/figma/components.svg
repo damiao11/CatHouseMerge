@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="1400" viewBox="0 0 1180 1400">
+<rect width="1180" height="1400" fill="#FFFFFF"/>
+<rect x="0" y="0" width="1180" height="1400" rx="0" fill="#FFFFFF"/>
+<text x="40" y="54" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="22" font-weight="700" fill="#3E3226" text-anchor="start">猫屋合合 · UI 组件</text>
+<text x="40" y="80" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="400" fill="#8A7B66" text-anchor="start">1dp = 1px；导入 Figma 后按 1x 使用，颜色令牌见文末</text>
+<text x="40" y="130" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">顶栏 360×56</text>
+<rect x="40" y="142" width="360" height="56" rx="16" fill="#FBF6EC"/>
+<text x="56" y="178" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="600" fill="#3E3226" text-anchor="start">天5</text>
+<text x="104" y="178" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#3E3226" text-anchor="start">体力 62 · 01:20</text>
+<text x="232" y="178" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#3E3226" text-anchor="start">金币 248</text>
+<text x="316" y="178" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#3E3226" text-anchor="start">图鉴</text>
+<text x="360" y="178" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#3E3226" text-anchor="start">设置</text>
+<text x="440" y="130" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">底栏 360×88</text>
+<rect x="440" y="142" width="360" height="88" rx="16" fill="#FBF6EC"/>
+<rect x="456" y="158" width="76" height="56" rx="999" fill="#D9A15B"/>
+<text x="494" y="192" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">建造</text>
+<rect x="544" y="158" width="188" height="56" rx="12" fill="#FFFFFF" stroke="#E8DCC8" stroke-width="1"/>
+<text x="556" y="180" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#3E3226" text-anchor="start">木箱 · 4 级</text>
+<text x="556" y="200" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" fill="#3E3226" text-anchor="start">装东西用，也能交订单</text>
+<rect x="744" y="158" width="40" height="56" rx="12" fill="#FFFFFF" stroke="#E8DCC8" stroke-width="1"/>
+<text x="764" y="192" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#3E3226" text-anchor="middle">仓</text>
+<text x="40" y="262" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">订单卡 180×96（普通 / 可交付 / 已交付）</text>
+<rect x="40" y="274" width="180" height="96" rx="16" fill="#FFFFFF" stroke="#E8DCC8" stroke-width="1"/>
+<rect x="52" y="286" width="44" height="44" rx="22" fill="#F3E9D8" stroke="#3E3226" stroke-width="2"/>
+<text x="74" y="314" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="600" fill="#3E3226" text-anchor="middle">猫</text>
+<text x="106" y="302" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#3E3226" text-anchor="start">花花的请求</text>
+<rect x="52" y="338" width="52" height="24" rx="8" fill="#F3E9D8" stroke="#E8DCC8" stroke-width="1"/>
+<text x="78" y="355" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#3E3226" text-anchor="middle">4/6</text>
+<rect x="108" y="338" width="52" height="24" rx="8" fill="#F3E9D8" stroke="#E8DCC8" stroke-width="1"/>
+<text x="134" y="355" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#3E3226" text-anchor="middle">2/2</text>
+<text x="206" y="355" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#E2703A" text-anchor="end">120 金币</text>
+<text x="40" y="392" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">普通</text>
+<rect x="240" y="274" width="180" height="96" rx="16" fill="#FFFFFF" stroke="#7FA05A" stroke-width="2"/>
+<rect x="252" y="286" width="44" height="44" rx="22" fill="#F3E9D8" stroke="#3E3226" stroke-width="2"/>
+<text x="274" y="314" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="600" fill="#3E3226" text-anchor="middle">猫</text>
+<text x="306" y="302" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#3E3226" text-anchor="start">花花的请求</text>
+<rect x="252" y="338" width="52" height="24" rx="8" fill="#F3E9D8" stroke="#E8DCC8" stroke-width="1"/>
+<text x="278" y="355" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#3E3226" text-anchor="middle">4/6</text>
+<rect x="308" y="338" width="52" height="24" rx="8" fill="#F3E9D8" stroke="#E8DCC8" stroke-width="1"/>
+<text x="334" y="355" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#3E3226" text-anchor="middle">2/2</text>
+<text x="406" y="355" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#E2703A" text-anchor="end">120 金币</text>
+<text x="240" y="392" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">可交付</text>
+<rect x="440" y="274" width="180" height="96" rx="16" fill="#FFFFFF" stroke="#B7AC98" stroke-width="2"/>
+<rect x="452" y="286" width="44" height="44" rx="22" fill="#F3E9D8" stroke="#3E3226" stroke-width="2"/>
+<text x="474" y="314" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="600" fill="#3E3226" text-anchor="middle">猫</text>
+<text x="506" y="302" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#3E3226" text-anchor="start">花花的请求</text>
+<rect x="452" y="338" width="52" height="24" rx="8" fill="#F3E9D8" stroke="#E8DCC8" stroke-width="1"/>
+<text x="478" y="355" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#3E3226" text-anchor="middle">4/6</text>
+<rect x="508" y="338" width="52" height="24" rx="8" fill="#F3E9D8" stroke="#E8DCC8" stroke-width="1"/>
+<text x="534" y="355" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#3E3226" text-anchor="middle">2/2</text>
+<text x="606" y="355" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#E2703A" text-anchor="end">120 金币</text>
+<text x="440" y="392" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">已交付</text>
+<text x="660" y="262" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">新物品气泡 180×96（与卡片同高，排最前）</text>
+<rect x="660" y="274" width="180" height="96" rx="16" fill="#FFF6E6" stroke="#D9A15B" stroke-width="2"/>
+<text x="674" y="302" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#3E3226" text-anchor="start">新工具</text>
+<rect x="674" y="314" width="52" height="40" rx="8" fill="#F3E9D8" stroke="#E8DCC8" stroke-width="1"/>
+<rect x="730" y="314" width="52" height="40" rx="8" fill="#F3E9D8" stroke="#E8DCC8" stroke-width="1"/>
+<text x="40" y="430" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">棋盘格 44×44</text>
+<rect x="40" y="442" width="44" height="44" rx="8" fill="#F3E9D8" stroke="#E8DCC8" stroke-width="1"/>
+<rect x="96" y="442" width="44" height="44" rx="8" fill="#D9A15B" stroke="#A9703C" stroke-width="2"/>
+<rect x="152" y="442" width="44" height="44" rx="8" fill="#F3E9D8" stroke="#7FA05A" stroke-width="2"/>
+<text x="40" y="516" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" fill="#8A7B66" text-anchor="start">空格 / 生成器 / 拖拽同级高亮</text>
+<text x="240" y="430" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">主按钮 272×56（可用 / 不可用）</text>
+<rect x="240" y="442" width="272" height="56" rx="999" fill="#E2703A"/>
+<text x="376" y="477" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="600" fill="#FFFFFF" text-anchor="middle">修好这一步 · 130 金币</text>
+<rect x="240" y="510" width="272" height="56" rx="999" fill="#D9CFBF"/>
+<text x="376" y="545" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="600" fill="#FFFFFF" text-anchor="middle">还差 40 金币</text>
+<text x="560" y="430" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">次按钮 120×44</text>
+<rect x="560" y="442" width="120" height="44" rx="999" fill="#FFFFFF" stroke="#E8DCC8" stroke-width="1"/>
+<text x="620" y="470" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="600" fill="#3E3226" text-anchor="middle">取消</text>
+<text x="720" y="430" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">信息条 200×56</text>
+<rect x="720" y="442" width="200" height="56" rx="12" fill="#FFFFFF" stroke="#E8DCC8" stroke-width="1"/>
+<text x="734" y="464" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#3E3226" text-anchor="start">木箱 · 4 级</text>
+<text x="734" y="484" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" fill="#3E3226" text-anchor="start">装东西用，也能交订单</text>
+<text x="40" y="590" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">猫头像框 44×44</text>
+<rect x="40" y="602" width="44" height="44" rx="22" fill="#F3E9D8" stroke="#3E3226" stroke-width="2"/>
+<text x="62" y="630" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="600" fill="#3E3226" text-anchor="middle">猫</text>
+<text x="150" y="590" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">仓库格 72×72</text>
+<rect x="150" y="602" width="72" height="72" rx="12" fill="#FFFFFF" stroke="#E8DCC8" stroke-width="1"/>
+<rect x="238" y="602" width="72" height="72" rx="12" fill="#F1EADB" stroke="#C9BCA4" stroke-width="1"/>
+<text x="274" y="644" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#8A7B66" text-anchor="middle">450</text>
+<rect x="352" y="594" width="324" height="412" rx="16" fill="#FBF6EC" stroke="#E8DCC8" stroke-width="1"/>
+<rect x="360" y="602" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="404" y="602" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="448" y="602" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="492" y="602" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="536" y="602" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="580" y="602" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="624" y="602" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="360" y="646" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="404" y="646" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="448" y="646" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="492" y="646" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="536" y="646" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="580" y="646" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="624" y="646" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="360" y="690" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="404" y="690" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="448" y="690" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="492" y="690" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="536" y="690" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="580" y="690" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="624" y="690" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="360" y="734" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="404" y="734" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="448" y="734" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="492" y="734" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="536" y="734" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="580" y="734" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="624" y="734" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="360" y="778" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="404" y="778" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="448" y="778" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="492" y="778" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="536" y="778" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="580" y="778" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="624" y="778" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="360" y="822" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="404" y="822" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="448" y="822" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="492" y="822" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="536" y="822" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="580" y="822" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="624" y="822" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="360" y="866" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="404" y="866" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="448" y="866" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="492" y="866" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="536" y="866" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="580" y="866" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="624" y="866" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="360" y="910" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="404" y="910" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="448" y="910" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="492" y="910" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="536" y="910" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="580" y="910" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="624" y="910" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="360" y="954" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="404" y="954" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="448" y="954" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="492" y="954" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="536" y="954" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="580" y="954" width="40" height="40" rx="6" fill="#F7EFE0"/>
+<rect x="624" y="954" width="40" height="40" rx="6" fill="#F3E9D8"/>
+<rect x="404" y="646" width="40" height="40" rx="6" fill="#D9A15B" stroke="#A9703C" stroke-width="2"/>
+<text x="360" y="584" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">棋盘 7×9 = 308×396</text>
+<text x="40" y="1070" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">颜色令牌</text>
+<rect x="40" y="1084" width="100" height="64" rx="12" fill="#FBF6EC" stroke="#D8CCB6" stroke-width="1"/>
+<text x="40" y="1168" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#3E3226" text-anchor="start">bg</text>
+<text x="40" y="1184" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" fill="#8A7B66" text-anchor="start">#FBF6EC</text>
+<rect x="160" y="1084" width="100" height="64" rx="12" fill="#D9A15B" stroke="#D8CCB6" stroke-width="1"/>
+<text x="160" y="1168" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#3E3226" text-anchor="start">wood-light</text>
+<text x="160" y="1184" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" fill="#8A7B66" text-anchor="start">#D9A15B</text>
+<rect x="280" y="1084" width="100" height="64" rx="12" fill="#A9703C" stroke="#D8CCB6" stroke-width="1"/>
+<text x="280" y="1168" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#3E3226" text-anchor="start">wood-dark</text>
+<text x="280" y="1184" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" fill="#8A7B66" text-anchor="start">#A9703C</text>
+<rect x="400" y="1084" width="100" height="64" rx="12" fill="#E2703A" stroke="#D8CCB6" stroke-width="1"/>
+<text x="400" y="1168" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#3E3226" text-anchor="start">accent</text>
+<text x="400" y="1184" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" fill="#8A7B66" text-anchor="start">#E2703A</text>
+<rect x="520" y="1084" width="100" height="64" rx="12" fill="#7FA05A" stroke="#D8CCB6" stroke-width="1"/>
+<text x="520" y="1168" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#3E3226" text-anchor="start">success</text>
+<text x="520" y="1184" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" fill="#8A7B66" text-anchor="start">#7FA05A</text>
+<rect x="640" y="1084" width="100" height="64" rx="12" fill="#3E3226" stroke="#D8CCB6" stroke-width="1"/>
+<text x="640" y="1168" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#3E3226" text-anchor="start">text</text>
+<text x="640" y="1184" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" fill="#8A7B66" text-anchor="start">#3E3226</text>
+<rect x="760" y="1084" width="100" height="64" rx="12" fill="#E8DCC8" stroke="#D8CCB6" stroke-width="1"/>
+<text x="760" y="1168" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="600" fill="#3E3226" text-anchor="start">border</text>
+<text x="760" y="1184" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="11" font-weight="400" fill="#8A7B66" text-anchor="start">#E8DCC8</text>
+<text x="40" y="1210" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="600" fill="#8A7B66" text-anchor="start">文字层级</text>
+<text x="40" y="1260" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#8A7B66" text-anchor="start">界面标题</text>
+<text x="240" y="1260" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="600" fill="#3E3226" text-anchor="start">界面标题 示例</text>
+<text x="40" y="1306" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#8A7B66" text-anchor="start">卡片数字 / 按钮</text>
+<text x="240" y="1306" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="600" fill="#3E3226" text-anchor="start">卡片数字 / 按钮 示例</text>
+<text x="40" y="1352" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#8A7B66" text-anchor="start">顶栏 / 信息条标题</text>
+<text x="240" y="1352" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="14" font-weight="600" fill="#3E3226" text-anchor="start">顶栏 / 信息条标题 示例</text>
+<text x="40" y="1398" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="13" font-weight="600" fill="#8A7B66" text-anchor="start">正文描述</text>
+<text x="240" y="1398" font-family="Noto Sans SC, Microsoft YaHei, sans-serif" font-size="12" font-weight="400" fill="#3E3226" text-anchor="start">正文描述 示例</text>
+</svg>

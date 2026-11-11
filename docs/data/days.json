@@ -1,0 +1,498 @@
+[
+ {
+  "day": 1,
+  "room": "porch",
+  "newGenerator": "gen_wood",
+  "orderIds": [
+   "o1_1",
+   "o1_2",
+   "o1_3"
+  ],
+  "build": {
+   "step": 1,
+   "name": "换掉翘起的地板",
+   "cost": 130
+  },
+  "dialogue": {
+   "intro": "d1_intro",
+   "outro": "d1_outro"
+  }
+ },
+ {
+  "day": 2,
+  "room": "porch",
+  "newGenerator": null,
+  "orderIds": [
+   "o2_1",
+   "o2_2",
+   "o2_3"
+  ],
+  "build": {
+   "step": 2,
+   "name": "补好门廊栏杆",
+   "cost": 210
+  },
+  "dialogue": {
+   "intro": "d2_intro",
+   "outro": "d2_outro"
+  }
+ },
+ {
+  "day": 3,
+  "room": "porch",
+  "newGenerator": null,
+  "orderIds": [
+   "o3_1",
+   "o3_2",
+   "o3_3"
+  ],
+  "build": {
+   "step": 3,
+   "name": "刷外墙、挂上灯",
+   "cost": 220
+  },
+  "dialogue": {
+   "intro": "d3_intro",
+   "outro": "d3_outro"
+  }
+ },
+ {
+  "day": 4,
+  "room": "entry",
+  "newGenerator": "gen_metal",
+  "orderIds": [
+   "o4_1",
+   "o4_2",
+   "o4_3",
+   "o4_4"
+  ],
+  "build": {
+   "step": 1,
+   "name": "扶正门框",
+   "cost": 280
+  },
+  "dialogue": {
+   "intro": "d4_intro",
+   "outro": "d4_outro"
+  }
+ },
+ {
+  "day": 5,
+  "room": "entry",
+  "newGenerator": null,
+  "orderIds": [
+   "o5_1",
+   "o5_2",
+   "o5_3",
+   "o5_4"
+  ],
+  "build": {
+   "step": 2,
+   "name": "装上黄铜门锁",
+   "cost": 355
+  },
+  "dialogue": {
+   "intro": "d5_intro",
+   "outro": "d5_outro"
+  }
+ },
+ {
+  "day": 6,
+  "room": "entry",
+  "newGenerator": null,
+  "orderIds": [
+   "o6_1",
+   "o6_2",
+   "o6_3",
+   "o6_4"
+  ],
+  "build": {
+   "step": 3,
+   "name": "刷墙、铺地垫",
+   "cost": 420
+  },
+  "dialogue": {
+   "intro": "d6_intro",
+   "outro": "d6_outro"
+  }
+ },
+ {
+  "day": 7,
+  "room": "living",
+  "newGenerator": "gen_fabric",
+  "orderIds": [
+   "o7_1",
+   "o7_2",
+   "o7_3",
+   "o7_4",
+   "o7_5"
+  ],
+  "build": {
+   "step": 1,
+   "name": "换掉破沙发套",
+   "cost": 525
+  },
+  "dialogue": {
+   "intro": "d7_intro",
+   "outro": "d7_outro"
+  }
+ },
+ {
+  "day": 8,
+  "room": "living",
+  "newGenerator": null,
+  "orderIds": [
+   "o8_1",
+   "o8_2",
+   "o8_3",
+   "o8_4",
+   "o8_5"
+  ],
+  "build": {
+   "step": 2,
+   "name": "挂上新窗帘",
+   "cost": 620
+  },
+  "dialogue": {
+   "intro": "d8_intro",
+   "outro": "d8_outro"
+  }
+ },
+ {
+  "day": 9,
+  "room": "living",
+  "newGenerator": null,
+  "orderIds": [
+   "o9_1",
+   "o9_2",
+   "o9_3",
+   "o9_4",
+   "o9_5"
+  ],
+  "build": {
+   "step": 3,
+   "name": "铺平地毯",
+   "cost": 740
+  },
+  "dialogue": {
+   "intro": "d9_intro",
+   "outro": "d9_outro"
+  }
+ },
+ {
+  "day": 10,
+  "room": "bedroom",
+  "newGenerator": "gen_light",
+  "orderIds": [
+   "o10_1",
+   "o10_2",
+   "o10_3",
+   "o10_4",
+   "o10_5"
+  ],
+  "build": {
+   "step": 1,
+   "name": "修好吊灯",
+   "cost": 1110
+  },
+  "dialogue": {
+   "intro": "d10_intro",
+   "outro": "d10_outro"
+  }
+ },
+ {
+  "day": 11,
+  "room": "bedroom",
+  "newGenerator": null,
+  "orderIds": [
+   "o11_1",
+   "o11_2",
+   "o11_3",
+   "o11_4",
+   "o11_5"
+  ],
+  "build": {
+   "step": 2,
+   "name": "换上新的床品",
+   "cost": 1270
+  },
+  "dialogue": {
+   "intro": "d11_intro",
+   "outro": "d11_outro"
+  }
+ },
+ {
+  "day": 12,
+  "room": "bedroom",
+  "newGenerator": null,
+  "orderIds": [
+   "o12_1",
+   "o12_2",
+   "o12_3",
+   "o12_4",
+   "o12_5"
+  ],
+  "build": {
+   "step": 3,
+   "name": "挂上窗帘",
+   "cost": 1370
+  },
+  "dialogue": {
+   "intro": "d12_intro",
+   "outro": "d12_outro"
+  }
+ },
+ {
+  "day": 13,
+  "room": "kitchen",
+  "newGenerator": "gen_ceramic",
+  "orderIds": [
+   "o13_1",
+   "o13_2",
+   "o13_3",
+   "o13_4",
+   "o13_5",
+   "o13_6"
+  ],
+  "build": {
+   "step": 1,
+   "name": "修好灶台",
+   "cost": 1500
+  },
+  "dialogue": {
+   "intro": "d13_intro",
+   "outro": "d13_outro"
+  }
+ },
+ {
+  "day": 14,
+  "room": "kitchen",
+  "newGenerator": null,
+  "orderIds": [
+   "o14_1",
+   "o14_2",
+   "o14_3",
+   "o14_4",
+   "o14_5",
+   "o14_6"
+  ],
+  "build": {
+   "step": 2,
+   "name": "换掉水槽",
+   "cost": 1795
+  },
+  "dialogue": {
+   "intro": "d14_intro",
+   "outro": "d14_outro"
+  }
+ },
+ {
+  "day": 15,
+  "room": "kitchen",
+  "newGenerator": null,
+  "orderIds": [
+   "o15_1",
+   "o15_2",
+   "o15_3",
+   "o15_4",
+   "o15_5",
+   "o15_6"
+  ],
+  "build": {
+   "step": 3,
+   "name": "摆好一套碗碟",
+   "cost": 1900
+  },
+  "dialogue": {
+   "intro": "d15_intro",
+   "outro": "d15_outro"
+  }
+ },
+ {
+  "day": 16,
+  "room": "yard",
+  "newGenerator": "gen_plant",
+  "orderIds": [
+   "o16_1",
+   "o16_2",
+   "o16_3",
+   "o16_4",
+   "o16_5",
+   "o16_6"
+  ],
+  "build": {
+   "step": 1,
+   "name": "砌好花坛",
+   "cost": 1900
+  },
+  "dialogue": {
+   "intro": "d16_intro",
+   "outro": "d16_outro"
+  }
+ },
+ {
+  "day": 17,
+  "room": "yard",
+  "newGenerator": null,
+  "orderIds": [
+   "o17_1",
+   "o17_2",
+   "o17_3",
+   "o17_4",
+   "o17_5",
+   "o17_6"
+  ],
+  "build": {
+   "step": 2,
+   "name": "修好长椅",
+   "cost": 1945
+  },
+  "dialogue": {
+   "intro": "d17_intro",
+   "outro": "d17_outro"
+  }
+ },
+ {
+  "day": 18,
+  "room": "yard",
+  "newGenerator": null,
+  "orderIds": [
+   "o18_1",
+   "o18_2",
+   "o18_3",
+   "o18_4",
+   "o18_5",
+   "o18_6"
+  ],
+  "build": {
+   "step": 3,
+   "name": "种下玫瑰",
+   "cost": 1975
+  },
+  "dialogue": {
+   "intro": "d18_intro",
+   "outro": "d18_outro"
+  }
+ },
+ {
+  "day": 19,
+  "room": "attic",
+  "newGenerator": "gen_relic",
+  "orderIds": [
+   "o19_1",
+   "o19_2",
+   "o19_3",
+   "o19_4"
+  ],
+  "build": {
+   "step": 1,
+   "name": "清理蛛网",
+   "cost": 1045
+  },
+  "dialogue": {
+   "intro": "d19_intro",
+   "outro": "d19_outro"
+  }
+ },
+ {
+  "day": 20,
+  "room": "attic",
+  "newGenerator": null,
+  "orderIds": [
+   "o20_1",
+   "o20_2",
+   "o20_3",
+   "o20_4"
+  ],
+  "build": {
+   "step": 2,
+   "name": "擦干净窗户",
+   "cost": 1045
+  },
+  "dialogue": {
+   "intro": "d20_intro",
+   "outro": "d20_outro"
+  }
+ },
+ {
+  "day": 21,
+  "room": "attic",
+  "newGenerator": null,
+  "orderIds": [
+   "o21_1",
+   "o21_2",
+   "o21_3",
+   "o21_4"
+  ],
+  "build": {
+   "step": 3,
+   "name": "打开箱子整理",
+   "cost": 1370
+  },
+  "dialogue": {
+   "intro": "d21_intro",
+   "outro": "d21_outro"
+  }
+ },
+ {
+  "day": 22,
+  "room": "whole",
+  "newGenerator": null,
+  "orderIds": [
+   "o22_1",
+   "o22_2",
+   "o22_3",
+   "o22_4",
+   "o22_5"
+  ],
+  "build": {
+   "step": 1,
+   "name": "换掉屋顶的瓦",
+   "cost": 1660
+  },
+  "dialogue": {
+   "intro": "d22_intro",
+   "outro": "d22_outro"
+  }
+ },
+ {
+  "day": 23,
+  "room": "whole",
+  "newGenerator": null,
+  "orderIds": [
+   "o23_1",
+   "o23_2",
+   "o23_3",
+   "o23_4",
+   "o23_5"
+  ],
+  "build": {
+   "step": 2,
+   "name": "刷外墙",
+   "cost": 2130
+  },
+  "dialogue": {
+   "intro": "d23_intro",
+   "outro": "d23_outro"
+  }
+ },
+ {
+  "day": 24,
+  "room": "whole",
+  "newGenerator": null,
+  "orderIds": [
+   "o24_1",
+   "o24_2",
+   "o24_3"
+  ],
+  "build": {
+   "step": 3,
+   "name": "挂回招牌",
+   "cost": 1190
+  },
+  "dialogue": {
+   "intro": "d24_intro",
+   "outro": "d24_outro"
+  }
+ }
+]

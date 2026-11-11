@@ -1,0 +1,1351 @@
+{
+ "version": 1,
+ "scenes": {
+  "d1_intro": {
+   "day": 1,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "雨停在天亮前。门廊的木板翘起来一块，踩上去会响。"
+    },
+    {
+     "who": "daju",
+     "text": "你谁啊。"
+    },
+    {
+     "who": "player",
+     "text": "……这是我家。"
+    },
+    {
+     "who": "daju",
+     "text": "这房子空了十年，你倒是第一个回来的。"
+    },
+    {
+     "who": "daju",
+     "text": "上一个来的是收废品的，被我赶走了。"
+    },
+    {
+     "who": "daju",
+     "text": "行。先把门口扫干净，扫干净了再谈。"
+    }
+   ]
+  },
+  "d1_outro": {
+   "day": 1,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "daju",
+     "text": "扫得还行。边角还有灰。"
+    },
+    {
+     "who": "player",
+     "text": "明天再扫。"
+    },
+    {
+     "who": "daju",
+     "text": "明天。……行，明天。"
+    },
+    {
+     "who": "daju",
+     "text": "门槛还翘着。晚上风大，你自己想办法。"
+    }
+   ]
+  },
+  "d1_cat": {
+   "day": 1,
+   "kind": "cat",
+   "lines": [
+    {
+     "who": "daju",
+     "text": "门口那堆破烂里有个铁盒，帮我找出来。"
+    },
+    {
+     "who": "player",
+     "text": "什么样的。"
+    },
+    {
+     "who": "daju",
+     "text": "方的，掉漆，盖子上画着一只猫。"
+    },
+    {
+     "who": "daju",
+     "text": "……画得不像我。"
+    },
+    {
+     "who": "daju",
+     "text": "里面有饼干。……以前有。"
+    }
+   ]
+  },
+  "d2_intro": {
+   "day": 2,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "daju",
+     "text": "今天把那些破烂清一清。"
+    },
+    {
+     "who": "daju",
+     "text": "能卖钱的捆起来，不能卖的烧了。"
+    },
+    {
+     "who": "player",
+     "text": "这些书也烧？"
+    },
+    {
+     "who": "daju",
+     "text": "书留着。她说过，书比人记得久。"
+    },
+    {
+     "who": "daju",
+     "text": "别烧那个铁盒。"
+    }
+   ]
+  },
+  "d2_outro": {
+   "day": 2,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "daju",
+     "text": "你干活的时候不说话。"
+    },
+    {
+     "who": "player",
+     "text": "没什么好说的。"
+    },
+    {
+     "who": "daju",
+     "text": "她也不说话。你们家的人都不说话。"
+    },
+    {
+     "who": "daju",
+     "text": "一整天，就听见扫地的声。"
+    }
+   ]
+  },
+  "d3_intro": {
+   "day": 3,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "daju",
+     "text": "门轴锈了。上点油。"
+    },
+    {
+     "who": "player",
+     "text": "你不是会修吗。"
+    },
+    {
+     "who": "daju",
+     "text": "我是猫。"
+    },
+    {
+     "who": "daju",
+     "text": "猫只负责验收。"
+    }
+   ]
+  },
+  "d3_outro": {
+   "day": 3,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "门关上了，严丝合缝。风从门缝里试了试，没进来。"
+    },
+    {
+     "who": "daju",
+     "text": "十年了，第一次听见这个声。"
+    },
+    {
+     "who": "daju",
+     "text": "以前风一吹，门就咣当。她就起来修，修到半夜。"
+    },
+    {
+     "who": "daju",
+     "text": "这房子算是你的了。"
+    },
+    {
+     "who": "daju",
+     "text": "……暂时。"
+    }
+   ]
+  },
+  "d4_intro": {
+   "day": 4,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "daju",
+     "text": "门口那堆鞋，挑一双留着。"
+    },
+    {
+     "who": "daju",
+     "text": "剩下的装袋，收废品的明天来。"
+    },
+    {
+     "who": "player",
+     "text": "都是旧的。"
+    },
+    {
+     "who": "daju",
+     "text": "旧的才有人要。新的谁卖。"
+    },
+    {
+     "who": "daju",
+     "text": "那双红的留着。她穿的。"
+    }
+   ]
+  },
+  "d4_outro": {
+   "day": 4,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "daju",
+     "text": "镜子上全是灰。擦擦。"
+    },
+    {
+     "who": "daju",
+     "text": "擦干净了，人才看得见自己。"
+    },
+    {
+     "who": "daju",
+     "text": "……你跟她长得有点像。就一点点。"
+    }
+   ]
+  },
+  "d5_intro": {
+   "day": 5,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "daju",
+     "text": "挂钩装歪了。"
+    },
+    {
+     "who": "player",
+     "text": "差两毫米。"
+    },
+    {
+     "who": "daju",
+     "text": "猫看得出来。"
+    },
+    {
+     "who": "daju",
+     "text": "猫天天从底下过。"
+    }
+   ]
+  },
+  "d5_outro": {
+   "day": 5,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "daju",
+     "text": "你手挺稳。"
+    },
+    {
+     "who": "daju",
+     "text": "她也是。修伞的时候，一根线都不歪。"
+    },
+    {
+     "who": "daju",
+     "text": "街上的人都说，找她修东西，比买新的还结实。"
+    },
+    {
+     "who": "daju",
+     "text": "后来没人修了。都买新的。"
+    }
+   ]
+  },
+  "d5_cat": {
+   "day": 5,
+   "kind": "cat",
+   "lines": [
+    {
+     "who": "daju",
+     "text": "把那副合页给我留着。"
+    },
+    {
+     "who": "daju",
+     "text": "她以前说，柜门响的时候，就是该修了。"
+    },
+    {
+     "who": "daju",
+     "text": "柜门响了一年了。没人修。"
+    }
+   ]
+  },
+  "d6_intro": {
+   "day": 6,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "daju",
+     "text": "最后把锁装上。"
+    },
+    {
+     "who": "daju",
+     "text": "装好了，这屋子就能关严实了。"
+    },
+    {
+     "who": "daju",
+     "text": "关严实了，才算家。"
+    },
+    {
+     "who": "player",
+     "text": "以前不算？"
+    },
+    {
+     "who": "daju",
+     "text": "以前算个洞。谁都能进，风也能。"
+    }
+   ]
+  },
+  "d6_outro": {
+   "day": 6,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "锁舌「咔」一声，很轻。"
+    },
+    {
+     "who": "daju",
+     "text": "今晚我睡屋里。"
+    },
+    {
+     "who": "daju",
+     "text": "别误会。我是怕你害怕。"
+    },
+    {
+     "who": "daju",
+     "text": "……也怕你把门开着。"
+    }
+   ]
+  },
+  "d7_intro": {
+   "day": 7,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "客厅的家具都盖着白布。布上落了十年的灰。"
+    },
+    {
+     "who": "huahua",
+     "text": "（从纸箱后探出半个头）……"
+    },
+    {
+     "who": "daju",
+     "text": "它叫花花。怕人，你别过去。"
+    },
+    {
+     "who": "daju",
+     "text": "它三年没让人看过整张脸。"
+    },
+    {
+     "who": "huahua",
+     "text": "……"
+    }
+   ]
+  },
+  "d7_outro": {
+   "day": 7,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "huahua",
+     "text": "你身上有灰尘的味道。"
+    },
+    {
+     "who": "huahua",
+     "text": "跟柜子底下的味道一样。"
+    },
+    {
+     "who": "player",
+     "text": "那是好还是不好。"
+    },
+    {
+     "who": "huahua",
+     "text": "……不知道。我还没想好。"
+    }
+   ]
+  },
+  "d8_intro": {
+   "day": 8,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "huahua",
+     "text": "白布下面都是椅子。"
+    },
+    {
+     "who": "huahua",
+     "text": "她以前把椅子摆成一圈，让街上的人来坐。"
+    },
+    {
+     "who": "huahua",
+     "text": "修伞的、补锅的、吵架的，都坐过。"
+    },
+    {
+     "who": "huahua",
+     "text": "吵完架还坐一起吃饭。很奇怪。"
+    }
+   ]
+  },
+  "d8_outro": {
+   "day": 8,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "huahua",
+     "text": "椅子腿断了三把。"
+    },
+    {
+     "who": "huahua",
+     "text": "剩下的也不稳。"
+    },
+    {
+     "who": "huahua",
+     "text": "……你要是修，我可以在旁边看吗。"
+    },
+    {
+     "who": "player",
+     "text": "可以。"
+    },
+    {
+     "who": "huahua",
+     "text": "那我明天出来。"
+    }
+   ]
+  },
+  "d8_cat": {
+   "day": 8,
+   "kind": "cat",
+   "lines": [
+    {
+     "who": "huahua",
+     "text": "那块布，能给我吗。"
+    },
+    {
+     "who": "huahua",
+     "text": "我想垫在箱子底下。箱子太硬了。"
+    },
+    {
+     "who": "huahua",
+     "text": "不是我要睡。是给以后来的小猫睡。"
+    }
+   ]
+  },
+  "d9_intro": {
+   "day": 9,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "huahua",
+     "text": "窗帘洗过了吗。"
+    },
+    {
+     "who": "player",
+     "text": "洗了。"
+    },
+    {
+     "who": "huahua",
+     "text": "那就好。我不喜欢灰。"
+    },
+    {
+     "who": "huahua",
+     "text": "灰落下来的时候，看不见，但能闻见。"
+    }
+   ]
+  },
+  "d9_outro": {
+   "day": 9,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "花花第一次从纸箱里走出来，绕着客厅转了一圈。"
+    },
+    {
+     "who": "huahua",
+     "text": "合格。"
+    },
+    {
+     "who": "huahua",
+     "text": "明天我可以睡沙发吗。"
+    },
+    {
+     "who": "player",
+     "text": "可以。"
+    },
+    {
+     "who": "huahua",
+     "text": "我只睡靠窗那一半。那边没有灰。"
+    }
+   ]
+  },
+  "d10_intro": {
+   "day": 10,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "tuanzi",
+     "text": "（在床上，没动）这张床，我睡了十年。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "你要收回去吗。"
+    },
+    {
+     "who": "player",
+     "text": "先晒。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "……哦。那再睡三天。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "三天。说好了。"
+    }
+   ]
+  },
+  "d10_outro": {
+   "day": 10,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "tuanzi",
+     "text": "窗户关不严。晚上有风。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "风从缝里进来，正好吹在我背上。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "……我不是抱怨。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "我是说，你要是修，先修那扇窗。"
+    }
+   ]
+  },
+  "d11_intro": {
+   "day": 11,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "tuanzi",
+     "text": "灯……能亮吗。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "晚上太黑了。黑的时候，我会想起她不在。"
+    },
+    {
+     "who": "player",
+     "text": "我试试。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "试的时候，我能不能在旁边。"
+    }
+   ]
+  },
+  "d11_outro": {
+   "day": 11,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "小夜灯亮了，一小团暖黄。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "……"
+    },
+    {
+     "who": "tuanzi",
+     "text": "原来黑不是本来就有的。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "你明天还来吗。"
+    }
+   ]
+  },
+  "d11_cat": {
+   "day": 11,
+   "kind": "cat",
+   "lines": [
+    {
+     "who": "tuanzi",
+     "text": "那盏灯，别关。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "关了我睡不着。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "开着的话，我做梦也能看见路。"
+    }
+   ]
+  },
+  "d12_intro": {
+   "day": 12,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "tuanzi",
+     "text": "电闸在楼下。你去推。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "我在这儿等你。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "我怕黑。但我更怕你一个人下去。"
+    }
+   ]
+  },
+  "d12_outro": {
+   "day": 12,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "灯一盏一盏亮起来，从楼下亮到楼上。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "亮了。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "原来这屋子亮着的时候，是这个样子的。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "我十年没见过了。"
+    },
+    {
+     "who": "tuanzi",
+     "text": "你站那儿别动。我看看。"
+    }
+   ]
+  },
+  "d13_intro": {
+   "day": 13,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "厨房的灶台锈成了褐色。锅底结着一层壳。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "（从灶台后走出来，嘴里叼着东西）……"
+    },
+    {
+     "who": "meiqiu",
+     "text": "我没偷。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "这是我自己找到的。"
+    },
+    {
+     "who": "player",
+     "text": "我没说你偷。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "你刚才那个眼神说了。"
+    }
+   ]
+  },
+  "d13_outro": {
+   "day": 13,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "meiqiu",
+     "text": "锅是锈的。别用它煮东西。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "……我不是关心你。我是怕你把厨房烧了。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "烧了我就没地方待了。"
+    }
+   ]
+  },
+  "d14_intro": {
+   "day": 14,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "meiqiu",
+     "text": "墙刷哪个色。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "……我不是在意。随便问问。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "反正刷什么我都睡灶台边。"
+    }
+   ]
+  },
+  "d14_choice_warm": {
+   "day": 14,
+   "kind": "choice",
+   "lines": [
+    {
+     "who": "player",
+     "text": "米白。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "米白。跟牛奶一样。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "……行吧。反正我也喝不到牛奶。"
+    }
+   ]
+  },
+  "d14_choice_green": {
+   "day": 14,
+   "kind": "choice",
+   "lines": [
+    {
+     "who": "player",
+     "text": "豆绿。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "豆绿。跟院子里的叶子一样。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "……行吧。反正我也进不了院子。"
+    }
+   ]
+  },
+  "d14_outro": {
+   "day": 14,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "meiqiu",
+     "text": "还行。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "比原来那个发霉的颜色强。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "那个颜色，看久了像生病。"
+    }
+   ]
+  },
+  "d14_cat": {
+   "day": 14,
+   "kind": "cat",
+   "lines": [
+    {
+     "who": "meiqiu",
+     "text": "那套碗，给我留一个。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "我喝水用。别问为什么。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "……也别告诉别人。"
+    }
+   ]
+  },
+  "d15_intro": {
+   "day": 15,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "meiqiu",
+     "text": "你会做饭吗。"
+    },
+    {
+     "who": "player",
+     "text": "会一点。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "……那做吧。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "我不吃。我就看看。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "我做监工。"
+    }
+   ]
+  },
+  "d15_outro": {
+   "day": 15,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "煤球吃完了，把碗往前推了推。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "咸了。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "……再盛一碗。"
+    },
+    {
+     "who": "meiqiu",
+     "text": "别告诉大橘。它会笑话我。"
+    }
+   ]
+  },
+  "d16_intro": {
+   "day": 16,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "院子里草长到膝盖。花坛塌了一角。"
+    },
+    {
+     "who": "ali",
+     "text": "（在墙头）站住。"
+    },
+    {
+     "who": "ali",
+     "text": "这片地是我的。"
+    },
+    {
+     "who": "player",
+     "text": "花坛也是你的？"
+    },
+    {
+     "who": "ali",
+     "text": "花坛是她的。她走了以后，归我管。"
+    },
+    {
+     "who": "ali",
+     "text": "我只是替她看着。"
+    }
+   ]
+  },
+  "d16_outro": {
+   "day": 16,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "ali",
+     "text": "草拔得还行。"
+    },
+    {
+     "who": "ali",
+     "text": "别碰那棵月季。那是她种的。"
+    },
+    {
+     "who": "ali",
+     "text": "她走的那年，月季开得最好。今年没开。"
+    },
+    {
+     "who": "ali",
+     "text": "你要是能修好，它可能会开。"
+    }
+   ]
+  },
+  "d17_intro": {
+   "day": 17,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "ali",
+     "text": "你从哪儿弄来的花苗。"
+    },
+    {
+     "who": "player",
+     "text": "镇上。"
+    },
+    {
+     "who": "ali",
+     "text": "……多少钱。"
+    },
+    {
+     "who": "player",
+     "text": "不要钱。"
+    },
+    {
+     "who": "ali",
+     "text": "那不行。猫不欠人情。明天给你叼点东西。"
+    },
+    {
+     "who": "player",
+     "text": "不用。"
+    },
+    {
+     "who": "ali",
+     "text": "规矩。"
+    }
+   ]
+  },
+  "d17_outro": {
+   "day": 17,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "第二天早上，门口放着一只袜子。"
+    },
+    {
+     "who": "ali",
+     "text": "叼来了。"
+    },
+    {
+     "who": "ali",
+     "text": "……你的。"
+    },
+    {
+     "who": "player",
+     "text": "我昨天晾的。"
+    },
+    {
+     "who": "ali",
+     "text": "我知道。我挑了一只。"
+    }
+   ]
+  },
+  "d17_cat": {
+   "day": 17,
+   "kind": "cat",
+   "lines": [
+    {
+     "who": "ali",
+     "text": "花架往那边挪半米。"
+    },
+    {
+     "who": "ali",
+     "text": "这边下午有太阳，我要躺着。"
+    },
+    {
+     "who": "ali",
+     "text": "花可以晒，猫也可以晒。"
+    }
+   ]
+  },
+  "d18_intro": {
+   "day": 18,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "ali",
+     "text": "种吧。种密一点。"
+    },
+    {
+     "who": "ali",
+     "text": "花太整齐，猫没地方打滚。"
+    },
+    {
+     "who": "player",
+     "text": "花会被压坏。"
+    },
+    {
+     "who": "ali",
+     "text": "压坏再长。猫只有一次。"
+    }
+   ]
+  },
+  "d18_outro": {
+   "day": 18,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "花开了。风一过，整片都在动。"
+    },
+    {
+     "who": "narrator",
+     "text": "阿狸在花里打了个滚，起来的时候头上顶着一朵。"
+    },
+    {
+     "who": "ali",
+     "text": "……看什么看。"
+    },
+    {
+     "who": "ali",
+     "text": "这花坛，现在归我俩管。"
+    },
+    {
+     "who": "ali",
+     "text": "你一半，我一半。花是共用的。"
+    }
+   ]
+  },
+  "d19_intro": {
+   "day": 19,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "阁楼的门卡住了，推了三下才开。"
+    },
+    {
+     "who": "narrator",
+     "text": "灰尘在光里飘，像下了一场很慢的雪。"
+    },
+    {
+     "who": "huzi",
+     "text": "（背对着，坐在窗边）……"
+    },
+    {
+     "who": "daju",
+     "text": "别过去。"
+    },
+    {
+     "who": "daju",
+     "text": "它不让人碰。"
+    },
+    {
+     "who": "daju",
+     "text": "它十年没下过楼。"
+    }
+   ]
+  },
+  "d19_outro": {
+   "day": 19,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "huzi",
+     "text": "你是谁。"
+    },
+    {
+     "who": "player",
+     "text": "小满。陈玉兰的外孙女。"
+    },
+    {
+     "who": "huzi",
+     "text": "……她说过你会来。"
+    },
+    {
+     "who": "huzi",
+     "text": "她说，要是有人来修房子，就是自家人。"
+    },
+    {
+     "who": "huzi",
+     "text": "我以为是哄我的。"
+    }
+   ]
+  },
+  "d20_intro": {
+   "day": 20,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "huzi",
+     "text": "箱子里有信。"
+    },
+    {
+     "who": "huzi",
+     "text": "我够不着。你打开。"
+    },
+    {
+     "who": "huzi",
+     "text": "我看了十年，看不懂。我不识字。"
+    },
+    {
+     "who": "huzi",
+     "text": "但我记得她写字的样子。"
+    }
+   ]
+  },
+  "d20_outro": {
+   "day": 20,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "huzi",
+     "text": "她每天都从这个窗户看外面。"
+    },
+    {
+     "who": "huzi",
+     "text": "后来眼睛不好了，就听。"
+    },
+    {
+     "who": "huzi",
+     "text": "听见有人上台阶，就问：是不是孩子回来了。"
+    },
+    {
+     "who": "huzi",
+     "text": "问了三年。"
+    }
+   ]
+  },
+  "d21_intro": {
+   "day": 21,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "huzi",
+     "text": "最后一页，你念。"
+    },
+    {
+     "who": "player",
+     "text": "（念）「如果有一天我不在了，猫会替我看着这房子。」"
+    }
+   ]
+  },
+  "d21_outro": {
+   "day": 21,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "huzi",
+     "text": "她没说完。"
+    },
+    {
+     "who": "huzi",
+     "text": "还有一句——「要是有个孩子回来，就让她住下。」"
+    },
+    {
+     "who": "huzi",
+     "text": "我等了十年，就等这句有人念出来。"
+    },
+    {
+     "who": "huzi",
+     "text": "现在念出来了。"
+    },
+    {
+     "who": "huzi",
+     "text": "我可以睡了。"
+    }
+   ]
+  },
+  "d22_intro": {
+   "day": 22,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "daju",
+     "text": "屋顶漏。先补那儿。"
+    },
+    {
+     "who": "daju",
+     "text": "别问我怎么知道的。下雨的时候我睡在下面。"
+    },
+    {
+     "who": "daju",
+     "text": "滴在左肩。每次都左肩。"
+    }
+   ]
+  },
+  "d22_outro": {
+   "day": 22,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "daju",
+     "text": "不漏了。"
+    },
+    {
+     "who": "daju",
+     "text": "……今晚可以睡这儿了。"
+    },
+    {
+     "who": "daju",
+     "text": "我睡中间。你别挤。"
+    }
+   ]
+  },
+  "d23_intro": {
+   "day": 23,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "daju",
+     "text": "家具搬回去。"
+    },
+    {
+     "who": "daju",
+     "text": "按她原来的位置摆。"
+    },
+    {
+     "who": "player",
+     "text": "你怎么记得。"
+    },
+    {
+     "who": "daju",
+     "text": "我天天看着。十年，闭着眼都记得。"
+    }
+   ]
+  },
+  "d23_outro": {
+   "day": 23,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "摆到最后一件，角落里多出一把没修好的椅子。"
+    },
+    {
+     "who": "daju",
+     "text": "这把修不好了。"
+    },
+    {
+     "who": "player",
+     "text": "那就留着。"
+    },
+    {
+     "who": "daju",
+     "text": "……留着好。"
+    },
+    {
+     "who": "daju",
+     "text": "修不好的东西，才像家。"
+    }
+   ]
+  },
+  "d24_intro": {
+   "day": 24,
+   "kind": "intro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "最后一天，全屋的灯都亮着。"
+    },
+    {
+     "who": "narrator",
+     "text": "窗外的街很安静。"
+    },
+    {
+     "who": "huzi",
+     "text": "（从阁楼下来，第一次走到脚边）"
+    },
+    {
+     "who": "huzi",
+     "text": "你要走了吗。"
+    }
+   ]
+  },
+  "d24_choice_stay": {
+   "day": 24,
+   "kind": "choice",
+   "lines": [
+    {
+     "who": "player",
+     "text": "不走了。"
+    }
+   ]
+  },
+  "d24_choice_think": {
+   "day": 24,
+   "kind": "choice",
+   "lines": [
+    {
+     "who": "player",
+     "text": "再想想。……但今晚不走。"
+    }
+   ]
+  },
+  "d24_outro": {
+   "day": 24,
+   "kind": "outro",
+   "lines": [
+    {
+     "who": "narrator",
+     "text": "小满把「修补」的旧招牌擦干净，挂回门口。"
+    },
+    {
+     "who": "narrator",
+     "text": "招牌下面，多了一行小字——「猫也在」。"
+    },
+    {
+     "who": "narrator",
+     "text": "六只猫都在客厅里。老白睡在最中间。"
+    },
+    {
+     "who": "narrator",
+     "text": "大橘占了沙发，花花睡靠窗那一半，团子趴在灯下。"
+    },
+    {
+     "who": "narrator",
+     "text": "房子修好了。日子才刚开始。"
+    }
+   ]
+  }
+ },
+ "almanac": [
+  {
+   "cat": "daju",
+   "title": "这条街的管事",
+   "text": "谁家晒鱼、谁家搬走、谁家孩子回来，它都知道。它从前睡在门垫上，因为那是「第一个看见人回来」的位置。现在它睡客厅中间，谁进门都得绕着它走。"
+  },
+  {
+   "cat": "huahua",
+   "title": "躲在纸箱后面的猫",
+   "text": "怕人，怕灰，怕大声。以前只在她扫地的时候出来。现在会睡沙发，但只睡靠窗那一半——那边没有灰。"
+  },
+  {
+   "cat": "tuanzi",
+   "title": "睡了十年的一张床",
+   "text": "十年没离开过那张床。它说床垫要晒三天，其实是舍不得那点太阳味。灯亮的那晚，它第一次下了楼。"
+  },
+  {
+   "cat": "meiqiu",
+   "title": "每天准时出现的猫",
+   "text": "嘴硬。偷吃从不承认，可每天准时出现在灶台边。它只吃一个人做的饭，吃完还要说「咸了」。"
+  },
+  {
+   "cat": "ali",
+   "title": "院子的主人",
+   "text": "它把花坛当成她留下的东西在守。谁靠近就炸毛。现在允许别人一起管，但太阳最好的那块地还是它的。"
+  },
+  {
+   "cat": "huzi",
+   "title": "她的猫",
+   "text": "十七岁。它一直在阁楼等一句话，等到有人替她把它念出来。念完那天，它第一次走到别人脚边。"
+  }
+ ],
+ "letters": [
+  {
+   "title": "信一",
+   "text": "小满：\n如果你看到这封信，说明房子还没塌。\n别急着卖。先看看窗台，猫喜欢那儿。\n——外婆"
+  },
+  {
+   "title": "信二",
+   "text": "我这辈子没攒下什么。\n一间屋，一手修补的手艺，还有一屋子的猫。\n手艺你大概用不上，屋子你大概也看不上。\n但猫你得管。"
+  },
+  {
+   "title": "信三",
+   "text": "我年轻的时候，也是被人从街上捡回来的。\n这条街不问我从哪来，只问我吃没吃饭。\n所以我修了一辈子东西。\n人给我一口饭，我还人一把伞。\n——不亏。"
+  }
+ ]
+}

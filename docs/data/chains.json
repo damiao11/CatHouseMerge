@@ -1,0 +1,97 @@
+[
+ {
+  "id": "wood",
+  "name": "木工",
+  "generator": "gen_wood",
+  "unlockDay": 1,
+  "itemIds": [
+   "wood_1",
+   "wood_2",
+   "wood_3",
+   "wood_4",
+   "wood_5",
+   "wood_6"
+  ]
+ },
+ {
+  "id": "metal",
+  "name": "五金",
+  "generator": "gen_metal",
+  "unlockDay": 4,
+  "itemIds": [
+   "metal_1",
+   "metal_2",
+   "metal_3",
+   "metal_4",
+   "metal_5"
+  ]
+ },
+ {
+  "id": "fabric",
+  "name": "布艺",
+  "generator": "gen_fabric",
+  "unlockDay": 7,
+  "itemIds": [
+   "fabric_1",
+   "fabric_2",
+   "fabric_3",
+   "fabric_4",
+   "fabric_5",
+   "fabric_6"
+  ]
+ },
+ {
+  "id": "light",
+  "name": "灯具",
+  "generator": "gen_light",
+  "unlockDay": 10,
+  "itemIds": [
+   "light_1",
+   "light_2",
+   "light_3",
+   "light_4",
+   "light_5"
+  ]
+ },
+ {
+  "id": "ceramic",
+  "name": "陶瓷",
+  "generator": "gen_ceramic",
+  "unlockDay": 13,
+  "itemIds": [
+   "ceramic_1",
+   "ceramic_2",
+   "ceramic_3",
+   "ceramic_4",
+   "ceramic_5",
+   "ceramic_6"
+  ]
+ },
+ {
+  "id": "plant",
+  "name": "绿植",
+  "generator": "gen_plant",
+  "unlockDay": 16,
+  "itemIds": [
+   "plant_1",
+   "plant_2",
+   "plant_3",
+   "plant_4",
+   "plant_5",
+   "plant_6"
+  ]
+ },
+ {
+  "id": "relic",
+  "name": "旧物",
+  "generator": "gen_relic",
+  "unlockDay": 19,
+  "itemIds": [
+   "relic_1",
+   "relic_2",
+   "relic_3",
+   "relic_4",
+   "relic_5"
+  ]
+ }
+]

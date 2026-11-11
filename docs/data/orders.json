@@ -1,0 +1,1962 @@
+[
+ {
+  "id": "o1_1",
+  "day": 1,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "wood",
+    "level": 2,
+    "count": 6
+   }
+  ],
+  "value": 30,
+  "reward": 50,
+  "equiv": 12
+ },
+ {
+  "id": "o1_2",
+  "day": 1,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "wood",
+    "level": 2,
+    "count": 8
+   }
+  ],
+  "value": 40,
+  "reward": 65,
+  "equiv": 16
+ },
+ {
+  "id": "o1_3",
+  "day": 1,
+  "type": "cat",
+  "req": [
+   {
+    "chain": "wood",
+    "level": 2,
+    "count": 6
+   },
+   {
+    "chain": "wood",
+    "level": 3,
+    "count": 1
+   }
+  ],
+  "value": 42,
+  "reward": 65,
+  "equiv": 16
+ },
+ {
+  "id": "o2_1",
+  "day": 2,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "wood",
+    "level": 2,
+    "count": 8
+   },
+   {
+    "chain": "wood",
+    "level": 3,
+    "count": 1
+   }
+  ],
+  "value": 52,
+  "reward": 85,
+  "equiv": 20
+ },
+ {
+  "id": "o2_2",
+  "day": 2,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "wood",
+    "level": 3,
+    "count": 6
+   }
+  ],
+  "value": 72,
+  "reward": 115,
+  "equiv": 24
+ },
+ {
+  "id": "o2_3",
+  "day": 2,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "wood",
+    "level": 2,
+    "count": 7
+   },
+   {
+    "chain": "wood",
+    "level": 3,
+    "count": 2
+   }
+  ],
+  "value": 59,
+  "reward": 95,
+  "equiv": 22
+ },
+ {
+  "id": "o3_1",
+  "day": 3,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "wood",
+    "level": 3,
+    "count": 4
+   },
+   {
+    "chain": "wood",
+    "level": 4,
+    "count": 1
+   }
+  ],
+  "value": 76,
+  "reward": 120,
+  "equiv": 24
+ },
+ {
+  "id": "o3_2",
+  "day": 3,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "wood",
+    "level": 3,
+    "count": 5
+   }
+  ],
+  "value": 60,
+  "reward": 95,
+  "equiv": 20
+ },
+ {
+  "id": "o3_3",
+  "day": 3,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "wood",
+    "level": 4,
+    "count": 2
+   }
+  ],
+  "value": 56,
+  "reward": 90,
+  "equiv": 16
+ },
+ {
+  "id": "o4_1",
+  "day": 4,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "metal",
+    "level": 2,
+    "count": 6
+   },
+   {
+    "chain": "metal",
+    "level": 3,
+    "count": 3
+   }
+  ],
+  "value": 66,
+  "reward": 105,
+  "equiv": 24
+ },
+ {
+  "id": "o4_2",
+  "day": 4,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "metal",
+    "level": 3,
+    "count": 5
+   }
+  ],
+  "value": 60,
+  "reward": 95,
+  "equiv": 20
+ },
+ {
+  "id": "o4_3",
+  "day": 4,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "metal",
+    "level": 2,
+    "count": 8
+   },
+   {
+    "chain": "metal",
+    "level": 3,
+    "count": 2
+   }
+  ],
+  "value": 64,
+  "reward": 100,
+  "equiv": 24
+ },
+ {
+  "id": "o4_4",
+  "day": 4,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "metal",
+    "level": 3,
+    "count": 3
+   },
+   {
+    "chain": "metal",
+    "level": 2,
+    "count": 4
+   }
+  ],
+  "value": 56,
+  "reward": 90,
+  "equiv": 20
+ },
+ {
+  "id": "o5_1",
+  "day": 5,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "metal",
+    "level": 3,
+    "count": 4
+   },
+   {
+    "chain": "metal",
+    "level": 4,
+    "count": 1
+   }
+  ],
+  "value": 76,
+  "reward": 120,
+  "equiv": 24
+ },
+ {
+  "id": "o5_2",
+  "day": 5,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "metal",
+    "level": 3,
+    "count": 6
+   }
+  ],
+  "value": 72,
+  "reward": 115,
+  "equiv": 24
+ },
+ {
+  "id": "o5_3",
+  "day": 5,
+  "type": "cat",
+  "req": [
+   {
+    "chain": "metal",
+    "level": 4,
+    "count": 2
+   },
+   {
+    "chain": "metal",
+    "level": 3,
+    "count": 3
+   }
+  ],
+  "value": 92,
+  "reward": 145,
+  "equiv": 28
+ },
+ {
+  "id": "o5_4",
+  "day": 5,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "metal",
+    "level": 3,
+    "count": 5
+   },
+   {
+    "chain": "metal",
+    "level": 2,
+    "count": 2
+   }
+  ],
+  "value": 70,
+  "reward": 110,
+  "equiv": 24
+ },
+ {
+  "id": "o6_1",
+  "day": 6,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "metal",
+    "level": 4,
+    "count": 3
+   }
+  ],
+  "value": 84,
+  "reward": 135,
+  "equiv": 24
+ },
+ {
+  "id": "o6_2",
+  "day": 6,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "metal",
+    "level": 4,
+    "count": 2
+   },
+   {
+    "chain": "metal",
+    "level": 3,
+    "count": 2
+   }
+  ],
+  "value": 80,
+  "reward": 130,
+  "equiv": 24
+ },
+ {
+  "id": "o6_3",
+  "day": 6,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "metal",
+    "level": 3,
+    "count": 5
+   },
+   {
+    "chain": "metal",
+    "level": 4,
+    "count": 1
+   }
+  ],
+  "value": 88,
+  "reward": 140,
+  "equiv": 28
+ },
+ {
+  "id": "o6_4",
+  "day": 6,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "metal",
+    "level": 4,
+    "count": 4
+   }
+  ],
+  "value": 112,
+  "reward": 180,
+  "equiv": 32
+ },
+ {
+  "id": "o7_1",
+  "day": 7,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 4,
+    "count": 3
+   }
+  ],
+  "value": 84,
+  "reward": 135,
+  "equiv": 24
+ },
+ {
+  "id": "o7_2",
+  "day": 7,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 4,
+    "count": 2
+   },
+   {
+    "chain": "fabric",
+    "level": 3,
+    "count": 2
+   }
+  ],
+  "value": 80,
+  "reward": 130,
+  "equiv": 24
+ },
+ {
+  "id": "o7_3",
+  "day": 7,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 4,
+    "count": 4
+   }
+  ],
+  "value": 112,
+  "reward": 180,
+  "equiv": 32
+ },
+ {
+  "id": "o7_4",
+  "day": 7,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 4,
+    "count": 3
+   },
+   {
+    "chain": "fabric",
+    "level": 3,
+    "count": 2
+   }
+  ],
+  "value": 108,
+  "reward": 175,
+  "equiv": 32
+ },
+ {
+  "id": "o7_5",
+  "day": 7,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 4,
+    "count": 2
+   },
+   {
+    "chain": "fabric",
+    "level": 3,
+    "count": 1
+   }
+  ],
+  "value": 68,
+  "reward": 110,
+  "equiv": 20
+ },
+ {
+  "id": "o8_1",
+  "day": 8,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 4,
+    "count": 4
+   }
+  ],
+  "value": 112,
+  "reward": 180,
+  "equiv": 32
+ },
+ {
+  "id": "o8_2",
+  "day": 8,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 4,
+    "count": 3
+   },
+   {
+    "chain": "fabric",
+    "level": 3,
+    "count": 2
+   }
+  ],
+  "value": 108,
+  "reward": 175,
+  "equiv": 32
+ },
+ {
+  "id": "o8_3",
+  "day": 8,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 4,
+    "count": 5
+   }
+  ],
+  "value": 140,
+  "reward": 225,
+  "equiv": 40
+ },
+ {
+  "id": "o8_4",
+  "day": 8,
+  "type": "cat",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 4,
+    "count": 2
+   },
+   {
+    "chain": "fabric",
+    "level": 3,
+    "count": 3
+   }
+  ],
+  "value": 92,
+  "reward": 145,
+  "equiv": 28
+ },
+ {
+  "id": "o8_5",
+  "day": 8,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 4,
+    "count": 3
+   }
+  ],
+  "value": 84,
+  "reward": 135,
+  "equiv": 24
+ },
+ {
+  "id": "o9_1",
+  "day": 9,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 4,
+    "count": 4
+   },
+   {
+    "chain": "fabric",
+    "level": 5,
+    "count": 1
+   }
+  ],
+  "value": 177,
+  "reward": 285,
+  "equiv": 48
+ },
+ {
+  "id": "o9_2",
+  "day": 9,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 4,
+    "count": 3
+   }
+  ],
+  "value": 84,
+  "reward": 135,
+  "equiv": 24
+ },
+ {
+  "id": "o9_3",
+  "day": 9,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 5,
+    "count": 2
+   }
+  ],
+  "value": 130,
+  "reward": 210,
+  "equiv": 32
+ },
+ {
+  "id": "o9_4",
+  "day": 9,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 4,
+    "count": 5
+   }
+  ],
+  "value": 140,
+  "reward": 225,
+  "equiv": 40
+ },
+ {
+  "id": "o9_5",
+  "day": 9,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "fabric",
+    "level": 4,
+    "count": 3
+   },
+   {
+    "chain": "fabric",
+    "level": 3,
+    "count": 2
+   }
+  ],
+  "value": 108,
+  "reward": 175,
+  "equiv": 32
+ },
+ {
+  "id": "o10_1",
+  "day": 10,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 3
+   }
+  ],
+  "value": 195,
+  "reward": 310,
+  "equiv": 48
+ },
+ {
+  "id": "o10_2",
+  "day": 10,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 2
+   },
+   {
+    "chain": "light",
+    "level": 4,
+    "count": 2
+   }
+  ],
+  "value": 186,
+  "reward": 300,
+  "equiv": 48
+ },
+ {
+  "id": "o10_3",
+  "day": 10,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "light",
+    "level": 4,
+    "count": 4
+   },
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 1
+   }
+  ],
+  "value": 177,
+  "reward": 285,
+  "equiv": 48
+ },
+ {
+  "id": "o10_4",
+  "day": 10,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 3
+   }
+  ],
+  "value": 195,
+  "reward": 310,
+  "equiv": 48
+ },
+ {
+  "id": "o10_5",
+  "day": 10,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 2
+   },
+   {
+    "chain": "light",
+    "level": 4,
+    "count": 3
+   }
+  ],
+  "value": 214,
+  "reward": 340,
+  "equiv": 56
+ },
+ {
+  "id": "o11_1",
+  "day": 11,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 3
+   }
+  ],
+  "value": 195,
+  "reward": 310,
+  "equiv": 48
+ },
+ {
+  "id": "o11_2",
+  "day": 11,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 2
+   },
+   {
+    "chain": "light",
+    "level": 4,
+    "count": 3
+   }
+  ],
+  "value": 214,
+  "reward": 340,
+  "equiv": 56
+ },
+ {
+  "id": "o11_3",
+  "day": 11,
+  "type": "cat",
+  "req": [
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o11_4",
+  "day": 11,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 3
+   },
+   {
+    "chain": "light",
+    "level": 4,
+    "count": 2
+   }
+  ],
+  "value": 251,
+  "reward": 400,
+  "equiv": 64
+ },
+ {
+  "id": "o11_5",
+  "day": 11,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 2
+   },
+   {
+    "chain": "light",
+    "level": 4,
+    "count": 2
+   }
+  ],
+  "value": 186,
+  "reward": 300,
+  "equiv": 48
+ },
+ {
+  "id": "o12_1",
+  "day": 12,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o12_2",
+  "day": 12,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 3
+   },
+   {
+    "chain": "light",
+    "level": 4,
+    "count": 2
+   }
+  ],
+  "value": 251,
+  "reward": 400,
+  "equiv": 64
+ },
+ {
+  "id": "o12_3",
+  "day": 12,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 2
+   },
+   {
+    "chain": "light",
+    "level": 4,
+    "count": 1
+   }
+  ],
+  "value": 158,
+  "reward": 255,
+  "equiv": 40
+ },
+ {
+  "id": "o12_4",
+  "day": 12,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 5
+   }
+  ],
+  "value": 325,
+  "reward": 520,
+  "equiv": 80
+ },
+ {
+  "id": "o12_5",
+  "day": 12,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "light",
+    "level": 5,
+    "count": 3
+   }
+  ],
+  "value": 195,
+  "reward": 310,
+  "equiv": 48
+ },
+ {
+  "id": "o13_1",
+  "day": 13,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 3
+   }
+  ],
+  "value": 195,
+  "reward": 310,
+  "equiv": 48
+ },
+ {
+  "id": "o13_2",
+  "day": 13,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 2
+   },
+   {
+    "chain": "ceramic",
+    "level": 4,
+    "count": 2
+   }
+  ],
+  "value": 186,
+  "reward": 300,
+  "equiv": 48
+ },
+ {
+  "id": "o13_3",
+  "day": 13,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o13_4",
+  "day": 13,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 3
+   },
+   {
+    "chain": "ceramic",
+    "level": 4,
+    "count": 3
+   }
+  ],
+  "value": 279,
+  "reward": 445,
+  "equiv": 72
+ },
+ {
+  "id": "o13_5",
+  "day": 13,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 2
+   },
+   {
+    "chain": "ceramic",
+    "level": 4,
+    "count": 2
+   }
+  ],
+  "value": 186,
+  "reward": 300,
+  "equiv": 48
+ },
+ {
+  "id": "o13_6",
+  "day": 13,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 3
+   }
+  ],
+  "value": 195,
+  "reward": 310,
+  "equiv": 48
+ },
+ {
+  "id": "o14_1",
+  "day": 14,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o14_2",
+  "day": 14,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 3
+   },
+   {
+    "chain": "ceramic",
+    "level": 4,
+    "count": 2
+   }
+  ],
+  "value": 251,
+  "reward": 400,
+  "equiv": 64
+ },
+ {
+  "id": "o14_3",
+  "day": 14,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 2
+   },
+   {
+    "chain": "ceramic",
+    "level": 4,
+    "count": 3
+   }
+  ],
+  "value": 214,
+  "reward": 340,
+  "equiv": 56
+ },
+ {
+  "id": "o14_4",
+  "day": 14,
+  "type": "cat",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 5
+   }
+  ],
+  "value": 325,
+  "reward": 520,
+  "equiv": 80
+ },
+ {
+  "id": "o14_5",
+  "day": 14,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 3
+   },
+   {
+    "chain": "ceramic",
+    "level": 4,
+    "count": 2
+   }
+  ],
+  "value": 251,
+  "reward": 400,
+  "equiv": 64
+ },
+ {
+  "id": "o14_6",
+  "day": 14,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o15_1",
+  "day": 15,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 4
+   },
+   {
+    "chain": "ceramic",
+    "level": 6,
+    "count": 1
+   }
+  ],
+  "value": 410,
+  "reward": 655,
+  "equiv": 96
+ },
+ {
+  "id": "o15_2",
+  "day": 15,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 3
+   }
+  ],
+  "value": 195,
+  "reward": 310,
+  "equiv": 48
+ },
+ {
+  "id": "o15_3",
+  "day": 15,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 5
+   }
+  ],
+  "value": 325,
+  "reward": 520,
+  "equiv": 80
+ },
+ {
+  "id": "o15_4",
+  "day": 15,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 2
+   },
+   {
+    "chain": "ceramic",
+    "level": 4,
+    "count": 3
+   }
+  ],
+  "value": 214,
+  "reward": 340,
+  "equiv": 56
+ },
+ {
+  "id": "o15_5",
+  "day": 15,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o15_6",
+  "day": 15,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "ceramic",
+    "level": 5,
+    "count": 3
+   },
+   {
+    "chain": "ceramic",
+    "level": 4,
+    "count": 2
+   }
+  ],
+  "value": 251,
+  "reward": 400,
+  "equiv": 64
+ },
+ {
+  "id": "o16_1",
+  "day": 16,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o16_2",
+  "day": 16,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 3
+   },
+   {
+    "chain": "plant",
+    "level": 4,
+    "count": 2
+   }
+  ],
+  "value": 251,
+  "reward": 400,
+  "equiv": 64
+ },
+ {
+  "id": "o16_3",
+  "day": 16,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 5
+   }
+  ],
+  "value": 325,
+  "reward": 520,
+  "equiv": 80
+ },
+ {
+  "id": "o16_4",
+  "day": 16,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 4
+   },
+   {
+    "chain": "plant",
+    "level": 6,
+    "count": 1
+   }
+  ],
+  "value": 410,
+  "reward": 655,
+  "equiv": 96
+ },
+ {
+  "id": "o16_5",
+  "day": 16,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 3
+   }
+  ],
+  "value": 195,
+  "reward": 310,
+  "equiv": 48
+ },
+ {
+  "id": "o16_6",
+  "day": 16,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 2
+   },
+   {
+    "chain": "plant",
+    "level": 4,
+    "count": 3
+   }
+  ],
+  "value": 214,
+  "reward": 340,
+  "equiv": 56
+ },
+ {
+  "id": "o17_1",
+  "day": 17,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o17_2",
+  "day": 17,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 4
+   },
+   {
+    "chain": "plant",
+    "level": 6,
+    "count": 1
+   }
+  ],
+  "value": 410,
+  "reward": 655,
+  "equiv": 96
+ },
+ {
+  "id": "o17_3",
+  "day": 17,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 3
+   },
+   {
+    "chain": "plant",
+    "level": 4,
+    "count": 2
+   }
+  ],
+  "value": 251,
+  "reward": 400,
+  "equiv": 64
+ },
+ {
+  "id": "o17_4",
+  "day": 17,
+  "type": "cat",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o17_5",
+  "day": 17,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 3
+   },
+   {
+    "chain": "plant",
+    "level": 4,
+    "count": 2
+   }
+  ],
+  "value": 251,
+  "reward": 400,
+  "equiv": 64
+ },
+ {
+  "id": "o17_6",
+  "day": 17,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o18_1",
+  "day": 18,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 3
+   },
+   {
+    "chain": "plant",
+    "level": 6,
+    "count": 1
+   }
+  ],
+  "value": 345,
+  "reward": 550,
+  "equiv": 80
+ },
+ {
+  "id": "o18_2",
+  "day": 18,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o18_3",
+  "day": 18,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o18_4",
+  "day": 18,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 3
+   },
+   {
+    "chain": "plant",
+    "level": 4,
+    "count": 2
+   }
+  ],
+  "value": 251,
+  "reward": 400,
+  "equiv": 64
+ },
+ {
+  "id": "o18_5",
+  "day": 18,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o18_6",
+  "day": 18,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "plant",
+    "level": 5,
+    "count": 3
+   },
+   {
+    "chain": "plant",
+    "level": 6,
+    "count": 1
+   }
+  ],
+  "value": 345,
+  "reward": 550,
+  "equiv": 80
+ },
+ {
+  "id": "o19_1",
+  "day": 19,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "relic",
+    "level": 4,
+    "count": 3
+   },
+   {
+    "chain": "relic",
+    "level": 5,
+    "count": 2
+   }
+  ],
+  "value": 214,
+  "reward": 340,
+  "equiv": 56
+ },
+ {
+  "id": "o19_2",
+  "day": 19,
+  "type": "memory",
+  "req": [
+   {
+    "chain": "relic",
+    "level": 5,
+    "count": 3
+   }
+  ],
+  "value": 195,
+  "reward": 310,
+  "equiv": 48
+ },
+ {
+  "id": "o19_3",
+  "day": 19,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "relic",
+    "level": 4,
+    "count": 4
+   },
+   {
+    "chain": "relic",
+    "level": 5,
+    "count": 2
+   }
+  ],
+  "value": 242,
+  "reward": 385,
+  "equiv": 64
+ },
+ {
+  "id": "o19_4",
+  "day": 19,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "relic",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o20_1",
+  "day": 20,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "relic",
+    "level": 4,
+    "count": 3
+   },
+   {
+    "chain": "relic",
+    "level": 5,
+    "count": 2
+   }
+  ],
+  "value": 214,
+  "reward": 340,
+  "equiv": 56
+ },
+ {
+  "id": "o20_2",
+  "day": 20,
+  "type": "memory",
+  "req": [
+   {
+    "chain": "relic",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o20_3",
+  "day": 20,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "relic",
+    "level": 5,
+    "count": 3
+   }
+  ],
+  "value": 195,
+  "reward": 310,
+  "equiv": 48
+ },
+ {
+  "id": "o20_4",
+  "day": 20,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "relic",
+    "level": 4,
+    "count": 4
+   },
+   {
+    "chain": "relic",
+    "level": 5,
+    "count": 2
+   }
+  ],
+  "value": 242,
+  "reward": 385,
+  "equiv": 64
+ },
+ {
+  "id": "o21_1",
+  "day": 21,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "relic",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o21_2",
+  "day": 21,
+  "type": "memory",
+  "req": [
+   {
+    "chain": "relic",
+    "level": 5,
+    "count": 3
+   },
+   {
+    "chain": "relic",
+    "level": 6,
+    "count": 1
+   }
+  ],
+  "value": 345,
+  "reward": 550,
+  "equiv": 80
+ },
+ {
+  "id": "o21_3",
+  "day": 21,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "relic",
+    "level": 5,
+    "count": 4
+   }
+  ],
+  "value": 260,
+  "reward": 415,
+  "equiv": 64
+ },
+ {
+  "id": "o21_4",
+  "day": 21,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "relic",
+    "level": 5,
+    "count": 5
+   }
+  ],
+  "value": 325,
+  "reward": 520,
+  "equiv": 80
+ },
+ {
+  "id": "o22_1",
+  "day": 22,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "mixed",
+    "level": 6,
+    "count": 2
+   }
+  ],
+  "value": 300,
+  "reward": 480,
+  "equiv": 64
+ },
+ {
+  "id": "o22_2",
+  "day": 22,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "mixed",
+    "level": 6,
+    "count": 1
+   },
+   {
+    "chain": "mixed",
+    "level": 5,
+    "count": 2
+   }
+  ],
+  "value": 280,
+  "reward": 450,
+  "equiv": 64
+ },
+ {
+  "id": "o22_3",
+  "day": 22,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "mixed",
+    "level": 5,
+    "count": 3
+   },
+   {
+    "chain": "mixed",
+    "level": 6,
+    "count": 1
+   }
+  ],
+  "value": 345,
+  "reward": 550,
+  "equiv": 80
+ },
+ {
+  "id": "o22_4",
+  "day": 22,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "mixed",
+    "level": 6,
+    "count": 2
+   }
+  ],
+  "value": 300,
+  "reward": 480,
+  "equiv": 64
+ },
+ {
+  "id": "o22_5",
+  "day": 22,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "mixed",
+    "level": 6,
+    "count": 1
+   },
+   {
+    "chain": "mixed",
+    "level": 5,
+    "count": 1
+   }
+  ],
+  "value": 215,
+  "reward": 345,
+  "equiv": 48
+ },
+ {
+  "id": "o23_1",
+  "day": 23,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "mixed",
+    "level": 6,
+    "count": 2
+   }
+  ],
+  "value": 300,
+  "reward": 480,
+  "equiv": 64
+ },
+ {
+  "id": "o23_2",
+  "day": 23,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "mixed",
+    "level": 6,
+    "count": 3
+   }
+  ],
+  "value": 450,
+  "reward": 720,
+  "equiv": 96
+ },
+ {
+  "id": "o23_3",
+  "day": 23,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "mixed",
+    "level": 6,
+    "count": 2
+   },
+   {
+    "chain": "mixed",
+    "level": 5,
+    "count": 2
+   }
+  ],
+  "value": 430,
+  "reward": 690,
+  "equiv": 96
+ },
+ {
+  "id": "o23_4",
+  "day": 23,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "mixed",
+    "level": 6,
+    "count": 2
+   }
+  ],
+  "value": 300,
+  "reward": 480,
+  "equiv": 64
+ },
+ {
+  "id": "o23_5",
+  "day": 23,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "mixed",
+    "level": 6,
+    "count": 2
+   },
+   {
+    "chain": "mixed",
+    "level": 5,
+    "count": 1
+   }
+  ],
+  "value": 365,
+  "reward": 585,
+  "equiv": 80
+ },
+ {
+  "id": "o24_1",
+  "day": 24,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "mixed",
+    "level": 6,
+    "count": 2
+   }
+  ],
+  "value": 300,
+  "reward": 480,
+  "equiv": 64
+ },
+ {
+  "id": "o24_2",
+  "day": 24,
+  "type": "daily",
+  "req": [
+   {
+    "chain": "mixed",
+    "level": 6,
+    "count": 1
+   },
+   {
+    "chain": "mixed",
+    "level": 5,
+    "count": 2
+   }
+  ],
+  "value": 280,
+  "reward": 450,
+  "equiv": 64
+ },
+ {
+  "id": "o24_3",
+  "day": 24,
+  "type": "story",
+  "req": [
+   {
+    "chain": "mixed",
+    "level": 6,
+    "count": 3
+   }
+  ],
+  "value": 450,
+  "reward": 720,
+  "equiv": 96
+ }
+]

@@ -1,0 +1,16 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 临时/草稿
+_wip/
+*.tmp
+*.bak
+
+# 构建产物（将来接代码时）
+.gradle/
+build/
+local.properties
+*.iml
+.idea/
