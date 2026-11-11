@@ -37,6 +37,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cathousemerge.game.*
@@ -57,6 +58,8 @@ internal fun BoardScreen(
     var selected by remember(state.day) { mutableStateOf<Int?>(null) }
     var warehouseRect by remember { mutableStateOf(Rect.Zero) }
     var boardRect by remember { mutableStateOf(Rect.Zero) }
+    var screenOrigin by remember { mutableStateOf(Offset.Zero) }
+    val dragPreview = remember { mutableStateOf<DragPreview?>(null) }
     var showEnergy by remember { mutableStateOf(false) }
     var now by remember { mutableLongStateOf(System.currentTimeMillis()) }
     LaunchedEffect(Unit) { while (true) { delay(1000); now = System.currentTimeMillis() } }
@@ -70,169 +73,182 @@ internal fun BoardScreen(
     val remaining = content.ordersForDay(state.day).count { it.id !in state.delivered }
     val countdown = ((ENERGY_INTERVAL_MS - (now - state.energyAt).coerceAtLeast(0) % ENERGY_INTERVAL_MS) / 1000).toInt()
 
-    Column(Modifier.fillMaxSize().background(Paper)) {
-        Row(Modifier.fillMaxWidth().heightIn(min = 60.dp).padding(start = 16.dp, end = 4.dp), verticalAlignment = Alignment.CenterVertically) {
-            Column(Modifier.testTag("day_stamp").pointerInput(Unit) {
-                awaitEachGesture {
-                    awaitFirstDown(requireUnconsumed = false)
-                    val released = withTimeoutOrNull(3000) { waitForUpOrCancellation(); true }
-                    if (released == null) onDebug()
-                }
-            }) {
-                Text("第 ${state.day} 天", style = MaterialTheme.typography.titleLarge, fontSize = 20.sp)
-                Text(roomName(today.room), style = MaterialTheme.typography.labelMedium, color = DarkWood)
-            }
-            Spacer(Modifier.weight(1f))
-            Box {
-                TextButton(onClick = { showEnergy = true }, contentPadding = PaddingValues(horizontal = 6.dp)) {
-                    Icon(Icons.Outlined.Bolt, "体力", Modifier.size(18.dp), tint = DarkWood)
-                    Column {
-                        Text(state.energy.toString(), style = MaterialTheme.typography.titleSmall, color = Ink)
-                        Text(if (state.energy >= MAX_ENERGY) "已满" else "%02d:%02d".format(countdown / 60, countdown % 60), style = MaterialTheme.typography.labelMedium, fontSize = 10.sp, color = Muted)
+    Box(Modifier.fillMaxSize().background(Paper).onGloballyPositioned { screenOrigin = it.boundsInRoot().topLeft }) {
+        Column(Modifier.fillMaxSize()) {
+            Row(Modifier.fillMaxWidth().heightIn(min = 60.dp).padding(start = 16.dp, end = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.testTag("day_stamp").pointerInput(Unit) {
+                    awaitEachGesture {
+                        awaitFirstDown(requireUnconsumed = false)
+                        val released = withTimeoutOrNull(3000) { waitForUpOrCancellation(); true }
+                        if (released == null) onDebug()
                     }
+                }) {
+                    Text("第 ${state.day} 天", style = MaterialTheme.typography.titleLarge, fontSize = 20.sp)
+                    Text(roomName(today.room), style = MaterialTheme.typography.labelMedium, color = DarkWood)
                 }
-                DropdownMenu(showEnergy, { showEnergy = false }) {
-                    Text("体力 ${state.energy} / $MAX_ENERGY", Modifier.padding(horizontal = 20.dp, vertical = 8.dp))
-                    Text("每 2 分钟恢复 1 点", Modifier.padding(horizontal = 20.dp, vertical = 8.dp), style = MaterialTheme.typography.bodySmall)
-                }
-            }
-            CoinAmount(state.coins)
-            IconButton({ onNavigate("almanac") }, Modifier.size(44.dp).testTag("almanac_open")) { Icon(Icons.Outlined.Pets, "猫图鉴", Modifier.size(22.dp)) }
-            IconButton({ onNavigate("settings") }, Modifier.size(44.dp).testTag("settings_open")) { Icon(Icons.Outlined.Settings, "设置", Modifier.size(22.dp)) }
-        }
-
-        LazyRow(
-            Modifier.fillMaxWidth().height(112.dp).testTag("orders"),
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            if (state.bubble.isNotEmpty()) item(key = "tools") {
-                NewToolCard(state.bubble, boardRect, onAction)
-            }
-            items(content.ordersForDay(state.day), key = OrderDef::id) { order ->
-                OrderCard(content, state, order, engine.orderProgress(state, order), engine.isOrderReady(state, order)) {
-                    onAction(GameAction.Deliver(order.id))
-                }
-            }
-        }
-
-        if (!state.tutorialDone && state.day == 1) {
-            val hint = when {
-                state.board.none { it?.kind == PieceKind.GENERATOR } -> "点上方的新工具，把木工台放到棋盘上"
-                state.board.count { it?.kind == PieceKind.ITEM } < 2 -> "点木工台产出材料，每次消耗 1 点体力"
-                else -> "拖动两个一样的材料，合成更高一级"
-            }
-            Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp).heightIn(min = 28.dp), verticalAlignment = Alignment.CenterVertically) {
-                Icon(Icons.Outlined.TouchApp, null, Modifier.size(16.dp), tint = DarkWood)
-                Spacer(Modifier.width(6.dp))
-                Text(hint, Modifier.weight(1f), style = MaterialTheme.typography.bodySmall, color = DarkWood)
-            }
-        }
-
-        MergeBoard(
-            content, state.board, selected, settings.reducedMotion,
-            Modifier.weight(1f).fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
-            onBounds = { boardRect = it },
-            onTap = { index ->
-                selected = if (selected == index && state.board[index]?.kind != PieceKind.GENERATOR) null else index
-                if (state.board[index]?.kind == PieceKind.GENERATOR) onAction(GameAction.Spawn(index))
-            },
-            onDrop = { from, to, rootPosition ->
-                if (warehouseRect.contains(rootPosition)) {
-                    onAction(GameAction.Store(from))
-                    selected = null
-                } else if (to != null && from != to) {
-                    onAction(GameAction.Move(from, to))
-                    selected = to
-                }
-            },
-        )
-
-        Column(Modifier.fillMaxWidth().background(Color(0xFFF2E7D4)).padding(horizontal = 16.dp, vertical = 8.dp)) {
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                FilledTonalButton({ onNavigate(if (state.completed) "summary" else "build") }, Modifier.heightIn(min = 56.dp).testTag("build_open"), shape = RoundedCornerShape(18.dp), contentPadding = PaddingValues(horizontal = 14.dp)) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Icon(Icons.Outlined.Handyman, null, Modifier.size(20.dp))
-                        Text("建造", style = MaterialTheme.typography.labelMedium)
-                    }
-                }
-                Column(Modifier.weight(1f).heightIn(min = 56.dp), verticalArrangement = Arrangement.Center) {
-                    Text(piece?.let { "${pieceName(it, content)} · ${it.level}级" } ?: "把旧日子，慢慢修回来", style = MaterialTheme.typography.titleSmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                    Text(
-                        when {
-                            piece?.kind == PieceKind.GENERATOR -> "点按产出 · 同级工具可合成升级"
-                            piece != null -> "同级合成，或交给需要它的猫"
-                            remaining > 0 -> "今天还剩 $remaining 条订单"
-                            state.day !in state.builtDays -> "订单已完成，去修好今天这一角"
-                            else -> "今天的修缮完成了"
-                        },
-                        style = MaterialTheme.typography.bodySmall, color = Muted, maxLines = 2,
-                    )
-                }
-                OutlinedButton({ onNavigate("warehouse") }, Modifier.testTag("warehouse_open").onGloballyPositioned { warehouseRect = it.boundsInRoot() }.heightIn(min = 56.dp), shape = RoundedCornerShape(18.dp), contentPadding = PaddingValues(horizontal = 10.dp)) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Icon(Icons.Outlined.Inventory2, "仓库", Modifier.size(20.dp))
-                        Text(if (state.day < 4) "D4开放" else "仓库", style = MaterialTheme.typography.labelMedium, fontSize = 10.sp)
-                    }
-                }
-            }
-            Box(Modifier.fillMaxWidth().height(48.dp), contentAlignment = Alignment.CenterEnd) {
-                if (piece != null) {
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                        if (piece.kind == PieceKind.ITEM) SmallAction(Icons.Outlined.MonetizationOn, "卖出 ${(content.itemById[piece.itemId]?.value?.div(2) ?: 1).coerceAtLeast(1)}") {
-                            selected?.let { onAction(GameAction.Sell(it)) }; selected = null
+                Spacer(Modifier.weight(1f))
+                Box {
+                    TextButton(onClick = { showEnergy = true }, contentPadding = PaddingValues(horizontal = 6.dp)) {
+                        Icon(Icons.Outlined.Bolt, "体力", Modifier.size(18.dp), tint = DarkWood)
+                        Column {
+                            Text(state.energy.toString(), style = MaterialTheme.typography.titleSmall, color = Ink)
+                            Text(if (state.energy >= MAX_ENERGY) "已满" else "%02d:%02d".format(countdown / 60, countdown % 60), style = MaterialTheme.typography.labelMedium, fontSize = 10.sp, color = Muted)
                         }
-                        SmallAction(Icons.Outlined.Inventory2, "收进仓库") { selected?.let { onAction(GameAction.Store(it)) }; selected = null }
                     }
-                } else if (engine.canAdvance(state)) {
-                    TextButton({ onNavigate("summary") }, Modifier.fillMaxWidth().testTag("summary_open")) {
-                        Text(if (state.day == 24) "看看家的新模样" else "结束这一天")
-                        Icon(Icons.Outlined.ArrowForward, null, Modifier.padding(start = 8.dp).size(16.dp))
+                    DropdownMenu(showEnergy, { showEnergy = false }) {
+                        Text("体力 ${state.energy} / $MAX_ENERGY", Modifier.padding(horizontal = 20.dp, vertical = 8.dp))
+                        Text("每 2 分钟恢复 1 点", Modifier.padding(horizontal = 20.dp, vertical = 8.dp), style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+                CoinAmount(state.coins)
+                IconButton({ onNavigate("almanac") }, Modifier.size(44.dp).testTag("almanac_open")) { Icon(Icons.Outlined.Pets, "猫图鉴", Modifier.size(22.dp)) }
+                IconButton({ onNavigate("settings") }, Modifier.size(44.dp).testTag("settings_open")) { Icon(Icons.Outlined.Settings, "设置", Modifier.size(22.dp)) }
+            }
+
+            LazyRow(
+                Modifier.fillMaxWidth().height(112.dp).testTag("orders"),
+                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                if (state.bubble.isNotEmpty()) item(key = "tools") {
+                    NewToolCard(state.bubble, boardRect, onAction) { dragPreview.value = it }
+                }
+                items(content.ordersForDay(state.day), key = OrderDef::id) { order ->
+                    OrderCard(content, state, order, engine.orderProgress(state, order), engine.isOrderReady(state, order)) {
+                        onAction(GameAction.Deliver(order.id))
+                    }
+                }
+            }
+
+            if (!state.tutorialDone && state.day == 1) {
+                val hint = when {
+                    state.board.none { it?.kind == PieceKind.GENERATOR } -> "点上方的新工具，把木工台放到棋盘上"
+                    state.board.count { it?.kind == PieceKind.ITEM } < 2 -> "点木工台产出材料，每次消耗 1 点体力"
+                    else -> "拖动两个一样的材料，合成更高一级"
+                }
+                Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp).heightIn(min = 28.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Icon(Icons.Outlined.TouchApp, null, Modifier.size(16.dp), tint = DarkWood)
+                    Spacer(Modifier.width(6.dp))
+                    Text(hint, Modifier.weight(1f), style = MaterialTheme.typography.bodySmall, color = DarkWood)
+                }
+            }
+
+            MergeBoard(
+                content, state.board, selected, engine.generatorCap(state.day), settings.reducedMotion,
+                Modifier.weight(1f).fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+                onBounds = { boardRect = it },
+                onDragPreview = { dragPreview.value = it },
+                onTap = { index ->
+                    selected = if (selected == index && state.board[index]?.kind != PieceKind.GENERATOR) null else index
+                    if (state.board[index]?.kind == PieceKind.GENERATOR) onAction(GameAction.Spawn(index))
+                },
+                onDrop = { from, to, rootPosition ->
+                    if (warehouseRect.contains(rootPosition)) {
+                        onAction(GameAction.Store(from))
+                        selected = null
+                    } else if (to != null && from != to) {
+                        onAction(GameAction.Move(from, to))
+                        selected = to
+                    }
+                },
+            )
+
+            Column(Modifier.fillMaxWidth().background(Color(0xFFF2E7D4)).padding(horizontal = 16.dp, vertical = 8.dp)) {
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FilledTonalButton({ onNavigate(if (state.completed) "summary" else "build") }, Modifier.heightIn(min = 56.dp).testTag("build_open"), shape = RoundedCornerShape(18.dp), contentPadding = PaddingValues(horizontal = 14.dp)) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Icon(Icons.Outlined.Handyman, null, Modifier.size(20.dp))
+                            Text("建造", style = MaterialTheme.typography.labelMedium)
+                        }
+                    }
+                    Column(Modifier.weight(1f).heightIn(min = 56.dp), verticalArrangement = Arrangement.Center) {
+                        Text(piece?.let { "${pieceName(it, content)} · ${it.level}级" } ?: "把旧日子，慢慢修回来", style = MaterialTheme.typography.titleSmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                        Text(
+                            when {
+                                piece?.kind == PieceKind.GENERATOR -> "点按产出 · 同级工具可合成升级"
+                                piece != null -> "同级合成，或交给需要它的猫"
+                                remaining > 0 -> "今天还剩 $remaining 条订单"
+                                state.day !in state.builtDays -> "订单已完成，去修好今天这一角"
+                                else -> "今天的修缮完成了"
+                            },
+                            style = MaterialTheme.typography.bodySmall, color = Muted, maxLines = 2,
+                        )
+                    }
+                    OutlinedButton({ onNavigate("warehouse") }, Modifier.testTag("warehouse_open").onGloballyPositioned { warehouseRect = it.boundsInRoot() }.heightIn(min = 56.dp), shape = RoundedCornerShape(18.dp), contentPadding = PaddingValues(horizontal = 10.dp)) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Icon(Icons.Outlined.Inventory2, "仓库", Modifier.size(20.dp))
+                            Text(if (state.day < 4) "D4开放" else "仓库", style = MaterialTheme.typography.labelMedium, fontSize = 10.sp)
+                        }
+                    }
+                }
+                Box(Modifier.fillMaxWidth().height(48.dp), contentAlignment = Alignment.CenterEnd) {
+                    if (piece != null) {
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                            if (piece.kind == PieceKind.ITEM) SmallAction(Icons.Outlined.MonetizationOn, "卖出 ${(content.itemById[piece.itemId]?.value?.div(2) ?: 1).coerceAtLeast(1)}") {
+                                selected?.let { onAction(GameAction.Sell(it)) }; selected = null
+                            }
+                            SmallAction(Icons.Outlined.Inventory2, "收进仓库") { selected?.let { onAction(GameAction.Store(it)) }; selected = null }
+                        }
+                    } else if (engine.canAdvance(state)) {
+                        TextButton({ onNavigate("summary") }, Modifier.fillMaxWidth().testTag("summary_open")) {
+                            Text(if (state.day == 24) "看看家的新模样" else "结束这一天")
+                            Icon(Icons.Outlined.ArrowForward, null, Modifier.padding(start = 8.dp).size(16.dp))
+                        }
                     }
                 }
             }
         }
+        DragPreviewOverlay(dragPreview, screenOrigin)
     }
 }
 
 @Composable
-private fun NewToolCard(bubble: List<Piece>, boardRect: Rect, onAction: (GameAction) -> Unit) {
+private fun NewToolCard(bubble: List<Piece>, boardRect: Rect, onAction: (GameAction) -> Unit, onDragPreview: (DragPreview?) -> Unit) {
     val latestBoardRect by rememberUpdatedState(boardRect)
     val latestAction by rememberUpdatedState(onAction)
+    val latestPreview by rememberUpdatedState(onDragPreview)
     Surface(Modifier.width(180.dp).height(96.dp).testTag("new_tools"), shape = RoundedCornerShape(16.dp), color = Color(0xFFF0E1C9), border = androidx.compose.foundation.BorderStroke(1.dp, Wood)) {
         Column(Modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
             Text("新工具 · 点取或拖入", style = MaterialTheme.typography.labelMedium, color = DarkWood)
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 bubble.take(2).forEach { piece ->
                     var origin by remember(piece.uid) { mutableStateOf(Offset.Zero) }
+                    var pickedUp by remember(piece.uid) { mutableStateOf(false) }
                     Box(Modifier.size(52.dp).testTag("bubble_${piece.uid}").onGloballyPositioned { origin = it.boundsInRoot().topLeft }.pointerInput(piece.uid) {
                         awaitEachGesture {
-                            val down = awaitFirstDown(requireUnconsumed = false)
+                            val down = awaitFirstDown()
                             val start = down.position
-                            var position = start
                             var moved = false
-                            while (true) {
-                                val change = awaitPointerEvent().changes.firstOrNull { it.id == down.id } ?: break
-                                position = change.position
-                                if ((position - start).getDistance() > 12.dp.toPx()) moved = true
-                                if (moved) change.consume()
-                                if (!change.pressed) {
-                                    if (!moved) latestAction(GameAction.TakeBubble(piece.uid))
-                                    else {
-                                        val root = origin + position
-                                        val bounds = latestBoardRect
-                                        if (bounds.contains(root) && bounds.width > 0) {
-                                            val col = ((root.x - bounds.left) / (bounds.width / BOARD_COLS)).toInt()
-                                            val row = ((root.y - bounds.top) / (bounds.height / BOARD_ROWS)).toInt()
-                                            latestAction(GameAction.TakeBubble(piece.uid, row * BOARD_COLS + col))
-                                        }
+                            try {
+                                while (true) {
+                                    val change = awaitPointerEvent().changes.firstOrNull { it.id == down.id } ?: break
+                                    // Canceled gestures arrive consumed and must never become a tap or drop.
+                                    if (change.isConsumed) break
+                                    val position = change.position
+                                    if ((position - start).getDistance() > 12.dp.toPx()) moved = true
+                                    if (moved) {
+                                        pickedUp = true
+                                        change.consume()
+                                        latestPreview(DragPreview(piece, origin + position, 52.dp))
                                     }
-                                    break
+                                    if (!change.pressed) {
+                                        if (!moved) latestAction(GameAction.TakeBubble(piece.uid))
+                                        else {
+                                            val root = origin + position
+                                            val bounds = latestBoardRect
+                                            if (bounds.contains(root) && bounds.width > 0) {
+                                                val col = ((root.x - bounds.left) / (bounds.width / BOARD_COLS)).toInt()
+                                                val row = ((root.y - bounds.top) / (bounds.height / BOARD_ROWS)).toInt()
+                                                latestAction(GameAction.TakeBubble(piece.uid, row * BOARD_COLS + col))
+                                            }
+                                        }
+                                        break
+                                    }
                                 }
-                            }
+                            } finally { pickedUp = false; latestPreview(null) }
                         }
                     }.semantics { contentDescription = "领取${piece.chain}工具"; onClick { onAction(GameAction.TakeBubble(piece.uid)); true } }, contentAlignment = Alignment.Center) {
-                        GameImage(piece.asset, null, Modifier.fillMaxSize())
+                        GameImage(piece.asset, null, Modifier.fillMaxSize().alpha(if (pickedUp) 0.2f else 1f))
                     }
                 }
                 if (bubble.size > 2) Text("+${bubble.size - 2}", Modifier.align(Alignment.CenterVertically), style = MaterialTheme.typography.labelMedium)
@@ -282,18 +298,20 @@ private fun MergeBoard(
     content: GameContent,
     board: List<Piece?>,
     selected: Int?,
+    generatorCap: Int,
     reducedMotion: Boolean,
     modifier: Modifier,
     onBounds: (Rect) -> Unit,
+    onDragPreview: (DragPreview?) -> Unit,
     onTap: (Int) -> Unit,
     onDrop: (Int, Int?, Offset) -> Unit,
 ) {
     var dragFrom by remember { mutableStateOf<Int?>(null) }
-    var dragPosition by remember { mutableStateOf(Offset.Zero) }
     var origin by remember { mutableStateOf(Offset.Zero) }
     val currentBoard by rememberUpdatedState(board)
     val currentTap by rememberUpdatedState(onTap)
     val currentDrop by rememberUpdatedState(onDrop)
+    val currentPreview by rememberUpdatedState(onDragPreview)
     BoxWithConstraints(modifier, contentAlignment = Alignment.Center) {
         val cell = minOf(44.dp, maxWidth / BOARD_COLS, maxHeight / BOARD_ROWS)
         val cellPx = with(LocalDensity.current) { cell.toPx() }
@@ -308,7 +326,7 @@ private fun MergeBoard(
                         return (position.y / cellPx).toInt() * BOARD_COLS + (position.x / cellPx).toInt()
                     }
                     awaitEachGesture {
-                        val down = awaitFirstDown(requireUnconsumed = false)
+                        val down = awaitFirstDown()
                         val from = hit(down.position) ?: return@awaitEachGesture
                         val start = down.position
                         var dragging = false
@@ -316,23 +334,31 @@ private fun MergeBoard(
                             while (true) {
                                 val event = awaitPointerEvent()
                                 val change = event.changes.firstOrNull { it.id == down.id } ?: break
+                                if (change.isConsumed) break
                                 if (!dragging && currentBoard.getOrNull(from) != null && (change.position - start).getDistance() >= 8.dp.toPx()) {
                                     dragging = true
                                     dragFrom = from
                                 }
-                                if (dragging) { dragPosition = change.position; change.consume() }
+                                if (dragging) {
+                                    change.consume()
+                                    currentBoard.getOrNull(from)?.let { currentPreview(DragPreview(it, origin + change.position, cell)) }
+                                }
                                 if (!change.pressed) {
                                     if (dragging) currentDrop(from, hit(change.position), origin + change.position)
                                     else currentTap(from)
                                     break
                                 }
                             }
-                        } finally { dragFrom = null }
+                        } finally { dragFrom = null; currentPreview(null) }
                     }
                 },
         ) {
+            val canMerge = dragPiece?.let {
+                val maxLevel = if (it.kind == PieceKind.GENERATOR) generatorCap else content.chainById[it.chain]?.itemIds?.size ?: it.level
+                it.level < maxLevel
+            } == true
             board.forEachIndexed { index, piece ->
-                val same = dragPiece != null && piece != null && piece.kind == dragPiece.kind && piece.chain == dragPiece.chain && piece.level == dragPiece.level && index != dragFrom
+                val same = canMerge && dragPiece != null && piece != null && piece.kind == dragPiece.kind && piece.chain == dragPiece.chain && piece.level == dragPiece.level && index != dragFrom
                 val tint = if (index == selected) Wood else if (same) Leaf else Line
                 Box(
                     Modifier.offset(x = cell * (index % BOARD_COLS), y = cell * (index / BOARD_COLS)).size(cell).padding(1.dp)
@@ -355,9 +381,20 @@ private fun MergeBoard(
                     }
                 }
             }
-            if (dragPiece != null) {
-                GameImage(dragPiece.asset, pieceName(dragPiece, content), Modifier.offset { IntOffset((dragPosition.x - cellPx / 2).roundToInt(), (dragPosition.y - cellPx / 2).roundToInt()) }.size(cell).graphicsLayer { scaleX = 1.15f; scaleY = 1.15f })
-            }
         }
     }
+}
+
+private data class DragPreview(val piece: Piece, val position: Offset, val size: Dp)
+
+@Composable
+private fun DragPreviewOverlay(preview: State<DragPreview?>, screenOrigin: Offset) {
+    val drag = preview.value ?: return
+    val halfSize = with(LocalDensity.current) { drag.size.toPx() / 2 }
+    GameImage(
+        drag.piece.asset,
+        null,
+        Modifier.offset { IntOffset((drag.position.x - screenOrigin.x - halfSize).roundToInt(), (drag.position.y - screenOrigin.y - halfSize).roundToInt()) }
+            .size(drag.size).graphicsLayer { scaleX = 1.15f; scaleY = 1.15f },
+    )
 }
