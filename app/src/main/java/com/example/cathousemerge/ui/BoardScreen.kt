@@ -176,17 +176,19 @@ internal fun BoardScreen(
                     }
                 }
             }
-            if (piece != null) {
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                    if (piece.kind == PieceKind.ITEM) SmallAction(Icons.Outlined.MonetizationOn, "卖出 ${(content.itemById[piece.itemId]?.value?.div(2) ?: 1).coerceAtLeast(1)}") {
-                        selected?.let { onAction(GameAction.Sell(it)) }; selected = null
+            Box(Modifier.fillMaxWidth().height(48.dp), contentAlignment = Alignment.CenterEnd) {
+                if (piece != null) {
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                        if (piece.kind == PieceKind.ITEM) SmallAction(Icons.Outlined.MonetizationOn, "卖出 ${(content.itemById[piece.itemId]?.value?.div(2) ?: 1).coerceAtLeast(1)}") {
+                            selected?.let { onAction(GameAction.Sell(it)) }; selected = null
+                        }
+                        SmallAction(Icons.Outlined.Inventory2, "收进仓库") { selected?.let { onAction(GameAction.Store(it)) }; selected = null }
                     }
-                    SmallAction(Icons.Outlined.Inventory2, "收进仓库") { selected?.let { onAction(GameAction.Store(it)) }; selected = null }
-                }
-            } else if (engine.canAdvance(state)) {
-                TextButton({ onNavigate("summary") }, Modifier.fillMaxWidth().testTag("summary_open")) {
-                    Text(if (state.day == 24) "看看家的新模样" else "结束这一天")
-                    Icon(Icons.Outlined.ArrowForward, null, Modifier.padding(start = 8.dp).size(16.dp))
+                } else if (engine.canAdvance(state)) {
+                    TextButton({ onNavigate("summary") }, Modifier.fillMaxWidth().testTag("summary_open")) {
+                        Text(if (state.day == 24) "看看家的新模样" else "结束这一天")
+                        Icon(Icons.Outlined.ArrowForward, null, Modifier.padding(start = 8.dp).size(16.dp))
+                    }
                 }
             }
         }
