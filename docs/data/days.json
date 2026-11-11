@@ -427,7 +427,7 @@
   "build": {
    "step": 3,
    "name": "打开箱子整理",
-   "cost": 1370
+   "cost": 1260
   },
   "dialogue": {
    "intro": "d21_intro",

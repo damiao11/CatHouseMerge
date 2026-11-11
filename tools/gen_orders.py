@@ -122,25 +122,25 @@ O = [
  (20,"daily",[("relic",4,4),("relic",5,2)]),
 
  (21,"daily",[("relic",5,4)]),
- (21,"memory",[("relic",5,3),("relic",6,1)]),
+ (21,"memory",[("relic",5,3),("relic",4,2)]),
  (21,"daily",[("relic",5,4)]),
  (21,"daily",[("relic",5,5)]),
 
- (22,"daily",[("mixed",6,2)]),
- (22,"daily",[("mixed",6,1),("mixed",5,2)]),
- (22,"daily",[("mixed",5,3),("mixed",6,1)]),
- (22,"daily",[("mixed",6,2)]),
- (22,"daily",[("mixed",6,1),("mixed",5,1)]),
+ (22,"daily",[("wood",6,2)]),
+ (22,"daily",[("fabric",6,1),("ceramic",5,2)]),
+ (22,"daily",[("ceramic",5,3),("plant",6,1)]),
+ (22,"daily",[("wood",6,2)]),
+ (22,"daily",[("plant",6,1),("plant",5,1)]),
 
- (23,"daily",[("mixed",6,2)]),
- (23,"daily",[("mixed",6,3)]),
- (23,"daily",[("mixed",6,2),("mixed",5,2)]),
- (23,"daily",[("mixed",6,2)]),
- (23,"daily",[("mixed",6,2),("mixed",5,1)]),
+ (23,"daily",[("fabric",6,2)]),
+ (23,"daily",[("ceramic",6,3)]),
+ (23,"daily",[("wood",6,2),("fabric",5,2)]),
+ (23,"daily",[("plant",6,2)]),
+ (23,"daily",[("ceramic",6,2),("plant",5,1)]),
 
- (24,"daily",[("mixed",6,2)]),
- (24,"daily",[("mixed",6,1),("mixed",5,2)]),
- (24,"story",[("mixed",6,3)]),
+ (24,"daily",[("wood",6,2)]),
+ (24,"daily",[("fabric",6,1),("ceramic",5,2)]),
+ (24,"story",[("plant",6,3)]),
 ]
 
 EV = {}
@@ -197,5 +197,6 @@ with open("orders.md", "w", encoding="utf-8") as f:
         req = " + ".join(f'{q["count"]}×{CN[q["chain"]]}{q["level"]}级' for q in r["req"])
         f.write(f'| {r["day"]} | {r["id"]} | {req} | {r["reward"]} |\n')
 print("written orders.json / orders.md")
+
 
 

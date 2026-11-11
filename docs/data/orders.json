@@ -1696,13 +1696,13 @@
    },
    {
     "chain": "relic",
-    "level": 6,
-    "count": 1
+    "level": 4,
+    "count": 2
    }
   ],
-  "value": 345,
-  "reward": 550,
-  "equiv": 80
+  "value": 251,
+  "reward": 400,
+  "equiv": 64
  },
  {
   "id": "o21_3",
@@ -1740,7 +1740,7 @@
   "type": "daily",
   "req": [
    {
-    "chain": "mixed",
+    "chain": "wood",
     "level": 6,
     "count": 2
    }
@@ -1755,12 +1755,12 @@
   "type": "daily",
   "req": [
    {
-    "chain": "mixed",
+    "chain": "fabric",
     "level": 6,
     "count": 1
    },
    {
-    "chain": "mixed",
+    "chain": "ceramic",
     "level": 5,
     "count": 2
    }
@@ -1775,12 +1775,12 @@
   "type": "daily",
   "req": [
    {
-    "chain": "mixed",
+    "chain": "ceramic",
     "level": 5,
     "count": 3
    },
    {
-    "chain": "mixed",
+    "chain": "plant",
     "level": 6,
     "count": 1
    }
@@ -1795,7 +1795,7 @@
   "type": "daily",
   "req": [
    {
-    "chain": "mixed",
+    "chain": "wood",
     "level": 6,
     "count": 2
    }
@@ -1810,12 +1810,12 @@
   "type": "daily",
   "req": [
    {
-    "chain": "mixed",
+    "chain": "plant",
     "level": 6,
     "count": 1
    },
    {
-    "chain": "mixed",
+    "chain": "plant",
     "level": 5,
     "count": 1
    }
@@ -1830,7 +1830,7 @@
   "type": "daily",
   "req": [
    {
-    "chain": "mixed",
+    "chain": "fabric",
     "level": 6,
     "count": 2
    }
@@ -1845,7 +1845,7 @@
   "type": "daily",
   "req": [
    {
-    "chain": "mixed",
+    "chain": "ceramic",
     "level": 6,
     "count": 3
    }
@@ -1860,12 +1860,12 @@
   "type": "daily",
   "req": [
    {
-    "chain": "mixed",
+    "chain": "wood",
     "level": 6,
     "count": 2
    },
    {
-    "chain": "mixed",
+    "chain": "fabric",
     "level": 5,
     "count": 2
    }
@@ -1880,7 +1880,7 @@
   "type": "daily",
   "req": [
    {
-    "chain": "mixed",
+    "chain": "plant",
     "level": 6,
     "count": 2
    }
@@ -1895,12 +1895,12 @@
   "type": "daily",
   "req": [
    {
-    "chain": "mixed",
+    "chain": "ceramic",
     "level": 6,
     "count": 2
    },
    {
-    "chain": "mixed",
+    "chain": "plant",
     "level": 5,
     "count": 1
    }
@@ -1915,7 +1915,7 @@
   "type": "daily",
   "req": [
    {
-    "chain": "mixed",
+    "chain": "wood",
     "level": 6,
     "count": 2
    }
@@ -1930,12 +1930,12 @@
   "type": "daily",
   "req": [
    {
-    "chain": "mixed",
+    "chain": "fabric",
     "level": 6,
     "count": 1
    },
    {
-    "chain": "mixed",
+    "chain": "ceramic",
     "level": 5,
     "count": 2
    }
@@ -1950,7 +1950,7 @@
   "type": "story",
   "req": [
    {
-    "chain": "mixed",
+    "chain": "plant",
     "level": 6,
     "count": 3
    }
