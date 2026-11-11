@@ -65,6 +65,7 @@ class GameEngine(val content: GameContent) {
             GameAction.ExpandWarehouse -> expandWarehouse(current)
             is GameAction.BuyGenerator -> buyGenerator(current, action.chain)
             is GameAction.SeenDialogue -> seeDialogue(current, action.sceneId)
+            is GameAction.Choose -> choose(current, action.sceneId)
             GameAction.TutorialComplete -> GameResult(current.copy(tutorialDone = true))
             GameAction.DebugEnergy -> GameResult(current.copy(energy = MAX_ENERGY, energyAt = now), "体力已补满")
             GameAction.DebugCoins -> GameResult(
@@ -277,6 +278,17 @@ class GameEngine(val content: GameContent) {
         return GameResult(state.copy(seenDialogue = state.seenDialogue + sceneId, unlockedCats = state.unlockedCats + speakers(scene)))
     }
 
+    private fun choose(state: GameState, sceneId: String): GameResult {
+        val scene = content.dialogue.scenes[sceneId] ?: return GameResult(state)
+        if (scene.kind != "choice" || scene.day != state.day || state.day !in state.builtDays || state.day in state.choices) {
+            return GameResult(state)
+        }
+        val otherBranches = content.dialogue.scenes.filter { (id, option) ->
+            option.day == scene.day && option.kind == "choice" && id != sceneId
+        }.keys
+        return GameResult(state.copy(choices = state.choices + (scene.day to sceneId), seenDialogue = state.seenDialogue + otherBranches))
+    }
+
     private fun speakers(scene: DialogueScene?): Set<String> =
         scene?.lines?.map(DialogueLine::who)?.filter { it != "narrator" && it != "player" }?.toSet().orEmpty()
 
@@ -305,6 +317,7 @@ class GameEngine(val content: GameContent) {
                 nextUid = uid,
                 completed = false,
                 tutorialDone = true,
+                choices = state.choices.filterKeys { it < day },
             ),
             "已跳到第 $day 天",
         )

@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.ArrowBack
+import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.MonetizationOn
 import androidx.compose.material.icons.outlined.Pets
 import androidx.compose.material3.*
@@ -74,9 +74,8 @@ internal fun CatTheme(content: @Composable () -> Unit) {
 
 @Composable
 internal fun GameImage(asset: String, description: String?, modifier: Modifier = Modifier) {
-    val context = LocalContext.current
-    val id = remember(asset) { context.resources.getIdentifier(asset, "drawable", context.packageName) }
-    if (id != 0) Image(painterResource(id), description, modifier, contentScale = ContentScale.Fit)
+    val id = DrawableAssets[asset]
+    if (id != null) Image(painterResource(id), description, modifier, contentScale = ContentScale.Fit)
     else Icon(Icons.Outlined.Pets, description, modifier, tint = DarkWood)
 }
 
@@ -109,7 +108,7 @@ internal fun CoinAmount(coins: Int, light: Boolean = false) {
 @Composable
 internal fun PageHeader(title: String, onBack: () -> Unit, trailing: @Composable () -> Unit = {}) {
     Row(Modifier.fillMaxWidth().heightIn(min = 56.dp).padding(end = 16.dp), verticalAlignment = Alignment.CenterVertically) {
-        IconButton(onClick = onBack) { Icon(Icons.Outlined.ArrowBack, "返回") }
+        IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, "返回") }
         Text(title, Modifier.weight(1f), style = MaterialTheme.typography.titleLarge)
         trailing()
     }

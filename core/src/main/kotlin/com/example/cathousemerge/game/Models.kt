@@ -121,6 +121,7 @@ data class GameState(
     val nextUid: Long = 1,
     val completed: Boolean = false,
     val tutorialDone: Boolean = false,
+    val choices: Map<Int, String> = emptyMap(),
 )
 
 @Serializable
@@ -143,6 +144,7 @@ sealed interface GameAction {
     data object ExpandWarehouse : GameAction
     data class BuyGenerator(val chain: String) : GameAction
     data class SeenDialogue(val sceneId: String) : GameAction
+    data class Choose(val sceneId: String) : GameAction
     data object TutorialComplete : GameAction
     data object DebugEnergy : GameAction
     data object DebugCoins : GameAction

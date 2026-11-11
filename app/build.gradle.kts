@@ -17,13 +17,16 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildFeatures.compose = true
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    sourceSets["main"].assets.srcDir(layout.buildDirectory.dir("generated/game-assets"))
-    sourceSets["main"].res.srcDir(layout.buildDirectory.dir("generated/game-res"))
+    sourceSets["main"].assets.directories.add(layout.buildDirectory.dir("generated/game-assets").get().asFile.path)
+    sourceSets["main"].res.directories.add(layout.buildDirectory.dir("generated/game-res").get().asFile.path)
 }
 
 val prepareGameAssets by tasks.registering(Sync::class) {
@@ -52,6 +55,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.6")
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
     debugImplementation("androidx.compose.ui:ui-tooling")

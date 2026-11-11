@@ -16,8 +16,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import com.example.cathousemerge.BuildConfig
 import com.example.cathousemerge.game.*
 import kotlinx.coroutines.delay
 
@@ -38,6 +40,7 @@ fun CatHouseApp(
         var started by rememberSaveable { mutableStateOf(false) }
         var showDebug by remember { mutableStateOf(false) }
         var dialogueId by remember { mutableStateOf<String?>(null) }
+        var choicePending by remember { mutableStateOf(false) }
         val snackbar = remember { SnackbarHostState() }
         val latestOnAction by rememberUpdatedState(onAction)
         val latestMessageShown by rememberUpdatedState(onMessageShown)
@@ -47,8 +50,8 @@ fun CatHouseApp(
                 latestMessageShown()
             }
         }
-        LaunchedEffect(started, state.day, state.delivered, state.builtDays, state.seenDialogue) {
-            if (!started) { dialogueId = null; return@LaunchedEffect }
+        LaunchedEffect(started, state.day, state.delivered, state.builtDays, state.seenDialogue, state.choices) {
+            if (!started) { dialogueId = null; choicePending = false; return@LaunchedEffect }
             val today = content.day(state.day)
             val intro = today.dialogue["intro"]?.takeIf { it !in state.seenDialogue }
             val catRequestDone = content.ordersForDay(state.day).any { it.type == "cat" && it.id in state.delivered }
@@ -56,14 +59,15 @@ fun CatHouseApp(
                 it.value.day == state.day && it.value.kind == "cat" && it.key !in state.seenDialogue && catRequestDone
             }?.key
             val built = state.day in state.builtDays
-            val choice = content.dialogue.scenes.entries.firstOrNull {
-                it.value.day == state.day && it.value.kind == "choice" && it.key !in state.seenDialogue && built
-            }?.key
+            val options = content.dialogue.scenes.filterValues { it.day == state.day && it.kind == "choice" }
+            val needsChoice = built && options.isNotEmpty() && state.day !in state.choices
+            val choice = state.choices[state.day]?.takeIf { built && it !in state.seenDialogue }
             val allDone = content.ordersForDay(state.day).all { it.id in state.delivered } && built
-            val outro = today.dialogue["outro"]?.takeIf { allDone && it !in state.seenDialogue }
+            val outro = today.dialogue["outro"]?.takeIf { allDone && !needsChoice && it !in state.seenDialogue }
             val next = intro ?: catScene ?: choice ?: outro
             if (next != null && built && intro == null && catScene == null) delay(if (settings.reducedMotion) 0 else 950)
             dialogueId = next
+            choicePending = needsChoice && intro == null && catScene == null
         }
         BackHandler(enabled = started && (screen != "board" || dialogueId != null || showDebug)) {
             when {
@@ -91,7 +95,7 @@ fun CatHouseApp(
                             onReset()
                         }) { screen = "board" }
                         "summary" -> SummaryScreen(content, state, onAction) { screen = it }
-                        else -> BoardScreen(content, state, settings, onAction, { screen = it }, { showDebug = true })
+                        else -> BoardScreen(content, state, settings, onAction, { screen = it }, { if (BuildConfig.DEBUG) showDebug = true })
                     }
                 }
                 dialogueId?.let { id ->
@@ -102,8 +106,33 @@ fun CatHouseApp(
                         }
                     }
                 }
+                if (choicePending && dialogueId == null) {
+                    val options = content.dialogue.scenes.filterValues { it.day == state.day && it.kind == "choice" }
+                    AlertDialog(
+                        onDismissRequest = {},
+                        title = { Text(if (state.day == 14) "厨房，刷成什么颜色？" else "你要走了吗？") },
+                        text = { Text(if (state.day == 14) "煤球把刷子推到你面前，等你拿主意。" else "虎子抬起头，望着门口的你。") },
+                        confirmButton = {
+                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                options.forEach { (id, _) ->
+                                    TextButton({ onAction(GameAction.Choose(id)) }, Modifier.testTag("choice_$id")) {
+                                        Text(when {
+                                            id.endsWith("warm") -> "米白"
+                                            id.endsWith("green") -> "豆绿"
+                                            id.endsWith("stay") -> "留下来"
+                                            else -> "再想想"
+                                        })
+                                    }
+                                }
+                            }
+                        },
+                    )
+                }
                 SnackbarHost(snackbar, Modifier.align(Alignment.BottomCenter).padding(16.dp)) { data ->
-                    Snackbar(data, containerColor = Ink, contentColor = CardPaper, shape = RoundedCornerShape(16.dp))
+                    // A passive message must allow touches to reach the controls underneath.
+                    Box(Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(Ink).padding(16.dp)) {
+                        Text(data.visuals.message, color = CardPaper, style = MaterialTheme.typography.bodyMedium)
+                    }
                 }
                 if (showDebug) DebugPanel(content, state, onAction) { showDebug = false }
             }
@@ -121,7 +150,7 @@ private fun DialogueOverlay(id: String, scene: DialogueScene, reducedMotion: Boo
         if (reducedMotion) visible = line.text.length
         else while (visible < line.text.length) { delay(33); visible++ }
     }
-    val advance = {
+    val advance: () -> Unit = {
         if (visible < line.text.length) visible = line.text.length
         else if (page < pages.lastIndex) page++
         else onFinish()

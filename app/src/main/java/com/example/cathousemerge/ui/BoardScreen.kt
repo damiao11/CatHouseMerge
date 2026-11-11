@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.ArrowForward
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -192,7 +193,7 @@ internal fun BoardScreen(
                     } else if (engine.canAdvance(state)) {
                         TextButton({ onNavigate("summary") }, Modifier.fillMaxWidth().testTag("summary_open")) {
                             Text(if (state.day == 24) "看看家的新模样" else "结束这一天")
-                            Icon(Icons.Outlined.ArrowForward, null, Modifier.padding(start = 8.dp).size(16.dp))
+                            Icon(Icons.AutoMirrored.Outlined.ArrowForward, null, Modifier.padding(start = 8.dp).size(16.dp))
                         }
                     }
                 }
@@ -358,7 +359,7 @@ private fun MergeBoard(
                 it.level < maxLevel
             } == true
             board.forEachIndexed { index, piece ->
-                val same = canMerge && dragPiece != null && piece != null && piece.kind == dragPiece.kind && piece.chain == dragPiece.chain && piece.level == dragPiece.level && index != dragFrom
+                val same = canMerge && piece != null && piece.kind == dragPiece.kind && piece.chain == dragPiece.chain && piece.level == dragPiece.level && index != dragFrom
                 val tint = if (index == selected) Wood else if (same) Leaf else Line
                 Box(
                     Modifier.offset(x = cell * (index % BOARD_COLS), y = cell * (index / BOARD_COLS)).size(cell).padding(1.dp)

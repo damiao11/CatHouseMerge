@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -56,9 +57,12 @@ internal fun BuildScreen(content: GameContent, state: GameState, settings: GameS
     Box(Modifier.fillMaxSize()) {
         SceneImage("rooms/room_${today.room}_before.webp", "${roomName(today.room)}修缮前", Modifier.fillMaxSize())
         SceneImage("rooms/room_${today.room}_after.webp", "${roomName(today.room)}修缮后", Modifier.fillMaxSize().drawWithContent { clipRect(right = size.width * reveal.value) { this@drawWithContent.drawContent() } })
+        if (today.room == "kitchen" && state.choices[14] == "d14_choice_green") {
+            Box(Modifier.fillMaxSize().background(Color(0xFF7FA05A).copy(alpha = 0.12f)))
+        }
         Column(Modifier.fillMaxWidth().align(Alignment.TopCenter).background(Ink.copy(alpha = 0.65f))) {
             Row(Modifier.fillMaxWidth().height(56.dp).padding(end = 16.dp), verticalAlignment = Alignment.CenterVertically) {
-                IconButton({ onNavigate("board") }) { Icon(Icons.Outlined.ArrowBack, "返回棋盘", tint = CardPaper) }
+                IconButton({ onNavigate("board") }) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, "返回棋盘", tint = CardPaper) }
                 Text(roomName(today.room), Modifier.weight(1f), style = MaterialTheme.typography.titleLarge, color = CardPaper)
                 CoinAmount(state.coins, light = true)
             }
