@@ -15,6 +15,27 @@
 | 技术栈 | **Kotlin + Jetpack Compose**（已锁定） |
 | 文档版本 | v0.2（24 天版，2026-11） |
 
+## 运行与验证
+
+仓库已包含 Android 应用 `app/` 和纯 Kotlin 游戏引擎 `core/`。安装 Android Studio，配置 Android SDK 35，并使用其自带的 JDK。Gradle 会直接打包现有 JSON 和成品资源。
+
+```sh
+./gradlew :core:test :app:assembleDebug
+./gradlew :app:lintDebug
+# 启动 Android 模拟器或连接手机后执行
+./gradlew :app:connectedDebugAndroidTest
+```
+
+调试安装包位于 `app/build/outputs/apk/debug/app-debug.apk`。Android Studio 可直接打开仓库根目录并运行 `app`。
+
+macOS 命令行未配置 JDK 时，可先设置 Android Studio 的运行时路径。
+
+```sh
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+```
+
+游戏使用原子 JSON 存档和 DataStore 设置，退到后台会立即保存。调试版长按顶栏天数 3 秒可打开开发面板。音效当前采用本地合成提示音，正式音效与 BGM 待接入。中文字体使用随包附带的 Noto 子集，授权文件位于 `app/src/main/assets/licenses/`。
+
 ## 仓库
 
 **https://github.com/damiao11/CatHouseMerge**
@@ -27,6 +48,8 @@
 | `android-assets/` | **113 张成品资源**（透明 PNG + WebP，13.9 MB） | 开发直接用 |
 | `art/` | 源图 1024 + 提示词存档（112 MB） | 只在重导图时用 |
 | `ui/figma/` | 组件 SVG + 导入说明 | 设计 / 答辩 |
+| `app/` | Android Compose 界面、存档、设置、设备端测试 | 开发 |
+| `core/` | 纯 Kotlin 引擎、数据校验和单元测试 | 开发 |
 
 > `art/` 占 112 MB，第一次 clone 会比较慢；只做开发可以只取 `android-assets/` 和 `docs/`。
 
@@ -93,12 +116,13 @@
 | 内容数据 | ✅ 订单 112 条、台词 24 天、链 7 条、物品 39 个、天数 24 天、产出表（`docs/data/*.json`） |
 | UI 规范 | ✅ 九屏线框 + 组件库 + 资源对照（见 06） |
 | 开发规格 | ✅ 分层、数据模型、手势、验收清单（见 07） |
+| 应用代码 | ✅ 棋盘、生成器、订单、建造、24 天推进、仓库、剧情选择、图鉴、存档 |
 
 ## 下一步
 
-**只剩一件：写代码。**
+四个里程碑已接入同一应用，可继续按 07 的验收清单在目标设备上验证操作体验与性能。
 
-按 07 的四个里程碑推进：
+已实现的四个里程碑覆盖以下功能。
 
 | 里程碑 | 内容 | 完成标志 |
 |---|---|---|
@@ -107,8 +131,8 @@
 | **M3 天数与建造** | 天数推进、建造界面、三步修房、揭幕动画 | 修好门廊并进入第 4 天 |
 | **M4 收尾** | 图鉴、仓库、结算、设置、存档 | 冷启动能接着上次继续 |
 
-开工只需要三样东西：
+维护时主要参考三部分。
 
 1. `docs/07` 开发规格（技术栈、主题令牌、组件映射、手势、验收清单）
 2. `docs/data/*.json` 六份内容数据
-3. `art/` 113 张美术资源
+3. `android-assets/` 113 张成品美术资源

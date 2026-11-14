@@ -1,6 +1,6 @@
 # 交付说明（给开发同学）
 
-> 这是一个**设计与资源仓库**，不含代码。代码按 `docs/07` 从零搭。
+> 仓库已接入 Android 应用与纯 Kotlin 游戏引擎。运行方法见 README，设计依据见 `docs/07`。
 
 ## 一、仓库里有什么
 
@@ -14,6 +14,8 @@
 | `tools/` | 订单生成脚本 | 改了数值再跑 |
 
 ## 二、开工顺序
+
+现有工程已通过 Gradle 任务接入下述资源，无需手工复制。修改 `docs/data/*.json` 或 `android-assets/` 后重新构建即可生效。
 
 1. 读 `docs/07` 的 7.1（技术栈与依赖）→ 建 Gradle 工程
 2. 把 `android-assets/drawable/` 复制到 `app/src/main/res/drawable-nodpi/`
