@@ -1,5 +1,7 @@
 package com.example.cathousemerge.ui
 
+import android.os.SystemClock
+import android.util.Log
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -28,6 +30,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cathousemerge.game.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runInterruptible
 
 @Composable
 internal fun WelcomeScreen(state: GameState, onStart: () -> Unit) {
@@ -297,6 +302,9 @@ internal fun SettingsScreen(settings: GameSettings, onSettings: (GameSettings) -
 @Composable
 internal fun DebugPanel(content: GameContent, state: GameState, onAction: (GameAction) -> Unit, onDismiss: () -> Unit) {
     var day by remember(state.day) { mutableFloatStateOf(state.day.toFloat()) }
+    val scope = rememberCoroutineScope()
+    var backgroundRunning by remember { mutableStateOf(false) }
+    var backgroundStatus by remember { mutableStateOf<String?>(null) }
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text("开发调试", style = MaterialTheme.typography.titleLarge) },
@@ -305,6 +313,30 @@ internal fun DebugPanel(content: GameContent, state: GameState, onAction: (GameA
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     OutlinedButton({ onAction(GameAction.DebugEnergy) }, Modifier.weight(1f).testTag("debug_energy")) { Text("恢复体力") }
                     OutlinedButton({ onAction(GameAction.DebugCoins) }, Modifier.weight(1f).testTag("debug_coins")) { Text("加金币") }
+                }
+                Text("嵌套 for 循环会阻塞主线程约 20 秒。点击后继续触摸界面，可观察系统的无响应提示。", style = MaterialTheme.typography.bodySmall, color = Muted)
+                OutlinedButton({ runNestedLoops() }, Modifier.fillMaxWidth().testTag("debug_anr")) { Text("触发 ANR（嵌套 for 循环）") }
+                OutlinedButton(
+                    onClick = {
+                        backgroundRunning = true
+                        backgroundStatus = "后台计算中，可以拖动下方滑块测试响应。"
+                        scope.launch {
+                            try {
+                                val elapsed = runInterruptible(Dispatchers.Default) { runNestedLoops() }
+                                backgroundStatus = "后台计算完成，用时 ${elapsed / 1_000} 秒。"
+                            } finally {
+                                backgroundRunning = false
+                            }
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth().testTag("debug_background_loop"),
+                    enabled = !backgroundRunning,
+                ) {
+                    Text("后台执行（界面保持响应）")
+                }
+                if (backgroundRunning) LinearProgressIndicator(Modifier.fillMaxWidth())
+                backgroundStatus?.let {
+                    Text(it, Modifier.testTag("debug_background_status"), style = MaterialTheme.typography.bodySmall, color = Muted)
                 }
                 Text("跳到第 ${day.toInt()} 天", style = MaterialTheme.typography.titleSmall)
                 Slider(day, { day = it }, valueRange = 1f..24f, steps = 22)
@@ -317,4 +349,24 @@ internal fun DebugPanel(content: GameContent, state: GameState, onAction: (GameA
         },
         confirmButton = { TextButton(onDismiss) { Text("回到猫屋") } },
     )
+}
+
+private fun runNestedLoops(): Long {
+    val startedAt = SystemClock.uptimeMillis()
+    val thread = Thread.currentThread()
+    var checksum = 0L
+    Log.w("AnrExperiment", "Starting nested for loops on ${thread.name} for 20 seconds")
+
+    // Both buttons use the same workload. The ANR button calls it directly on the main thread.
+    for (outer in 0 until Int.MAX_VALUE) {
+        if (thread.isInterrupted) throw InterruptedException("Nested loop experiment cancelled")
+        for (inner in 0 until 100_000) {
+            checksum += outer.toLong() xor inner.toLong()
+        }
+        if (SystemClock.uptimeMillis() - startedAt >= 20_000L) break
+    }
+
+    val elapsed = SystemClock.uptimeMillis() - startedAt
+    Log.w("AnrExperiment", "Nested for loops finished on ${thread.name} after $elapsed ms, checksum=$checksum")
+    return elapsed
 }
