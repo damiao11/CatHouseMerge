@@ -27,8 +27,8 @@ class ContentTest {
     @Test
     fun everyDayHasPositiveConstructionBudget() {
         val content = load()
-        assertEquals(37_080, content.orders.sumOf(OrderDef::reward))
-        assertEquals(26_705, content.days.sumOf { it.build.cost })
+        assertEquals(36_930, content.orders.sumOf(OrderDef::reward))
+        assertEquals(26_595, content.days.sumOf { it.build.cost })
         content.days.forEach { day ->
             val income = content.ordersForDay(day.day).sumOf(OrderDef::reward)
             assertTrue("第 ${day.day} 天的收入必须覆盖建造", income > day.build.cost)
@@ -39,9 +39,9 @@ class ContentTest {
     fun finalChapterOnlyRequiresRealItems() {
         val content = load()
         val memory = content.orderById.getValue("o21_2")
-        assertEquals(listOf(Requirement("relic", 5, 5)), memory.req)
-        assertEquals(80, memory.equiv)
-        assertEquals(550, memory.reward)
+        assertEquals(listOf(Requirement("relic", 5, 3), Requirement("relic", 4, 2)), memory.req)
+        assertEquals(64, memory.equiv)
+        assertEquals(400, memory.reward)
         content.orders.filter { it.day >= 22 }.forEach { order ->
             order.req.forEach { req -> assertTrue(req.itemId in content.itemById) }
         }
@@ -66,6 +66,17 @@ class ContentTest {
         listOf("splash", "door", "lights", "garden", "ending").forEach { scene ->
             assertFile("android-assets/scenes/scene_$scene.webp")
         }
+    }
+
+    @Test
+    fun itemValuesAndEnergyMatchUpstreamDefinitions() {
+        val values = listOf(2, 5, 12, 28, 65, 150)
+        load().items.forEach { item ->
+            assertEquals(values[item.level - 1], item.value)
+            assertEquals(1 shl (item.level - 1), item.energy)
+        }
+        val legacy = """{"id":"wood_3","chain":"wood","level":3,"name":"木板","value":12,"asset":"ic_wood_3"}"""
+        assertEquals(4, kotlinx.serialization.json.Json.decodeFromString<ItemDef>(legacy).energy)
     }
 
     @Test

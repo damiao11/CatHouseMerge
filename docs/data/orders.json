@@ -1692,12 +1692,17 @@
    {
     "chain": "relic",
     "level": 5,
-    "count": 5
+    "count": 3
+   },
+   {
+    "chain": "relic",
+    "level": 4,
+    "count": 2
    }
   ],
-  "value": 345,
-  "reward": 550,
-  "equiv": 80
+  "value": 251,
+  "reward": 400,
+  "equiv": 64
  },
  {
   "id": "o21_3",
@@ -1750,12 +1755,12 @@
   "type": "daily",
   "req": [
    {
-    "chain": "wood",
+    "chain": "fabric",
     "level": 6,
     "count": 1
    },
    {
-    "chain": "fabric",
+    "chain": "ceramic",
     "level": 5,
     "count": 2
    }
@@ -1770,12 +1775,12 @@
   "type": "daily",
   "req": [
    {
-    "chain": "fabric",
+    "chain": "ceramic",
     "level": 5,
     "count": 3
    },
    {
-    "chain": "ceramic",
+    "chain": "plant",
     "level": 6,
     "count": 1
    }
@@ -1790,7 +1795,7 @@
   "type": "daily",
   "req": [
    {
-    "chain": "ceramic",
+    "chain": "wood",
     "level": 6,
     "count": 2
    }
@@ -1810,7 +1815,7 @@
     "count": 1
    },
    {
-    "chain": "light",
+    "chain": "plant",
     "level": 5,
     "count": 1
    }
@@ -1840,7 +1845,7 @@
   "type": "daily",
   "req": [
    {
-    "chain": "plant",
+    "chain": "ceramic",
     "level": 6,
     "count": 3
    }
@@ -1860,7 +1865,7 @@
     "count": 2
    },
    {
-    "chain": "ceramic",
+    "chain": "fabric",
     "level": 5,
     "count": 2
    }

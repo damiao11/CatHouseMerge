@@ -16,6 +16,7 @@ data class ItemDef(
     val name: String,
     val value: Int,
     val asset: String,
+    val energy: Int = 1 shl (level - 1),
 )
 
 @Serializable

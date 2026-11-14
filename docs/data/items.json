@@ -4,311 +4,350 @@
   "chain": "wood",
   "level": 1,
   "name": "木屑",
-  "value": 1,
-  "asset": "ic_wood_1"
+  "value": 2,
+  "asset": "ic_wood_1",
+  "energy": 1
  },
  {
   "id": "wood_2",
   "chain": "wood",
   "level": 2,
   "name": "木片",
-  "value": 2,
-  "asset": "ic_wood_2"
+  "value": 5,
+  "asset": "ic_wood_2",
+  "energy": 2
  },
  {
   "id": "wood_3",
   "chain": "wood",
   "level": 3,
   "name": "木板",
-  "value": 4,
-  "asset": "ic_wood_3"
+  "value": 12,
+  "asset": "ic_wood_3",
+  "energy": 4
  },
  {
   "id": "wood_4",
   "chain": "wood",
   "level": 4,
   "name": "木箱",
-  "value": 8,
-  "asset": "ic_wood_4"
+  "value": 28,
+  "asset": "ic_wood_4",
+  "energy": 8
  },
  {
   "id": "wood_5",
   "chain": "wood",
   "level": 5,
   "name": "书架",
-  "value": 16,
-  "asset": "ic_wood_5"
+  "value": 65,
+  "asset": "ic_wood_5",
+  "energy": 16
  },
  {
   "id": "wood_6",
   "chain": "wood",
   "level": 6,
   "name": "衣柜",
-  "value": 32,
-  "asset": "ic_wood_6"
+  "value": 150,
+  "asset": "ic_wood_6",
+  "energy": 32
  },
  {
   "id": "metal_1",
   "chain": "metal",
   "level": 1,
   "name": "钉子",
-  "value": 1,
-  "asset": "ic_metal_1"
+  "value": 2,
+  "asset": "ic_metal_1",
+  "energy": 1
  },
  {
   "id": "metal_2",
   "chain": "metal",
   "level": 2,
   "name": "螺丝",
-  "value": 2,
-  "asset": "ic_metal_2"
+  "value": 5,
+  "asset": "ic_metal_2",
+  "energy": 2
  },
  {
   "id": "metal_3",
   "chain": "metal",
   "level": 3,
   "name": "合页",
-  "value": 4,
-  "asset": "ic_metal_3"
+  "value": 12,
+  "asset": "ic_metal_3",
+  "energy": 4
  },
  {
   "id": "metal_4",
   "chain": "metal",
   "level": 4,
   "name": "门锁",
-  "value": 8,
-  "asset": "ic_metal_4"
+  "value": 28,
+  "asset": "ic_metal_4",
+  "energy": 8
  },
  {
   "id": "metal_5",
   "chain": "metal",
   "level": 5,
   "name": "铜门环",
-  "value": 16,
-  "asset": "ic_metal_5"
+  "value": 65,
+  "asset": "ic_metal_5",
+  "energy": 16
  },
  {
   "id": "fabric_1",
   "chain": "fabric",
   "level": 1,
   "name": "线团",
-  "value": 1,
-  "asset": "ic_fabric_1"
+  "value": 2,
+  "asset": "ic_fabric_1",
+  "energy": 1
  },
  {
   "id": "fabric_2",
   "chain": "fabric",
   "level": 2,
   "name": "布片",
-  "value": 2,
-  "asset": "ic_fabric_2"
+  "value": 5,
+  "asset": "ic_fabric_2",
+  "energy": 2
  },
  {
   "id": "fabric_3",
   "chain": "fabric",
   "level": 3,
   "name": "抱枕",
-  "value": 4,
-  "asset": "ic_fabric_3"
+  "value": 12,
+  "asset": "ic_fabric_3",
+  "energy": 4
  },
  {
   "id": "fabric_4",
   "chain": "fabric",
   "level": 4,
   "name": "窗帘",
-  "value": 8,
-  "asset": "ic_fabric_4"
+  "value": 28,
+  "asset": "ic_fabric_4",
+  "energy": 8
  },
  {
   "id": "fabric_5",
   "chain": "fabric",
   "level": 5,
   "name": "地毯",
-  "value": 16,
-  "asset": "ic_fabric_5"
+  "value": 65,
+  "asset": "ic_fabric_5",
+  "energy": 16
  },
  {
   "id": "fabric_6",
   "chain": "fabric",
   "level": 6,
   "name": "沙发",
-  "value": 32,
-  "asset": "ic_fabric_6"
+  "value": 150,
+  "asset": "ic_fabric_6",
+  "energy": 32
  },
  {
   "id": "light_1",
   "chain": "light",
   "level": 1,
   "name": "灯泡",
-  "value": 1,
-  "asset": "ic_light_1"
+  "value": 2,
+  "asset": "ic_light_1",
+  "energy": 1
  },
  {
   "id": "light_2",
   "chain": "light",
   "level": 2,
   "name": "小夜灯",
-  "value": 2,
-  "asset": "ic_light_2"
+  "value": 5,
+  "asset": "ic_light_2",
+  "energy": 2
  },
  {
   "id": "light_3",
   "chain": "light",
   "level": 3,
   "name": "台灯",
-  "value": 4,
-  "asset": "ic_light_3"
+  "value": 12,
+  "asset": "ic_light_3",
+  "energy": 4
  },
  {
   "id": "light_4",
   "chain": "light",
   "level": 4,
   "name": "吊灯",
-  "value": 8,
-  "asset": "ic_light_4"
+  "value": 28,
+  "asset": "ic_light_4",
+  "energy": 8
  },
  {
   "id": "light_5",
   "chain": "light",
   "level": 5,
   "name": "落地灯",
-  "value": 16,
-  "asset": "ic_light_5"
+  "value": 65,
+  "asset": "ic_light_5",
+  "energy": 16
  },
  {
   "id": "ceramic_1",
   "chain": "ceramic",
   "level": 1,
   "name": "陶土",
-  "value": 1,
-  "asset": "ic_ceramic_1"
+  "value": 2,
+  "asset": "ic_ceramic_1",
+  "energy": 1
  },
  {
   "id": "ceramic_2",
   "chain": "ceramic",
   "level": 2,
   "name": "泥坯",
-  "value": 2,
-  "asset": "ic_ceramic_2"
+  "value": 5,
+  "asset": "ic_ceramic_2",
+  "energy": 2
  },
  {
   "id": "ceramic_3",
   "chain": "ceramic",
   "level": 3,
   "name": "素碗",
-  "value": 4,
-  "asset": "ic_ceramic_3"
+  "value": 12,
+  "asset": "ic_ceramic_3",
+  "energy": 4
  },
  {
   "id": "ceramic_4",
   "chain": "ceramic",
   "level": 4,
   "name": "釉碗",
-  "value": 8,
-  "asset": "ic_ceramic_4"
+  "value": 28,
+  "asset": "ic_ceramic_4",
+  "energy": 8
  },
  {
   "id": "ceramic_5",
   "chain": "ceramic",
   "level": 5,
   "name": "茶具",
-  "value": 16,
-  "asset": "ic_ceramic_5"
+  "value": 65,
+  "asset": "ic_ceramic_5",
+  "energy": 16
  },
  {
   "id": "ceramic_6",
   "chain": "ceramic",
   "level": 6,
   "name": "餐瓷套",
-  "value": 32,
-  "asset": "ic_ceramic_6"
+  "value": 150,
+  "asset": "ic_ceramic_6",
+  "energy": 32
  },
  {
   "id": "plant_1",
   "chain": "plant",
   "level": 1,
   "name": "种子",
-  "value": 1,
-  "asset": "ic_plant_1"
+  "value": 2,
+  "asset": "ic_plant_1",
+  "energy": 1
  },
  {
   "id": "plant_2",
   "chain": "plant",
   "level": 2,
   "name": "幼苗",
-  "value": 2,
-  "asset": "ic_plant_2"
+  "value": 5,
+  "asset": "ic_plant_2",
+  "energy": 2
  },
  {
   "id": "plant_3",
   "chain": "plant",
   "level": 3,
   "name": "盆栽",
-  "value": 4,
-  "asset": "ic_plant_3"
+  "value": 12,
+  "asset": "ic_plant_3",
+  "energy": 4
  },
  {
   "id": "plant_4",
   "chain": "plant",
   "level": 4,
   "name": "花苞株",
-  "value": 8,
-  "asset": "ic_plant_4"
+  "value": 28,
+  "asset": "ic_plant_4",
+  "energy": 8
  },
  {
   "id": "plant_5",
   "chain": "plant",
   "level": 5,
   "name": "半开玫瑰",
-  "value": 16,
-  "asset": "ic_plant_5"
+  "value": 65,
+  "asset": "ic_plant_5",
+  "energy": 16
  },
  {
   "id": "plant_6",
   "chain": "plant",
   "level": 6,
   "name": "满开玫瑰",
-  "value": 32,
-  "asset": "ic_plant_6"
+  "value": 150,
+  "asset": "ic_plant_6",
+  "energy": 32
  },
  {
   "id": "relic_1",
   "chain": "relic",
   "level": 1,
   "name": "旧照片",
-  "value": 1,
-  "asset": "ic_relic_1"
+  "value": 2,
+  "asset": "ic_relic_1",
+  "energy": 1
  },
  {
   "id": "relic_2",
   "chain": "relic",
   "level": 2,
   "name": "旧信件",
-  "value": 2,
-  "asset": "ic_relic_2"
+  "value": 5,
+  "asset": "ic_relic_2",
+  "energy": 2
  },
  {
   "id": "relic_3",
   "chain": "relic",
   "level": 3,
   "name": "旧唱片",
-  "value": 4,
-  "asset": "ic_relic_3"
+  "value": 12,
+  "asset": "ic_relic_3",
+  "energy": 4
  },
  {
   "id": "relic_4",
   "chain": "relic",
   "level": 4,
   "name": "旧怀表",
-  "value": 8,
-  "asset": "ic_relic_4"
+  "value": 28,
+  "asset": "ic_relic_4",
+  "energy": 8
  },
  {
   "id": "relic_5",
   "chain": "relic",
   "level": 5,
   "name": "日记",
-  "value": 16,
-  "asset": "ic_relic_5"
+  "value": 65,
+  "asset": "ic_relic_5",
+  "energy": 16
  }
 ]

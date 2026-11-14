@@ -2,7 +2,7 @@ import json, math
 
 V = {1: 2, 2: 5, 3: 12, 4: 28, 5: 65, 6: 150}
 CN = {"wood": "木工", "metal": "五金", "fabric": "布艺", "light": "灯具",
-      "ceramic": "陶瓷", "plant": "绿植", "relic": "旧物"}
+      "ceramic": "陶瓷", "plant": "绿植", "relic": "旧物", "mixed": "混合"}
 
 # (day, type, [(chain, level, count), ...])
 O = [
@@ -122,19 +122,19 @@ O = [
  (20,"daily",[("relic",4,4),("relic",5,2)]),
 
  (21,"daily",[("relic",5,4)]),
- (21,"memory",[("relic",5,5)]),
+ (21,"memory",[("relic",5,3),("relic",4,2)]),
  (21,"daily",[("relic",5,4)]),
  (21,"daily",[("relic",5,5)]),
 
  (22,"daily",[("wood",6,2)]),
- (22,"daily",[("wood",6,1),("fabric",5,2)]),
- (22,"daily",[("fabric",5,3),("ceramic",6,1)]),
- (22,"daily",[("ceramic",6,2)]),
- (22,"daily",[("plant",6,1),("light",5,1)]),
+ (22,"daily",[("fabric",6,1),("ceramic",5,2)]),
+ (22,"daily",[("ceramic",5,3),("plant",6,1)]),
+ (22,"daily",[("wood",6,2)]),
+ (22,"daily",[("plant",6,1),("plant",5,1)]),
 
  (23,"daily",[("fabric",6,2)]),
- (23,"daily",[("plant",6,3)]),
- (23,"daily",[("wood",6,2),("ceramic",5,2)]),
+ (23,"daily",[("ceramic",6,3)]),
+ (23,"daily",[("wood",6,2),("fabric",5,2)]),
  (23,"daily",[("plant",6,2)]),
  (23,"daily",[("ceramic",6,2),("plant",5,1)]),
 
@@ -157,14 +157,10 @@ rows = []
 day_i = {}
 for day, typ, reqs in O:
     day_i[day] = day_i.get(day, 0) + 1
-    order_id = f"o{day}_{day_i[day]}"
     v = sum(V[l] * c for _, l, c in reqs)
-    # 旧物6级改为两个5级后，保留已编排的剧情订单估值与550金币奖励。
-    if order_id == "o21_2":
-        v = 345
     eq = sum((2 ** (l - 1)) * c for _, l, c in reqs)
     rows.append({
-        "id": order_id, "day": day, "type": typ,
+        "id": f"o{day}_{day_i[day]}", "day": day, "type": typ,
         "req": [{"chain": ch, "level": l, "count": c} for ch, l, c in reqs],
         "value": v, "reward": reward(v), "equiv": eq,
     })
@@ -201,5 +197,6 @@ with open("orders.md", "w", encoding="utf-8") as f:
         req = " + ".join(f'{q["count"]}×{CN[q["chain"]]}{q["level"]}级' for q in r["req"])
         f.write(f'| {r["day"]} | {r["id"]} | {req} | {r["reward"]} |\n')
 print("written orders.json / orders.md")
+
 
 

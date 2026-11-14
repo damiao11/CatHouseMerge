@@ -1,0 +1,408 @@
+{
+ "version": 1,
+ "masterLufs": -14,
+ "bgmLufs": -18,
+ "duckDb": -6,
+ "maxStreams": 8,
+ "bgm": [
+  {
+   "id": "bgm_day",
+   "file": "bgm_day.ogg",
+   "seconds": 90,
+   "bpm": 72,
+   "use": "主界面 D1–D18、D22–D24",
+   "lufs": -18,
+   "loop": true
+  },
+  {
+   "id": "bgm_night",
+   "file": "bgm_night.ogg",
+   "seconds": 80,
+   "bpm": 60,
+   "use": "阁楼 D19–D21",
+   "lufs": -18,
+   "loop": true
+  },
+  {
+   "id": "bgm_title",
+   "file": "bgm_title.ogg",
+   "seconds": 40,
+   "bpm": 56,
+   "use": "启动画面",
+   "lufs": -18,
+   "loop": true
+  },
+  {
+   "id": "sting_chapter",
+   "file": "sting_chapter.ogg",
+   "seconds": 3,
+   "bpm": null,
+   "use": "第 6/12/18 天章末",
+   "lufs": -16,
+   "loop": false
+  },
+  {
+   "id": "sting_ending",
+   "file": "sting_ending.ogg",
+   "seconds": 12,
+   "bpm": null,
+   "use": "结局",
+   "lufs": -16,
+   "loop": false
+  }
+ ],
+ "sfx": [
+  {
+   "id": "ui_tap",
+   "file": "sfx_ui_tap.ogg",
+   "seconds": 0.05,
+   "trigger": "点击按钮",
+   "desc": "轻木鱼，很闷",
+   "gainDb": -14
+  },
+  {
+   "id": "ui_back",
+   "file": "sfx_ui_back.ogg",
+   "seconds": 0.08,
+   "trigger": "返回",
+   "desc": "同 tap，音高略低",
+   "gainDb": -14
+  },
+  {
+   "id": "ui_panel_open",
+   "file": "sfx_ui_panel_open.ogg",
+   "seconds": 0.15,
+   "trigger": "打开面板",
+   "desc": "纸张展开",
+   "gainDb": -14
+  },
+  {
+   "id": "ui_panel_close",
+   "file": "sfx_ui_panel_close.ogg",
+   "seconds": 0.12,
+   "trigger": "关闭面板",
+   "desc": "纸张收拢",
+   "gainDb": -14
+  },
+  {
+   "id": "ui_toggle",
+   "file": "sfx_ui_toggle.ogg",
+   "seconds": 0.06,
+   "trigger": "开关",
+   "desc": "短哒",
+   "gainDb": -14
+  },
+  {
+   "id": "ui_error",
+   "file": "sfx_ui_error.ogg",
+   "seconds": 0.2,
+   "trigger": "不可用操作",
+   "desc": "低沉单音",
+   "gainDb": -14
+  },
+  {
+   "id": "item_pick",
+   "file": "sfx_item_pick.ogg",
+   "seconds": 0.08,
+   "trigger": "拖起物品",
+   "desc": "布料摩擦",
+   "gainDb": -14
+  },
+  {
+   "id": "item_drop",
+   "file": "sfx_item_drop.ogg",
+   "seconds": 0.1,
+   "trigger": "放下物品",
+   "desc": "轻木落桌",
+   "gainDb": -14
+  },
+  {
+   "id": "merge_low",
+   "file": "sfx_merge_low.ogg",
+   "seconds": 0.2,
+   "trigger": "合成 1–2 级",
+   "desc": "气泡啵",
+   "gainDb": -14
+  },
+  {
+   "id": "merge_mid",
+   "file": "sfx_merge_mid.ogg",
+   "seconds": 0.22,
+   "trigger": "合成 3–4 级",
+   "desc": "气泡 + 小铃",
+   "gainDb": -14
+  },
+  {
+   "id": "merge_high",
+   "file": "sfx_merge_high.ogg",
+   "seconds": 0.25,
+   "trigger": "合成 5–6 级",
+   "desc": "铃 + 上扬和弦",
+   "gainDb": -14
+  },
+  {
+   "id": "merge_invalid",
+   "file": "sfx_merge_invalid.ogg",
+   "seconds": 0.18,
+   "trigger": "合成失败",
+   "desc": "闷响",
+   "gainDb": -14
+  },
+  {
+   "id": "gen_tap_wood",
+   "file": "sfx_gen_tap_wood.ogg",
+   "seconds": 0.12,
+   "trigger": "木材堆点击",
+   "desc": "木箱咚",
+   "gainDb": -14
+  },
+  {
+   "id": "gen_tap_metal",
+   "file": "sfx_gen_tap_metal.ogg",
+   "seconds": 0.12,
+   "trigger": "工具箱点击",
+   "desc": "金属轻碰",
+   "gainDb": -14
+  },
+  {
+   "id": "gen_tap_fabric",
+   "file": "sfx_gen_tap_fabric.ogg",
+   "seconds": 0.12,
+   "trigger": "布筐点击",
+   "desc": "布料噗",
+   "gainDb": -14
+  },
+  {
+   "id": "gen_tap_glass",
+   "file": "sfx_gen_tap_glass.ogg",
+   "seconds": 0.12,
+   "trigger": "灯泡盒点击",
+   "desc": "玻璃轻响",
+   "gainDb": -14
+  },
+  {
+   "id": "gen_tap_ceramic",
+   "file": "sfx_gen_tap_ceramic.ogg",
+   "seconds": 0.12,
+   "trigger": "陶土袋点击",
+   "desc": "陶土闷响",
+   "gainDb": -14
+  },
+  {
+   "id": "gen_tap_plant",
+   "file": "sfx_gen_tap_plant.ogg",
+   "seconds": 0.12,
+   "trigger": "种子袋点击",
+   "desc": "种子沙沙",
+   "gainDb": -14
+  },
+  {
+   "id": "gen_tap_relic",
+   "file": "sfx_gen_tap_relic.ogg",
+   "seconds": 0.12,
+   "trigger": "旧木箱点击",
+   "desc": "旧木吱呀",
+   "gainDb": -14
+  },
+  {
+   "id": "gen_upgrade",
+   "file": "sfx_gen_upgrade.ogg",
+   "seconds": 0.45,
+   "trigger": "生成器升级",
+   "desc": "咔 + 光晕上扬",
+   "gainDb": -14
+  },
+  {
+   "id": "gen_blocked",
+   "file": "sfx_gen_blocked.ogg",
+   "seconds": 0.15,
+   "trigger": "生成器无处可放",
+   "desc": "短闷响",
+   "gainDb": -14
+  },
+  {
+   "id": "order_ready",
+   "file": "sfx_order_ready.ogg",
+   "seconds": 0.5,
+   "trigger": "订单凑齐",
+   "desc": "风铃三音",
+   "gainDb": -14
+  },
+  {
+   "id": "order_complete",
+   "file": "sfx_order_complete.ogg",
+   "seconds": 0.8,
+   "trigger": "交付成功",
+   "desc": "硬币 + 猫叫",
+   "gainDb": -14
+  },
+  {
+   "id": "coin_fly",
+   "file": "sfx_coin_fly.ogg",
+   "seconds": 0.3,
+   "trigger": "金币飞行",
+   "desc": "单枚硬币",
+   "gainDb": -14
+  },
+  {
+   "id": "build_step",
+   "file": "sfx_build_step.ogg",
+   "seconds": 0.4,
+   "trigger": "建造一步",
+   "desc": "锤子两下",
+   "gainDb": -14
+  },
+  {
+   "id": "build_reveal",
+   "file": "sfx_build_reveal.ogg",
+   "seconds": 1.2,
+   "trigger": "整间揭幕",
+   "desc": "上扬 + 铃",
+   "gainDb": -14
+  },
+  {
+   "id": "build_chapter",
+   "file": "sfx_build_chapter.ogg",
+   "seconds": 3.0,
+   "trigger": "章末动画",
+   "desc": "复用 sting_chapter",
+   "gainDb": -14
+  },
+  {
+   "id": "store_item",
+   "file": "sfx_store_item.ogg",
+   "seconds": 0.15,
+   "trigger": "收进仓库",
+   "desc": "布袋落地",
+   "gainDb": -14
+  },
+  {
+   "id": "retrieve_item",
+   "file": "sfx_retrieve_item.ogg",
+   "seconds": 0.12,
+   "trigger": "从仓库取出",
+   "desc": "抽出啵",
+   "gainDb": -14
+  },
+  {
+   "id": "warehouse_full",
+   "file": "sfx_warehouse_full.ogg",
+   "seconds": 0.25,
+   "trigger": "仓库满",
+   "desc": "闷响",
+   "gainDb": -14
+  },
+  {
+   "id": "bubble_appear",
+   "file": "sfx_bubble_appear.ogg",
+   "seconds": 0.4,
+   "trigger": "气泡出现",
+   "desc": "闪光上升",
+   "gainDb": -14
+  },
+  {
+   "id": "bubble_place",
+   "file": "sfx_bubble_place.ogg",
+   "seconds": 0.15,
+   "trigger": "拖上棋盘",
+   "desc": "落位哒",
+   "gainDb": -14
+  },
+  {
+   "id": "cat_orange",
+   "file": "sfx_cat_orange.ogg",
+   "seconds": 0.5,
+   "trigger": "大橘",
+   "desc": "低沉、有点懒",
+   "gainDb": -14
+  },
+  {
+   "id": "cat_calico",
+   "file": "sfx_cat_calico.ogg",
+   "seconds": 0.4,
+   "trigger": "花花",
+   "desc": "轻、细、短",
+   "gainDb": -14
+  },
+  {
+   "id": "cat_ragdoll",
+   "file": "sfx_cat_ragdoll.ogg",
+   "seconds": 0.4,
+   "trigger": "团子",
+   "desc": "软、拖长",
+   "gainDb": -14
+  },
+  {
+   "id": "cat_black",
+   "file": "sfx_cat_black.ogg",
+   "seconds": 0.4,
+   "trigger": "煤球",
+   "desc": "短促、不爱搭理",
+   "gainDb": -14
+  },
+  {
+   "id": "cat_tabby",
+   "file": "sfx_cat_tabby.ogg",
+   "seconds": 0.5,
+   "trigger": "阿狸",
+   "desc": "野、亮",
+   "gainDb": -14
+  },
+  {
+   "id": "cat_huzi",
+   "file": "sfx_cat_huzi.ogg",
+   "seconds": 0.5,
+   "trigger": "虎子",
+   "desc": "沙哑、弱",
+   "gainDb": -14
+  },
+  {
+   "id": "text_blip",
+   "file": "sfx_text_blip.ogg",
+   "seconds": 0.03,
+   "trigger": "打字机每 3 字",
+   "desc": "极轻",
+   "gainDb": -14
+  },
+  {
+   "id": "dialog_open",
+   "file": "sfx_dialog_open.ogg",
+   "seconds": 0.2,
+   "trigger": "对话弹出",
+   "desc": "轻呼",
+   "gainDb": -14
+  },
+  {
+   "id": "energy_gain",
+   "file": "sfx_energy_gain.ogg",
+   "seconds": 0.3,
+   "trigger": "体力 +1",
+   "desc": "上扬小铃",
+   "gainDb": -14
+  },
+  {
+   "id": "energy_empty",
+   "file": "sfx_energy_empty.ogg",
+   "seconds": 0.3,
+   "trigger": "体力耗尽",
+   "desc": "低沉",
+   "gainDb": -14
+  },
+  {
+   "id": "amb_rain",
+   "file": "sfx_amb_rain.ogg",
+   "seconds": 20.0,
+   "trigger": "第 1 天门廊",
+   "desc": "循环雨声",
+   "gainDb": -14
+  },
+  {
+   "id": "amb_birds",
+   "file": "sfx_amb_birds.ogg",
+   "seconds": 15.0,
+   "trigger": "院子 D16–D18",
+   "desc": "循环鸟叫",
+   "gainDb": -14
+  }
+ ]
+}
