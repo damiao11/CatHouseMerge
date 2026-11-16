@@ -46,7 +46,7 @@ try {
     $dirtyPatch = $null
     if ($dirty.Count -gt 0) {
         $dirtyPatch = 'working-tree-tracked-changes.patch'
-        & git diff --binary --output (Join-Path $output $dirtyPatch) $commit
+        & git diff --no-ext-diff --no-textconv --binary --output (Join-Path $output $dirtyPatch) $commit
         if ($LASTEXITCODE -ne 0) { throw '工作区差异留档失败，请检查归档目录。' }
     }
     $metadata = [ordered]@{

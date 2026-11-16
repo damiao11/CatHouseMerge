@@ -1,0 +1,50 @@
+{
+  "version": "0.2.0",
+  "versionCode": 2,
+  "sourceCommit": "4e927a6fd9d9c3a59c3464d80c3c5b769d9924a2",
+  "sourceDirty": true,
+  "status": "preview-not-a-release",
+  "recordedAt": "2026-11-16T03:26:44.7290361+00:00",
+  "sha256": "cbd5a891eae2f2cd817f047622d9abad20aca9a27efc0f31f217228f177f101e",
+  "sourceArchive": "CatHouseMerge-v0.2.0-preview-20261116-112619-source-committed.zip",
+  "sourceArchiveSha256": "a170b18feeeb8e99a0c40f096ecab69583138e74df11edf90ecaa6ea634e580b",
+  "sourceArchiveKind": "committed-files-at-sourceCommit",
+  "workingTreeStatus": [
+    " M problems-v1.docx"
+  ],
+  "trackedChangesPatch": "working-tree-tracked-changes-raw.patch",
+  "untrackedFilesNote": "未跟踪文件不包含在 Git 源码 ZIP 或 tracked changes patch 中。需要时另行保留。",
+  "apk": "CatHouseMerge-v0.2.0-preview-20261116-112619.apk",
+  "tested": [
+    ":core:test",
+    ":app:assembleDebug"
+  ],
+  "note": "工作区有未提交内容，APK 按预览保守标记；源码 ZIP 严格对应 sourceCommit，已跟踪差异另存 patch，不得当作正式发布。",
+  "archiveDirectory": "artifacts/versions/v0.2.0-preview-20261116-112619",
+  "recordedAtShanghai": "2026-11-16T11:26:44.729036+08:00",
+  "sourceCommitSubject": "feat: 完善合成交互并按预览图重做主界面",
+  "originalMetadataTrackedChangesPatch": "working-tree-tracked-changes.patch",
+  "originalPatchNote": "The original patch was converted to plain text by the local astextplain textconv configuration. It is retained for historical inspection, not document restoration. Use the raw patch or document copy below.",
+  "trackedChangesPatchScope": [
+    "problems-v1.docx"
+  ],
+  "trackedChangesPatchSha256": "3e72c4152c8fcbf4d5bcee11002d6e2290229e62487578a55882e32f9c672df1",
+  "localDocumentCopy": "problems-v1-local-reference.docx",
+  "localDocumentSha256": "0115224065967cffee2ae0910260ee5b12440decccc13e810ea8bd202e3e3598",
+  "verification": {
+    "apkSha256Verified": true,
+    "sourceZipSha256Verified": true,
+    "sourceZipCrcVerified": true,
+    "sourceZipCommitVerified": true,
+    "keyCommittedFilesVerified": true,
+    "documentBinaryPatchReverseCheckPassed": true,
+    "localDocumentCopySha256Verified": true,
+    "coreTests": 44,
+    "deviceTests": 18,
+    "deviceEvidence": "docs/design/device-test-result-2026-11-16.txt",
+    "archiveBuildNote": "Offline :core:test and :app:assembleDebug succeeded using up-to-date outputs; the previous implementation-stage test results remain the evidence."
+  },
+  "remainingLocalChangesNote": "Only problems-v1.docx is intentionally left uncommitted after the follow-up version-record commit. It is not an Android build input. The source ZIP is the exact sourceCommit; this document diff and a document copy are preserved separately in the local archive.",
+  "publication": "local Git commits and local archive only; no tag, push or GitHub Release",
+  "archiveAvailabilityNote": "APK/source ZIP/document copy/patch stay in the ignored artifacts/versions directory on this computer; Git stores this index, checksums, source code, design references and test evidence, not the archive binaries."
+}
