@@ -80,7 +80,7 @@ internal fun GameImage(asset: String, description: String?, modifier: Modifier =
 }
 
 @Composable
-internal fun SceneImage(path: String, description: String?, modifier: Modifier = Modifier) {
+internal fun SceneImage(path: String, description: String?, modifier: Modifier = Modifier, alignment: Alignment = Alignment.Center) {
     val context = LocalContext.current
     val bitmap by produceState<androidx.compose.ui.graphics.ImageBitmap?>(null, path) {
         value = withContext(Dispatchers.IO) {
@@ -88,7 +88,7 @@ internal fun SceneImage(path: String, description: String?, modifier: Modifier =
         }
     }
     Box(modifier.background(Paper)) {
-        bitmap?.let { Image(it, description, Modifier.fillMaxSize(), contentScale = ContentScale.Crop) }
+        bitmap?.let { Image(it, description, Modifier.fillMaxSize(), contentScale = ContentScale.Crop, alignment = alignment) }
     }
 }
 

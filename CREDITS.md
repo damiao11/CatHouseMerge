@@ -61,3 +61,9 @@
 - BGM：按小节裁 + 2s 等功率交叉淡化，归一到 -18 LUFS。
 - 环境声：取最均匀的一段 + 2s 交叉淡化，-24 LUFS。
 - SFX：按文档裁时长、两端淡化、归一到 -14 LUFS（瞬态以 -3 dBTP 峰值对齐），单声道 Vorbis q3。
+
+
+## 本轮界面资源处理
+
+- 发射器木托：`tools/prepare_generator_icons.py` 对既有 35 张生成器图进行确定性合成，输出 `gen_*_tray.png`；原 `gen_*.png` 不修改，不改变源图授权。
+- 封面狸叶黑体：项目所有者按问题文档提供的 `LeeeafHei-Regular.ttf`，嵌入包内用于封面；原文件未附授权正文，使用范围待素材提供者确认，说明见 `app/src/main/assets/licenses/LeeeafHei-NOTICE.txt`。

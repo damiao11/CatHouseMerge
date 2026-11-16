@@ -1,0 +1,83 @@
+{
+  "recorded_at": "2026-11-14T22:14:23+08:00",
+  "version": "0.2.0",
+  "version_code": 2,
+  "status": "local-preview-not-committed-or-released",
+  "branch": "codex/problems-v1",
+  "baseline_commit": "90216940b9b0c255d389efe6d36a94ee61b832f7",
+  "source_dirty": true,
+  "source_restore_note": "本轮源码尚未提交；基线提交不能还原新版。可使用本地可构建源码快照恢复预览，SHA-256 清单用于校验。正式迭代历史仍需确认后提交并打标签。",
+  "build_inputs_manifest": "docs/iterations/v0.2.0-source-files.sha256",
+  "build_inputs_manifest_sha256": "7584508fcd5526f1709b66aeb8c264ebdadb1e9fe2ff0468a635d10f2761bc46",
+  "core_tests": {
+    "tests": 44,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "device_tests": {
+    "tests": 11,
+    "failures": 0,
+    "skipped": 0,
+    "runner": "androidx.test.runner.AndroidJUnitRunner 1.7.0",
+    "device": "Android 16, Medium_Phone_API_36.1 AVD, read-only emulator-5558",
+    "mode": "direct instrumentation after a previously passing Gradle connected test run"
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 11,
+    "warning_rule_counts": {
+      "OldTargetApi": 1,
+      "AndroidGradlePluginVersion": 1,
+      "GradleDependency": 3,
+      "LockedOrientationActivity": 1,
+      "NewerVersionAvailable": 2,
+      "DiscouragedApi": 1,
+      "DataExtractionRules": 1,
+      "ObsoleteSdkInt": 1
+    }
+  },
+  "build": {
+    "gradle": "9.5.0",
+    "compile_sdk": 35,
+    "target_sdk": 35,
+    "min_sdk": 26,
+    "apk": "app/build/outputs/apk/debug/app-debug.apk",
+    "apk_bytes": 41993346,
+    "apk_sha256": "2dc480091a837db653da1873a0160d00978022ab0cdf446a08a18f1bcca85700"
+  },
+  "original_apk_unchanged": true,
+  "requirements_docx_unchanged": true,
+  "evidence_sha256": {
+    "build/review/final-device-tests.log": "2b91eba24af448dd674387ce9068a222a5579c2971fb0506200bf7d827d3ff82",
+    "build/review/final-build.log": "cd13ffe3ef91809eb7f6b21166c9c668c97d060796b05a5ae7a383a6c5661fb2",
+    "docs/iterations/screenshots/cover-comparison.png": "60854bc1f51068f42e9b1b2c6941ce61746e78cf6adf1b4de19d7601b585aeee",
+    "docs/iterations/screenshots/v0.1.0-board.png": "482dec5b902eae80001b8f1296409b08b4c81146969fc9892eecc80a5f44c75d",
+    "docs/iterations/screenshots/v0.1.0-dialogue.png": "458828a9788144b77afb324edb6dd24f28952bcd6714f504a1c1891ef6777018",
+    "docs/iterations/screenshots/v0.1.0-welcome.png": "684ac30129278861d45d341ba7aa98cf18f90b8b51115444a90ebb1c8282cbd6",
+    "docs/iterations/screenshots/v0.2.0-board-demand-missing.png": "ee375e2ebf0c9bf5ba97c7a1edff297b6225dd6419d3041df0daeb62bfc6a17c",
+    "docs/iterations/screenshots/v0.2.0-board-ready.png": "963fd6ba7ee85512406e139d7989fa4a6fc3b37652567ecb42ae3fcbc0b43614",
+    "docs/iterations/screenshots/v0.2.0-dialogue.png": "871b5d7ed6d613f38ca22b0cd34bd8a4c4c776497b04357b1db799f96bb17a1e",
+    "docs/iterations/screenshots/v0.2.0-generator-no-energy.png": "c1df3fe6e46870de790b19679480d4e380578e070fe441f6d14000ec44841e0e",
+    "docs/iterations/screenshots/v0.2.0-welcome-actual.png": "c2b3d0326621a1205a038bf9d0189059f692d039099aea855c89cf10f3a9464a",
+    "docs/iterations/screenshots/v0.2.0-welcome-compact.png": "091ed76088311b5a1e10d57e6903e56f3dca24d189c7910d2257b315ab79d172",
+    "docs/iterations/screenshots/v0.2.0-welcome.png": "913d6141014558f7e479506dbbda184f675d4a3d57ed4ad5a7816dab471ba64c",
+    "build/review/archive-version.log": "66ae0734d585bd823bb31ca0ea82e54241ee72c27c65d22479f1bf757e95fd2f"
+  },
+  "remaining_checks": [
+    "实际手机验收",
+    "大屏和长时间性能",
+    "初版签名与存档备份方案",
+    "指定字体公开嵌入与分发授权",
+    "本轮源码提交、版本标签和 Release 发布"
+  ],
+  "preview_archive": {
+    "directory": "artifacts/versions/v0.2.0-preview-20261114-221851",
+    "apk": "CatHouseMerge-v0.2.0-preview-20261114-221851.apk",
+    "apk_sha256": "2dc480091a837db653da1873a0160d00978022ab0cdf446a08a18f1bcca85700",
+    "source_snapshot": "CatHouseMerge-v0.2.0-source-preview.zip",
+    "source_snapshot_sha256": "af1e900b3f37854a3874ef9409199af2116da7c4a18ed4213d14e4f5b835a369",
+    "archive_helper_tested": true
+  },
+  "archive_helper_sha256": "c0b654e478fd4e4858788d2ac54a4e7a3aff608e010afac482a36832a8fa1453"
+}

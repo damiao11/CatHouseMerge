@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
         android:allowBackup="false"
-        android:icon="@drawable/cat_daju"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="猫屋合合"
         android:supportsRtl="true"
         android:theme="@style/Theme.CatHouseMerge">

@@ -14,3 +14,15 @@ build/
 local.properties
 *.iml
 .idea/
+
+# 构建产物（不进仓库）
+*.apk
+*.aab
+
+# Local version archives; attach APKs to GitHub Releases instead
+/artifacts/versions/
+
+# Private signing material
+*.keystore
+*.jks
+keystore.properties

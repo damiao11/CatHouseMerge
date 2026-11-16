@@ -1,0 +1,9 @@
+
+com.example.cathousemerge.GameFlowTest:..
+com.example.cathousemerge.IterationUiTest:.......
+com.example.cathousemerge.RestorationLayoutTest:.......
+com.example.cathousemerge.SaveRepositoryTest:..
+
+Time: 86.968
+
+OK (18 tests)

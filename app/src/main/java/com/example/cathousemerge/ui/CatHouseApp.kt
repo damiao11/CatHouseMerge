@@ -84,7 +84,7 @@ fun CatHouseApp(
                     label = "screen",
                 ) { route ->
                     when (route) {
-                        "welcome" -> WelcomeScreen(state) { started = true; screen = if (state.completed) "summary" else "board" }
+                        "welcome" -> WelcomeScreen(state, settings.reducedMotion) { started = true; screen = if (state.completed) "summary" else "board" }
                         "build" -> BuildScreen(content, state, settings, onAction) { screen = it }
                         "warehouse" -> WarehouseScreen(content, state, onAction) { screen = "board" }
                         "almanac" -> AlmanacScreen(content, state) { screen = "board" }
@@ -100,7 +100,9 @@ fun CatHouseApp(
                 }
                 dialogueId?.let { id ->
                     content.dialogue.scenes[id]?.let { scene ->
-                        DialogueOverlay(id, scene, settings.reducedMotion) {
+                        val room = content.day(state.day).room
+                        val roomRepaired = content.days.filter { it.room == room }.all { it.day in state.builtDays }
+                        DialogueOverlay(id, scene, room, roomRepaired, settings.reducedMotion) {
                             latestOnAction(GameAction.SeenDialogue(id))
                             dialogueId = null
                         }
@@ -135,42 +137,6 @@ fun CatHouseApp(
                     }
                 }
                 if (showDebug) DebugPanel(content, state, onAction) { showDebug = false }
-            }
-        }
-    }
-}
-
-@Composable
-private fun DialogueOverlay(id: String, scene: DialogueScene, reducedMotion: Boolean, onFinish: () -> Unit) {
-    val pages = remember(id) { scene.lines.flatMap { line -> line.text.chunked(32).map { line.copy(text = it) } } }
-    var page by remember(id) { mutableIntStateOf(0) }
-    val line = pages.getOrNull(page) ?: return
-    var visible by remember(id, page) { mutableIntStateOf(if (reducedMotion) line.text.length else 0) }
-    LaunchedEffect(id, page, reducedMotion) {
-        if (reducedMotion) visible = line.text.length
-        else while (visible < line.text.length) { delay(33); visible++ }
-    }
-    val advance: () -> Unit = {
-        if (visible < line.text.length) visible = line.text.length
-        else if (page < pages.lastIndex) page++
-        else onFinish()
-    }
-    Box(Modifier.fillMaxSize().background(Ink.copy(alpha = 0.45f)).clickable(onClick = advance).testTag("dialogue_next")) {
-        TextButton(onFinish, Modifier.align(Alignment.TopEnd).padding(12.dp).testTag("dialogue_skip")) { Text("略过这段", color = CardPaper) }
-        Column(Modifier.align(Alignment.BottomCenter).fillMaxWidth().padding(horizontal = 20.dp, vertical = 28.dp)) {
-            Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                if (line.who != "narrator" && line.who != "player") CatAvatar(line.who, Modifier.size(72.dp))
-                Surface(color = Paper, shape = RoundedCornerShape(12.dp)) {
-                    Text(catName(line.who), Modifier.padding(horizontal = 16.dp, vertical = 8.dp), style = MaterialTheme.typography.titleSmall, color = DarkWood)
-                }
-            }
-            Spacer(Modifier.height(10.dp))
-            Surface(Modifier.fillMaxWidth(), color = CardPaper, shape = RoundedCornerShape(24.dp)) {
-                Column(Modifier.padding(20.dp)) {
-                    Text(line.text.take(visible), Modifier.fillMaxWidth().heightIn(min = 58.dp), style = MaterialTheme.typography.bodyLarge)
-                    Spacer(Modifier.height(12.dp))
-                    Text(if (visible < line.text.length) "点一下，看完这句" else if (page == pages.lastIndex) "点一下，继续修缮" else "点一下，继续听", Modifier.align(Alignment.End), style = MaterialTheme.typography.bodySmall, color = Muted)
-                }
             }
         }
     }

@@ -12,8 +12,8 @@ android {
         applicationId = "com.example.cathousemerge"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.2.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -40,7 +40,11 @@ val prepareGameAssets by tasks.registering(Sync::class) {
 }
 
 val prepareGameResources by tasks.registering(Sync::class) {
-    from(rootProject.file("android-assets/drawable")) { into("drawable-nodpi") }
+    from(rootProject.file("android-assets/drawable")) {
+        into("drawable-nodpi")
+        // Keep source generator PNGs in Git for reproducible tray generation, not duplicated in the APK.
+        exclude("gen_*_?.png")
+    }
     into(layout.buildDirectory.dir("generated/game-res"))
 }
 
@@ -61,7 +65,8 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     androidTestImplementation(platform("androidx.compose:compose-bom:2026.02.01"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test:runner:1.5.2")
+    androidTestImplementation("androidx.test.ext:junit:1.3.0")
+    androidTestImplementation("androidx.test:runner:1.7.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 }

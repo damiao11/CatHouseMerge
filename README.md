@@ -36,6 +36,17 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 
 游戏使用原子 JSON 存档和 DataStore 设置，退到后台会立即保存。调试版长按顶栏天数 3 秒可打开开发面板。音效当前采用本地合成提示音，正式音效与 BGM 待接入。中文字体使用随包附带的 Noto 子集，授权文件位于 `app/src/main/assets/licenses/`。
 
+## 版本与迭代留档
+
+当前目标应用版本：**0.2.0（versionCode 2，待验收／未发布）**。
+
+- [更新日志](CHANGELOG.md)：每版改了什么。
+- [版本迭代记录](docs/版本迭代记录.md)：原问题、修改对应、真实提交历史、测试结果和前后截图，供课程验收。
+- [初版基线记录](docs/iterations/v0.1.0-baseline.json)：源码提交号与用户提供的初版 APK 校验值；二者的构建对应关系未核对。
+- `tools/archive-version.ps1`：测试、构建、留档 APK 与提交号；不覆盖旧版本，不自动提交、打标签或推送。
+
+初版 APK 保持原样；本地安装包归档放在被忽略的 `artifacts/versions/`，正式演示版本可上传 GitHub Release。封面按问题文档指定使用随包的狸叶黑体；其素材提供者应在公开分发前确认字体嵌入与再分发授权。
+
 ## 仓库
 
 **https://github.com/damiao11/CatHouseMerge**
@@ -45,7 +56,7 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 | `HANDOFF.md` | 交付说明：开工顺序、数据对应、必须知道的三个坑 | **开发先看这个** |
 | `docs/` | 14 份设计文档（[07 开发规格](docs/07-技术方案与数据架构.md) 是核心） | 开发 / 评审 |
 | `docs/data/` | 7 份内容 JSON（订单、台词、链、物品、天数、产出表、音频清单） | 开发 |
-| `android-assets/` | **113 张成品资源**（透明 PNG + WebP，13.9 MB） | 开发直接用 |
+| `android-assets/` | 既有透明 PNG / WebP 成品资源与 35 张发射器木托变体 | 开发直接用 |
 | `art/` | 源图 1024 + 提示词存档（112 MB） | 只在重导图时用 |
 | `ui/figma/` | 组件 SVG + 导入说明 | 设计 / 答辩 |
 | `app/` | Android Compose 界面、存档、设置、设备端测试 | 开发 |
@@ -136,3 +147,14 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 1. `docs/07` 开发规格（技术栈、主题令牌、组件映射、手势、验收清单）
 2. `docs/data/*.json` 六份内容数据
 3. `android-assets/` 113 张成品美术资源
+
+
+## 界面改版基准（2026-11-16）
+
+合成页与修缮页的已确认预览图、设计约定和真实验证截图已归档：
+
+- [设计基准与维护约定](DESIGN.md)
+- [用户确认的 CLI 预览图](docs/design/layout-reference-2026-11-16.png)
+- [本次界面实现与验证记录](docs/design/implementation-2026-11-16.md)
+
+预览图是设计参考；实际运行效果以实现记录里的模拟器截图为准。

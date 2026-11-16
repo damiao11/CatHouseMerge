@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-16",
+  "timezone": "Asia/Shanghai",
+  "status": "local development build; not committed or released",
+  "source_base_commit": "90216940b9b0c255d389efe6d36a94ee61b832f7",
+  "reference": "layout-reference-2026-11-16.png",
+  "reference_sha256": "f23dbfd31a043fa4474426d9ef86724b5a18bc2820813e8a57390b4b95a281b5",
+  "generation_method": "ImageGen CLI, gpt-image-2; original prompt archived alongside reference",
+  "apk": "../../app/build/outputs/apk/debug/app-debug.apk",
+  "apk_sha256": "cbd5a891eae2f2cd817f047622d9abad20aca9a27efc0f31f217228f177f101e",
+  "core_test_suites": [
+    {
+      "name": "com.example.cathousemerge.game.ContentTest",
+      "tests": "10",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.example.cathousemerge.game.GameEngineTest",
+      "tests": "23",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.example.cathousemerge.game.IterationFeedbackTest",
+      "tests": "8",
+      "failures": "0",
+      "errors": "0"
+    },
+    {
+      "name": "com.example.cathousemerge.game.SaveAndChoiceTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0"
+    }
+  ],
+  "device": "Medium_Phone_API_36.1, Android 16, emulator only",
+  "screenshots": "screenshots-2026-11-16",
+  "core_test_result": {
+    "tests": 44,
+    "failures": 0,
+    "errors": 0,
+    "rerun": true
+  },
+  "instrumentation_test_result": {
+    "tests": 18,
+    "failures": 0,
+    "log": "device-test-result-2026-11-16.txt"
+  },
+  "build_result": "assembleDebug and assembleDebugAndroidTest successful",
+  "record_scope": "Historical implementation verification snapshot before Git submission. Later commit and archive mapping is recorded in docs/版本迭代记录.md."
+}
