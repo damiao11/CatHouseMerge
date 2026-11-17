@@ -32,6 +32,7 @@ data class GameUiState(
     val settings: GameSettings = GameSettings(),
     val message: String? = null,
     val messageId: Long = 0,
+    val messageEffect: GameEffect? = null,
     val error: String? = null,
 )
 
@@ -93,7 +94,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         val state = mutableUi.value.game ?: return
         val result = engine?.reduce(state, action) ?: return
         updateGame(result.state)
-        result.message?.let(::showMessage)
+        result.message?.let { showMessage(it, result.effect) }
         result.effect?.let(mutableEffects::tryEmit)
     }
 
@@ -112,10 +113,10 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         val state = engine?.newGame(System.currentTimeMillis()) ?: return
         updateGame(state)
         flushSave()
-        mutableUi.update { it.copy(message = null, messageId = it.messageId + 1) }
+        mutableUi.update { it.copy(message = null, messageId = it.messageId + 1, messageEffect = null) }
     }
 
-    fun clearMessage() { mutableUi.update { it.copy(message = null) } }
+    fun clearMessage() { mutableUi.update { it.copy(message = null, messageEffect = null) } }
 
     fun refreshEnergy() {
         val state = mutableUi.value.game ?: return
@@ -139,7 +140,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         saves.value = state
     }
 
-    private fun showMessage(message: String) {
-        mutableUi.update { it.copy(message = message, messageId = it.messageId + 1) }
+    private fun showMessage(message: String, effect: GameEffect? = null) {
+        mutableUi.update { it.copy(message = message, messageId = it.messageId + 1, messageEffect = effect) }
     }
 }

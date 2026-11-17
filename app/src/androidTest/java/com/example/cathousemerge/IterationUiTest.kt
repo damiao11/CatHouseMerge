@@ -45,8 +45,8 @@ class IterationUiTest {
         compose.waitUntil(5_000) { compose.onAllNodesWithContentDescription("一只猫独自守着旧屋").fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithTag("welcome_title").assertExists()
         compose.onNodeWithTag("welcome_note").assertTextContains("一个旧屋，六只猫。", substring = true)
-        compose.onNodeWithText("第 1 天 · v0.2.0").assertExists()
-        capture("v0.2.0-welcome")
+        compose.onNodeWithText("第 1 天 · v${BuildConfig.VERSION_NAME}").assertExists()
+        capture("v${BuildConfig.VERSION_NAME}-welcome")
         compose.onNodeWithTag("start_game").performClick()
         compose.runOnIdle { assertTrue(started) }
     }
@@ -62,7 +62,7 @@ class IterationUiTest {
         val note = compose.onNodeWithTag("welcome_note").fetchSemanticsNode().boundsInRoot
         val button = compose.onNodeWithTag("start_game").fetchSemanticsNode().boundsInRoot
         assertTrue("The note must never overlap the start button", note.bottom <= button.top)
-        capture("v0.2.0-welcome-compact")
+        capture("v${BuildConfig.VERSION_NAME}-welcome-compact")
     }
 
     @Test fun orderAndBoardFeedbackChangeTogetherAndClearAfterDelivery() {
@@ -77,13 +77,13 @@ class IterationUiTest {
         compose.setContent { CatTheme { BoardScreen(content, state, GameSettings(reducedMotion = true), { state = engine.reduce(state, it).state }, {}, {}) } }
         compose.onNodeWithTag("requirement_feedback_0", true).assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "未满足 1/2"))
         compose.onNodeWithTag("cell_1").assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "需求仍欠缺，订单 feedback，1/2"))
-        capture("v0.2.0-board-demand-missing")
+        capture("v${BuildConfig.VERSION_NAME}-board-demand-missing")
         compose.onNodeWithTag("cell_0").performClick()
         compose.onNodeWithTag("requirement_feedback_0", true).assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "已满足 2/2"))
         compose.onNodeWithTag("order_feedback").assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "可交付"))
         compose.onNodeWithTag("cell_1").assert(SemanticsMatcher.expectValue(SemanticsProperties.StateDescription, "需求已满足，订单 feedback，2/2"))
-        capture("v0.2.0-board-ready")
-        compose.onNodeWithTag("order_feedback").performClick()
+        capture("v${BuildConfig.VERSION_NAME}-board-ready")
+        compose.onNodeWithTag("deliver_feedback").performClick()
         compose.runOnIdle { assertTrue("feedback" in state.delivered); assertNull(state.board[1]) }
         compose.onNodeWithTag("orders_completed").assertExists()
     }
@@ -98,7 +98,7 @@ class IterationUiTest {
         compose.waitUntil(6_000) { compose.onAllNodesWithTag("generator_no_energy", true).fetchSemanticsNodes().isNotEmpty() }
         compose.onAllNodesWithTag("generator_no_energy", true).assertCountEquals(1)
         compose.onAllNodesWithTag("generator_energy_badge", true).assertCountEquals(0)
-        capture("v0.2.0-generator-no-energy")
+        capture("v${BuildConfig.VERSION_NAME}-generator-no-energy")
     }
 
     @Test fun dialogueButtonRevealsThenAdvancesAndLastPageFinishes() {
@@ -148,6 +148,6 @@ class IterationUiTest {
         compose.waitUntil(5_000) { compose.onAllNodesWithContentDescription("当前房间", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithTag("dialogue_avatar", true).assertExists()
         compose.onNodeWithTag("dialogue_name", true).assertExists()
-        capture("v0.2.0-dialogue")
+        capture("v${BuildConfig.VERSION_NAME}-dialogue")
     }
 }

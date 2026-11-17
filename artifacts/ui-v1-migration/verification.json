@@ -1,0 +1,101 @@
+{
+  "verified_at": "2026-11-17T14:17:42.956920+08:00",
+  "design_source": "UI-v1 (approved local prototype)",
+  "design_source_sha256": {
+    "index.html": "93B3ECF5820A957F8CE4B22A217A0C3ECACF5276B6930751B8ECE7DF0AAD4602",
+    "prototype.css": "99B5F1C0DF90F3116E077363F15E26FFFAF15A61A2E364763510C92EF2B08C19",
+    "prototype.js": "94331103A8DE64C64F005B91529B2A2EA9169AB08B2EBE06EE3400FC5714EB21"
+  },
+  "apk": {
+    "path": "D:\\homework\\androidwork\\CatHouseMerge\\app\\build\\outputs\\apk\\debug\\app-debug.apk",
+    "sha256": "62F217349B05E1313133DEB4F424A25D1DC6D0A868638CEA4228E094EC431EC3",
+    "bytes": 38439096,
+    "version_name": "0.2.0",
+    "version_code": 2,
+    "type": "debug, not a release"
+  },
+  "core_tests": {
+    "tests": 44,
+    "failures": 0,
+    "run": "offline, --rerun-tasks",
+    "suites": [
+      {
+        "suite": "com.example.cathousemerge.game.ContentTest",
+        "tests": 10,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "suite": "com.example.cathousemerge.game.GameEngineTest",
+        "tests": 23,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "suite": "com.example.cathousemerge.game.IterationFeedbackTest",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "suite": "com.example.cathousemerge.game.SaveAndChoiceTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0
+      }
+    ]
+  },
+  "device_tests": {
+    "tests": 29,
+    "failures": 0,
+    "log": "device-tests-final.log",
+    "runner": "AndroidJUnitRunner",
+    "serial": "emulator-5554",
+    "android": "16 / API 36",
+    "display": "1080x2400, density 420",
+    "modes": [
+      "360x780 normal",
+      "320x640 1.3x font",
+      "320x640 1.4x font",
+      "320x568 1.4x font"
+    ]
+  },
+  "screenshots": {
+    "directory": "screenshots",
+    "provenance": "Actual Jetpack Compose instrumentation captures, not browser or AI mockups. Screens use independent test fixture states; system bars are not part of component captures."
+  },
+  "order_cat_artwork": {
+    "source": "UI-v1/source-mastergo.html (user-provided SVGs)",
+    "conversion": "SVG to transparent PNG, without AI image generation"
+  },
+  "preserved": {
+    "core_and_save_repository_unchanged": true,
+    "save_format_changed": false,
+    "documentation_merged": false,
+    "committed_or_published": false,
+    "whitespace_check_passed": true
+  },
+  "source_sha256": {
+    "app/build.gradle.kts": "EC8587AE61EEB5734FDA1D424F597FD8E3AEFDB3C283A403EAF786D0B23D0B5B",
+    "app/src/main/res/values/styles.xml": "59A4A15F54A24EBBE82E6A112E90B05F89BB740959F586280C60F13F240C7FC9",
+    "app/src/main/java/com/example/cathousemerge/ui/BoardScreen.kt": "5F2C8D8B9183CAE9E528533F8A4F10ED378CC85AE7523624FB40EE4598BBCD39",
+    "app/src/main/java/com/example/cathousemerge/ui/BuildScreen.kt": "D375B31A0A1A1F33EC44CED66AD3410260821E8D2BE77677ACC5A522579CEA55",
+    "app/src/main/java/com/example/cathousemerge/ui/CatHouseApp.kt": "8B6415252580E6A0C4426623EEED9A3A1DB95077FD41E0BEFD7A78525345E158",
+    "app/src/main/java/com/example/cathousemerge/ui/DialogueOverlay.kt": "4E4176BC0D170C8D92A1457AD98AD6C3E5F7E10BF54526EB71ECD512BC42B6C9",
+    "app/src/main/java/com/example/cathousemerge/ui/DrawableAssets.kt": "D6A75AF82E0D3DE30181A7D8301540F8D6461D53695A00797A6F5899F657A241",
+    "app/src/main/java/com/example/cathousemerge/ui/GameSkin.kt": "E466515F346D32E0E47F6212F5ACA76AD45AFDB488975AC8976F1AB74C18C76B",
+    "app/src/main/java/com/example/cathousemerge/ui/GeneratorEnergyBadge.kt": "D8EB07D30DC698F2CCBB43B943A0006518EA486881A4EEE835FD111C7FE44C0F",
+    "app/src/main/java/com/example/cathousemerge/ui/OrderCard.kt": "2096F120C93B8223886230155DE8D4C4102E481785DB5CE5E9EDBAECB9A58EEA",
+    "app/src/main/java/com/example/cathousemerge/ui/RestorationDecor.kt": "9F4C6D766076AC98E5AA9E3350938BA7F70519787F8D9E5F930362260F56D7A7",
+    "app/src/main/java/com/example/cathousemerge/ui/SecondaryScreens.kt": "DE02F14C5510DA46A1604995522D4606F8D24DD7EFD8F087C394C4AC07D55D3F",
+    "app/src/main/java/com/example/cathousemerge/ui/Theme.kt": "FA27D4FBDD495FD1EFAE032F24ED48E50865E7E950440DA03DDB517397A0838A",
+    "app/src/main/java/com/example/cathousemerge/ui/WelcomeScreen.kt": "876D32FEDA2E2AD33F62B1C18DF632B8BBF80D44B52587A137777493EC4B0A63",
+    "app/src/main/java/com/example/cathousemerge/GameViewModel.kt": "0C1AFAEAC092BF0CC48593DB8FB4F1982F6E306066D9708396C0872D324867B1",
+    "app/src/main/java/com/example/cathousemerge/MainActivity.kt": "0202C557490D43F8BC0915A036AB082F0EC6727D63420C6788D50AC98C905EB4",
+    "app/src/androidTest/java/com/example/cathousemerge/GameFlowTest.kt": "821CECDACB8B5B0F7E0F084217A4AEE61940941F6A30A255BFFAA0DEB528C6B2",
+    "app/src/androidTest/java/com/example/cathousemerge/IterationUiTest.kt": "5E5907CCB31FFBB88DC8B16B589DBF117FAD1DE937AF4C19DB45C9F252DE5721",
+    "app/src/androidTest/java/com/example/cathousemerge/RestorationLayoutTest.kt": "9462DD6C23CA26821AEFC87E64A971E418700724D9AB316C67B760ABA43BE618",
+    "app/src/androidTest/java/com/example/cathousemerge/SaveRepositoryTest.kt": "E09E336DF404E08DC123711955BE6277E2D553C02AE386965CB9670EA5079C93",
+    "app/src/androidTest/java/com/example/cathousemerge/UiV1MigrationTest.kt": "FFF6C523CADA76D3C8F2284D7699DAC8948306EE82BBA49C69BCDE57703094EE"
+  }
+}

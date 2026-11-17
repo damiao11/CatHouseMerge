@@ -1,0 +1,48 @@
+{
+  "checked_at": "2026-11-17T14:37:07.014666+08:00",
+  "version_name": "0.3.0",
+  "version_code": 3,
+  "document_version": "v0.3",
+  "release_status": "unpublished, uncommitted working tree",
+  "build": {
+    "tasks": [
+      ":app:assembleDebug",
+      ":app:assembleDebugAndroidTest"
+    ],
+    "result": "BUILD SUCCESSFUL",
+    "log": "build.log"
+  },
+  "apk": {
+    "path": "D:\\homework\\androidwork\\CatHouseMerge\\app\\build\\outputs\\apk\\debug\\app-debug.apk",
+    "sha256": "B581F952852CBC9163373A7E0E56763D3FB67349DA5280C9BEFC00D4025CF4B5",
+    "manifest_package_line": "package: name='com.example.cathousemerge' versionCode='3' versionName='0.3.0' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'"
+  },
+  "validation": {
+    "local_markdown_links": "passed",
+    "version_assertions": "passed",
+    "diff_check": "git -c core.whitespace=cr-at-eol diff --check passed",
+    "core_and_data_unchanged": true,
+    "device_tests_rerun_for_030": false,
+    "core_tests_rerun_for_030": false
+  },
+  "prior_migration_tests": {
+    "version": "0.2.0 / 2",
+    "core": 44,
+    "device": 29,
+    "evidence": "../ui-v1-migration/verification.json",
+    "not_reused_as_030_tests": true
+  },
+  "document_hashes": {
+    "DESIGN.md": "BC4DEAC47C924A738FD41283B9ABD3D753365A60CD28D009750C3A91A20E9CC1",
+    "README.md": "702712A337D7EA8C79FE3F3029D14CB32010E7AE4245D61D43BBCC4ADA7C4463",
+    "CHANGELOG.md": "FEA06CF98656B29232F1112FC11A33F1C1A61228D80AD46D226C5B4A37AD3916",
+    "HANDOFF.md": "3192FDBBA5A14E2276212B3F576D280A99CA2AC0A06737398E8BF7CA88424CB5",
+    "docs/06-UI-UX设计规范.md": "AADBBA3D4736C182E14AF19D687FE1AFE3FE52AF1123A987654DAA11D20AD1AB",
+    "docs/07-技术方案与数据架构.md": "A95F154D9236E993C93AB41FF9708AE9317BBF5CA4309E37602752448F26BA47",
+    "docs/11-美术清单.md": "5B12F39F12FD6C3A313F9AD2B4FEECA4C52F32D962E3445B9BA0252DA49D9A17",
+    "docs/版本迭代记录.md": "46698E593FA3D5FE5CD1B6D157C2A219E457FAA3D6C890A882BD347EB38C4D51",
+    "docs/design/implementation-2026-11-16.md": "33CC477A9EB2DC77AF6DDD0B6C0A1CA665DED028BEE56DEE7966B44DCC2FE90C",
+    "ui/figma/README.md": "E018CE38123369645A69CDF156D40F866911397999D0497D10D04C0E712FE696",
+    "docs/design/implementation-2026-11-17.md": "18212DCF8E927DD61026D4DA56B98921924AFEA01825FF275067201A7A96A248"
+  }
+}

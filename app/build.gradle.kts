@@ -12,8 +12,8 @@ android {
         applicationId = "com.example.cathousemerge"
         minSdk = 26
         targetSdk = 35
-        versionCode = 2
-        versionName = "0.2.0"
+        versionCode = 3
+        versionName = "0.3.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -42,8 +42,8 @@ val prepareGameAssets by tasks.registering(Sync::class) {
 val prepareGameResources by tasks.registering(Sync::class) {
     from(rootProject.file("android-assets/drawable")) {
         into("drawable-nodpi")
-        // Keep source generator PNGs in Git for reproducible tray generation, not duplicated in the APK.
-        exclude("gen_*_?.png")
+        // UI-v1 uses the original transparent generators; do not package the old tray variants.
+        exclude("gen_*_?_tray.png")
     }
     into(layout.buildDirectory.dir("generated/game-res"))
 }

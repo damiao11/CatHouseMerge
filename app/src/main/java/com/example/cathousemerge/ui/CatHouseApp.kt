@@ -1,6 +1,7 @@
 package com.example.cathousemerge.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -18,10 +19,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.cathousemerge.BuildConfig
 import com.example.cathousemerge.game.*
 import kotlinx.coroutines.delay
+
+// Success feedback is deliberately brief; informational/error messages remain longer.
+internal fun gameMessageHoldMillis(effect: GameEffect?): Long =
+    if (effect == GameEffect.DELIVER || effect == GameEffect.BUILD) 1200L else 2400L
 
 @Composable
 fun CatHouseApp(
@@ -34,6 +43,7 @@ fun CatHouseApp(
     onSettings: (GameSettings) -> Unit,
     onReset: () -> Unit,
     onMessageShown: () -> Unit,
+    messageEffect: GameEffect? = null,
 ) {
     CatTheme {
         var screen by rememberSaveable { mutableStateOf("welcome") }
@@ -41,14 +51,19 @@ fun CatHouseApp(
         var showDebug by remember { mutableStateOf(false) }
         var dialogueId by remember { mutableStateOf<String?>(null) }
         var choicePending by remember { mutableStateOf(false) }
-        val snackbar = remember { SnackbarHostState() }
+        var toastVisible by remember { mutableStateOf(false) }
+        var toastText by remember { mutableStateOf("") }
         val latestOnAction by rememberUpdatedState(onAction)
         val latestMessageShown by rememberUpdatedState(onMessageShown)
         LaunchedEffect(messageId) {
             if (!message.isNullOrBlank()) {
-                snackbar.showSnackbar(message, duration = SnackbarDuration.Short)
+                toastText = message
+                toastVisible = true
+                delay(gameMessageHoldMillis(messageEffect))
+                toastVisible = false
+                delay(if (settings.reducedMotion) 0 else 220)
                 latestMessageShown()
-            }
+            } else toastVisible = false
         }
         LaunchedEffect(started, state.day, state.delivered, state.builtDays, state.seenDialogue, state.choices) {
             if (!started) { dialogueId = null; choicePending = false; return@LaunchedEffect }
@@ -130,10 +145,13 @@ fun CatHouseApp(
                         },
                     )
                 }
-                SnackbarHost(snackbar, Modifier.align(Alignment.BottomCenter).padding(16.dp)) { data ->
-                    // A passive message must allow touches to reach the controls underneath.
-                    Box(Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(Ink).padding(16.dp)) {
-                        Text(data.visuals.message, color = CardPaper, style = MaterialTheme.typography.bodyMedium)
+                AnimatedVisibility(toastVisible,
+                    Modifier.align(Alignment.Center).offset(y = (-32).dp).widthIn(max = 300.dp).fillMaxWidth().padding(horizontal = 16.dp),
+                    enter = fadeIn(tween(if (settings.reducedMotion) 0 else 100)), exit = fadeOut(tween(if (settings.reducedMotion) 0 else 220))) {
+                    // Passive feedback deliberately has no click/pointer handler, so it never blocks the game.
+                    GamePanel(Modifier.testTag("game_toast").semantics { liveRegion = LiveRegionMode.Polite }) {
+                        Text(toastText, Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 12.dp), color = Ink,
+                            style = MaterialTheme.typography.bodySmall, textAlign = TextAlign.Center)
                     }
                 }
                 if (showDebug) DebugPanel(content, state, onAction) { showDebug = false }

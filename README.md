@@ -13,7 +13,7 @@
 | 关键参数 | 棋盘 7×9 固定 · 体力 150 / 2 分钟 1 点 · 生成器 1–5 级 · 仓库 6 格起、金币扩容至 12 |
 | 团队 | 2 人 |
 | 技术栈 | **Kotlin + Jetpack Compose**（已锁定） |
-| 文档版本 | v0.2（24 天版，2026-11） |
+| 文档版本 | v0.3（24 天内容 + UI-v1，2026-11-17） |
 
 ## 运行与验证
 
@@ -38,7 +38,7 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 
 ## 版本与迭代留档
 
-当前目标应用版本：**0.2.0（versionCode 2，待验收／未发布）**。
+当前目标应用版本：**0.3.0（versionCode 3，待验收／未发布）**。
 
 - [更新日志](CHANGELOG.md)：每版改了什么。
 - [版本迭代记录](docs/版本迭代记录.md)：原问题、修改对应、真实提交历史、测试结果和前后截图，供课程验收。
@@ -56,9 +56,10 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 | `HANDOFF.md` | 交付说明：开工顺序、数据对应、必须知道的三个坑 | **开发先看这个** |
 | `docs/` | 14 份设计文档（[07 开发规格](docs/07-技术方案与数据架构.md) 是核心） | 开发 / 评审 |
 | `docs/data/` | 7 份内容 JSON（订单、台词、链、物品、天数、产出表、音频清单） | 开发 |
-| `android-assets/` | 既有透明 PNG / WebP 成品资源与 35 张发射器木托变体 | 开发直接用 |
+| `android-assets/` | 透明 PNG / WebP；当前打包原透明生成器，旧木托变体仅保留源文件 | 开发直接用 |
 | `art/` | 源图 1024 + 提示词存档（112 MB） | 只在重导图时用 |
-| `ui/figma/` | 组件 SVG + 导入说明 | 设计 / 答辩 |
+| `ui/figma/` | 旧组件 SVG（历史参考） | 历史追溯 |
+| `UI-v1/` | 当前已确认原型与 MasterGo 原始导出 | 设计对照 |
 | `app/` | Android Compose 界面、存档、设置、设备端测试 | 开发 |
 | `core/` | 纯 Kotlin 引擎、数据校验和单元测试 | 开发 |
 
@@ -125,7 +126,7 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 | 美术来源 | ✅ AI 生成，**113 张全部定稿**（39 物品 + 35 生成器 + 18 猫 + 16 房间 + 5 插画） |
 | 剧情 | ✅ 24 天台词 + 6 篇图鉴 + 3 封信（见 14） |
 | 内容数据 | ✅ 订单 112 条、台词 24 天、链 7 条、物品 39 个、天数 24 天、产出表（`docs/data/*.json`） |
-| UI 规范 | ✅ 九屏线框 + 组件库 + 资源对照（见 06） |
+| UI 规范 | ✅ UI-v1 两页规范 + 其他页面设计目标（见 06） |
 | 开发规格 | ✅ 分层、数据模型、手势、验收清单（见 07） |
 | 应用代码 | ✅ 棋盘、生成器、订单、建造、24 天推进、仓库、剧情选择、图鉴、存档 |
 
@@ -138,7 +139,7 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 | 里程碑 | 内容 | 完成标志 |
 |---|---|---|
 | **M1 能点能合** | 棋盘渲染、点生成器出物品、拖拽合并、体力扣除 | 能连续合成到 5 级 |
-| **M2 订单闭环** | 订单卡、n/m 实时更新、点卡交付、金币增加 | 完成 1 天的全部订单 |
+| **M2 订单闭环** | 订单卡、n/m 实时更新、点交付按钮、金币增加 | 完成 1 天的全部订单 |
 | **M3 天数与建造** | 天数推进、建造界面、三步修房、揭幕动画 | 修好门廊并进入第 4 天 |
 | **M4 收尾** | 图鉴、仓库、结算、设置、存档 | 冷启动能接着上次继续 |
 
@@ -149,12 +150,11 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 3. `android-assets/` 113 张成品美术资源
 
 
-## 界面改版基准（2026-11-16）
+## 当前界面改版基准（2026-11-17）
 
-合成页与修缮页的已确认预览图、设计约定和真实验证截图已归档：
+- [当前设计基准](DESIGN.md) 与 [06 UI 规范](docs/06-UI-UX设计规范.md)：黄绿背景、奶油卡片、浅蓝棋盘与新版交互。
+- [当前原生实现与验证记录](docs/design/implementation-2026-11-17.md)：区分升级前迁移验证和升级后检查。
+- `UI-v1/index.html` 为网页设计原型；正式规则以引擎为准，不移植预览调试开关。
+- [11月16日旧方案](docs/design/implementation-2026-11-16.md) 保留历史，不再覆盖当前两页视觉。
 
-- [设计基准与维护约定](DESIGN.md)
-- [用户确认的 CLI 预览图](docs/design/layout-reference-2026-11-16.png)
-- [本次界面实现与验证记录](docs/design/implementation-2026-11-16.md)
-
-预览图是设计参考；实际运行效果以实现记录里的模拟器截图为准。
+原型与参考图不是运行证据；模拟器截图与测试只能证明其对应版本。

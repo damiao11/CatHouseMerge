@@ -1,75 +1,70 @@
 package com.example.cathousemerge.ui
 
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.CheckCircle
-import androidx.compose.material.icons.outlined.MonetizationOn
+import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.cathousemerge.R
 import com.example.cathousemerge.game.*
 
-internal val DemandPending = Color(0xFFE8D9B5)
-internal val DemandPendingInk = Color(0xFF986B2F)
-internal val DemandSatisfied = Color(0xFFE1EDD4)
+internal val DemandPending = Color(0xFFFFF0CA)
+internal val DemandPendingInk = Color(0xFF906126)
+internal val DemandSatisfied = Color(0xFFE6F0CC)
 
 @Composable
 internal fun OrderCard(content: GameContent, state: GameState, order: OrderDef, progress: List<Int>, ready: Boolean, onClick: () -> Unit) {
     val done = order.id in state.delivered
-    val border by animateColorAsState(if (ready && !done) Leaf else if (done) Line else Wood, label = "orderBorder")
-    val background by animateColorAsState(if (done) Color(0xFFF0EEE4) else if (ready) Color(0xFFEDF4E4) else CardPaper, label = "orderBackground")
-    Surface(
-        onClick = onClick, enabled = !done,
-        modifier = Modifier.width(if (order.req.size > 2) 224.dp else 180.dp).height(96.dp).testTag("order_${order.id}")
-            .semantics { stateDescription = if (done) "已交付" else if (ready) "可交付" else "进行中" },
-        shape = RoundedCornerShape(16.dp), color = background,
-        border = BorderStroke(if (ready && !done) 2.dp else 1.dp, border),
-    ) {
-        if (done) {
-            Row(Modifier.fillMaxSize().padding(16.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                Icon(Icons.Outlined.CheckCircle, "已完成", tint = Leaf)
-                Column { Text("已经交付", style = MaterialTheme.typography.titleSmall); Text("谢谢你呀。", style = MaterialTheme.typography.bodySmall, color = Muted) }
-            }
-        } else {
-            Column(Modifier.padding(horizontal = 8.dp, vertical = 5.dp)) {
-                Text(if (ready) "可交付" else "进行中", style = MaterialTheme.typography.labelMedium, fontSize = 10.sp, color = if (ready) Leaf else DarkWood)
-                Row(Modifier.weight(1f), verticalAlignment = Alignment.CenterVertically) {
-                    Column(Modifier.width(36.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                        CatAvatar(catForDay(order.day), Modifier.size(32.dp))
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(Icons.Outlined.MonetizationOn, null, Modifier.size(11.dp), tint = DarkWood)
-                            Text(order.reward.toString(), style = MaterialTheme.typography.labelMedium, fontSize = 10.sp)
-                        }
-                    }
-                    Spacer(Modifier.width(5.dp))
-                    order.req.forEachIndexed { index, req ->
-                        val count = (progress.getOrNull(index) ?: 0).coerceIn(0, req.count)
-                        val satisfied = count >= req.count
-                        val tile by animateColorAsState(if (satisfied) DemandSatisfied else DemandPending, label = "requirement")
-                        Box(Modifier.weight(1f).height(60.dp).padding(horizontal = 2.dp).clip(RoundedCornerShape(8.dp)).background(tile)
-                            .testTag("requirement_${order.id}_$index")
-                            .semantics { stateDescription = if (satisfied) "已满足 $count/${req.count}" else "未满足 $count/${req.count}" }) {
-                            GameImage(content.itemById[req.itemId]?.asset ?: "ic_${req.chain}_${req.level}", content.itemById[req.itemId]?.name,
-                                Modifier.align(Alignment.TopCenter).padding(top = 2.dp).size(38.dp))
-                            Text("$count/${req.count}", Modifier.align(Alignment.BottomEnd).padding(end = 4.dp, bottom = 2.dp),
-                                style = MaterialTheme.typography.labelMedium, fontSize = 11.sp, color = if (satisfied) Leaf else Ink)
-                        }
-                    }
+    val height = 104.dp
+    val width = if (LocalDensity.current.fontScale > 1.2f) 296.dp else 272.dp
+    GamePanel(Modifier.width(width).height(height).testTag("order_${order.id}")
+        .semantics {
+            stateDescription = if (done) "已交付" else if (ready) "可交付" else "进行中"
+        }) {
+        val cat = catForDay(order.day)
+        Image(painterResource(if (cat in setOf("daju", "ali", "huzi")) R.drawable.ui_order_cat_orange else R.drawable.ui_order_cat_gray),
+            "${catName(cat)}的订单", Modifier.align(Alignment.CenterStart).padding(start = 2.dp).size(width = 58.dp, height = 70.dp))
+        Column(Modifier.align(Alignment.CenterStart).padding(start = 64.dp, end = 80.dp), verticalArrangement = Arrangement.spacedBy(5.dp)) {
+            order.req.forEachIndexed { index, req ->
+                val count = if (done) req.count else (progress.getOrNull(index) ?: 0).coerceIn(0, req.count)
+                val satisfied = count >= req.count
+                val name = content.itemById[req.itemId]?.name ?: req.itemId
+                Row(Modifier.fillMaxWidth().heightIn(min = 25.dp).testTag("requirement_${order.id}_$index")
+                    .semantics { stateDescription = if (satisfied) "已满足 $count/${req.count}" else "未满足 $count/${req.count}"; contentDescription = "$name $count/${req.count}" },
+                    verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(3.dp)) {
+                    GameImage(content.itemById[req.itemId]?.asset ?: "ic_${req.itemId}", null, Modifier.size(25.dp))
+                    Text(name, Modifier.widthIn(max = 50.dp), fontSize = 11.sp, lineHeight = 15.sp, fontWeight = FontWeight.Bold, maxLines = 1, overflow = TextOverflow.Ellipsis, color = Ink)
+                    Text("$count/${req.count}", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = DemandPendingInk, maxLines = 1)
+                    if (satisfied) Box(Modifier.size(13.dp).background(ReadyGreen, CircleShape).border(1.dp, ReadyOutline, CircleShape), contentAlignment = Alignment.Center) { Icon(Icons.Outlined.Check, null, Modifier.size(10.dp), tint = Leaf) }
                 }
             }
         }
+        Box(Modifier.align(Alignment.TopEnd).padding(top = 9.dp, end = 8.dp).width(64.dp).height(44.dp)
+            .clickable(enabled = !done, role = Role.Button, onClick = onClick).testTag("deliver_${order.id}"), contentAlignment = Alignment.Center) {
+            GamePanel(Modifier.fillMaxSize(), if (ready && !done) ReadyGreen else if (done) DemandSatisfied else Color(0xFFFFF0CA), 11.dp) {
+                Text(if (done) "已交付" else "交付", Modifier.align(Alignment.Center), fontSize = 12.sp, lineHeight = 16.sp,
+                    color = if (ready || done) Leaf else Muted, fontWeight = FontWeight.Bold)
+            }
+        }
+        GameCoin(order.reward, Modifier.align(Alignment.BottomEnd).padding(end = 9.dp, bottom = 8.dp), 15.dp)
     }
 }

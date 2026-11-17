@@ -1,0 +1,1825 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>猫屋合合 · 主界面</title>
+    <script src="./tailwind.js"></script>
+  </head>
+  <body class="min-h-screen bg-[#CBD6BB] font-sans text-[#624125] antialiased">
+    <!--
+  qb:map
+  app-shell -> 页面外壳与 360×780 画布
+  top-bar -> 顶部资源栏
+  order-strip -> 横向猫咪订单区
+  board-panel -> 7×9 合成棋盘
+  action-bar -> 底部固定操作区
+  app-overlays -> 轻提示
+  -->
+
+    <!-- qb:region:app-shell:start -->
+    <div
+      id="app"
+      data-qb-region="app-shell"
+      class="flex min-h-screen items-center justify-center p-4"
+    >
+      <div
+        id="canvas-stage"
+        class="relative h-[780px] w-[360px] shrink-0 overflow-hidden rounded-[26px] bg-[#DCE89C] shadow-[0_18px_44px_rgba(98,65,37,0.24)]"
+      >
+        <!-- 猫爪暗纹定义 -->
+        <svg class="pointer-events-none absolute h-0 w-0" aria-hidden="true">
+          <symbol id="paw-mark" viewBox="0 0 24 24">
+            <ellipse cx="12" cy="16.2" rx="5.6" ry="4.4" />
+            <ellipse cx="5.6" cy="10" rx="2.5" ry="3.1" />
+            <ellipse cx="10" cy="6.6" rx="2.4" ry="3" />
+            <ellipse cx="14.4" cy="6.6" rx="2.4" ry="3" />
+            <ellipse cx="18.6" cy="10" rx="2.5" ry="3.1" />
+          </symbol>
+        </svg>
+
+        <!-- 背景猫爪暗纹 -->
+        <div
+          class="pointer-events-none absolute left-[26px] top-[8px] opacity-40"
+        >
+          <svg class="h-[22px] w-[22px] fill-[#BFCE86]">
+            <use href="#paw-mark" />
+          </svg>
+        </div>
+        <div
+          class="pointer-events-none absolute right-[22px] top-[196px] opacity-40"
+        >
+          <svg class="h-[18px] w-[18px] fill-[#BFCE86]">
+            <use href="#paw-mark" />
+          </svg>
+        </div>
+        <div
+          class="pointer-events-none absolute left-[300px] top-[636px] opacity-45"
+        >
+          <svg class="h-[20px] w-[20px] fill-[#BFCE86]">
+            <use href="#paw-mark" />
+          </svg>
+        </div>
+        <div
+          class="pointer-events-none absolute left-[48px] top-[758px] opacity-40"
+        >
+          <svg class="h-[18px] w-[18px] fill-[#BFCE86]">
+            <use href="#paw-mark" />
+          </svg>
+        </div>
+
+        <!-- qb:section:top-bar:start -->
+        <div
+          class="absolute left-[12px] top-[24px] flex h-[52px] w-[336px] items-center justify-between"
+          data-qb-section="top-bar"
+        >
+          <!-- 日历牌 -->
+          <div
+            class="relative flex h-[52px] w-[64px] flex-col items-center justify-center rounded-[15px] border-[2.5px] border-[#A96B36] border-b-[4px] bg-[#F6B63F] shadow-[0_2px_0_rgba(169,107,54,0.2)]"
+          >
+            <span
+              class="absolute inset-x-[4px] bottom-[4px] top-[18px] rounded-[10px] bg-[#FFF8DF]"
+            ></span>
+            <span
+              class="relative text-[9.5px] font-black tracking-[0.4px] text-[#7A4A1E]"
+              >第3天</span
+            >
+            <span
+              class="relative text-[21px] font-black leading-[20px] text-[#EE932B] [text-shadow:0_1.5px_0_#FFFDF3]"
+              >3</span
+            >
+          </div>
+
+          <!-- 资源胶囊 -->
+          <div class="flex items-center gap-[9px]">
+            <div
+              class="relative flex h-[40px] w-[104px] items-center gap-[5px] rounded-full border-[2.5px] border-[#A96B36] border-b-[4px] bg-[#FFF8DF] pl-[24px] pr-[7px] shadow-[0_2px_0_rgba(169,107,54,0.16)]"
+            >
+              <span
+                class="absolute -left-[3px] top-[3px] flex h-[26px] w-[26px] items-center justify-center rounded-full border-2 border-[#A96B36] bg-[#EAF4FA]"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-[15px] w-[15px]"
+                  fill="#5FA9DE"
+                  stroke="#2F7BAE"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                >
+                  <path d="M13.5 2.5 6.5 13.4h4.4L9.9 21.5l7.6-11.2h-4.6z" />
+                </svg>
+              </span>
+              <span class="flex flex-col leading-none">
+                <span class="flex items-baseline gap-[2px]">
+                  <span class="text-[9.5px] font-bold text-[#8A6A48]"
+                    >体力</span
+                  >
+                  <span
+                    class="text-[15px] font-black text-[#624125] [text-shadow:0_1px_0_#FFFFFF]"
+                    >62</span
+                  >
+                </span>
+                <span
+                  class="mt-[3px] w-fit rounded-full bg-[#FFEFC7] px-[5px] text-[9px] font-bold leading-[13px] text-[#A96B36]"
+                  >01:20</span
+                >
+              </span>
+            </div>
+
+            <div
+              class="relative flex h-[40px] w-[84px] items-center gap-[4px] rounded-full border-[2.5px] border-[#A96B36] border-b-[4px] bg-[#FFF8DF] pl-[22px] pr-[6px] shadow-[0_2px_0_rgba(169,107,54,0.16)]"
+            >
+              <span
+                class="absolute -left-[4px] top-[7px] flex h-[26px] w-[26px] items-center justify-center rounded-full border-2 border-[#A96B36] bg-[#F6B63F] text-[11px] font-black text-[#8A5620] shadow-[inset_0_-2px_0_rgba(169,107,54,0.25)]"
+                >¥</span
+              >
+              <span class="flex flex-col leading-none">
+                <span class="text-[9px] font-bold text-[#8A6A48]">金币</span>
+                <span
+                  class="mt-[1px] text-[15px] font-black text-[#624125] [text-shadow:0_1px_0_#FFFFFF]"
+                  >440</span
+                >
+              </span>
+            </div>
+          </div>
+
+          <!-- 设置 -->
+          <button
+            type="button"
+            data-action="settings"
+            aria-label="设置"
+            class="flex h-[40px] w-[40px] items-center justify-center rounded-[14px] border-[2.5px] border-[#A96B36] border-b-[4px] bg-[#FFF8DF] shadow-[0_2px_0_rgba(169,107,54,0.16)] active:translate-y-[1px]"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              class="h-[22px] w-[22px]"
+              fill="none"
+              stroke="#624125"
+              stroke-width="2.1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="8.4" />
+              <circle cx="12" cy="12" r="3.2" />
+              <path d="M12 1.8v2.4M12 19.8v2.4M1.8 12h2.4M19.8 12h2.4" />
+            </svg>
+          </button>
+        </div>
+        <!-- qb:section:top-bar:end -->
+
+        <!-- qb:section:order-strip:start -->
+        <div
+          class="absolute left-[12px] top-[92px] h-[110px] w-[336px]"
+          data-qb-section="order-strip"
+        >
+          <div
+            class="flex h-full w-full gap-[10px] overflow-x-auto overflow-y-hidden px-[6px] pb-[8px] pt-[6px]"
+          >
+            <!-- 订单卡：木板与油漆桶 -->
+            <article
+              class="relative w-[272px] shrink-0 rounded-[16px] border-[2.5px] border-[#A96B36] border-b-[4px] bg-[#FFF8DF] shadow-[0_2px_0_rgba(169,107,54,0.16)]"
+            >
+              <div
+                class="flex h-[62px] items-center gap-[6px] pl-[54px] pr-[7px]"
+              >
+                <div class="flex-1">
+                  <div class="flex items-center gap-[4px]">
+                    <span
+                      class="flex h-[22px] w-[22px] items-center justify-center rounded-[7px] border-2 border-[#DCC39C] bg-[#FFF1D6]"
+                    >
+                      <span class="relative block h-[15px] w-[15px]">
+                        <span
+                          class="absolute inset-x-0 top-[1px] h-[5px] rounded-[2px] border-[1.5px] border-[#A96B36] bg-[#EAC58E]"
+                        ></span>
+                        <span
+                          class="absolute inset-x-[1px] bottom-[1px] h-[5px] rounded-[2px] border-[1.5px] border-[#A96B36] bg-[#DDB273]"
+                        ></span>
+                      </span>
+                    </span>
+                    <span class="text-[11.5px] font-bold text-[#624125]"
+                      >木板</span
+                    >
+                    <span class="text-[10.5px] font-black text-[#B4761F]"
+                      >1/2</span
+                    >
+                  </div>
+                  <div class="mt-[5px] flex items-center gap-[4px]">
+                    <span
+                      class="flex h-[22px] w-[22px] items-center justify-center rounded-[7px] border-2 border-[#DCC39C] bg-[#FFF1D6]"
+                    >
+                      <span class="relative block h-[15px] w-[15px]">
+                        <span
+                          class="absolute inset-x-[1px] bottom-[1px] top-[3px] rounded-[3px] border-[1.5px] border-[#A96B36] bg-[#DDE9EB]"
+                        ></span>
+                        <span
+                          class="absolute inset-x-[1px] top-[4px] h-[4px] border-b-[1.5px] border-[#A96B36] bg-[#F6B63F]"
+                        ></span>
+                      </span>
+                    </span>
+                    <span class="text-[11.5px] font-bold text-[#624125]"
+                      >油漆桶</span
+                    >
+                    <span class="text-[10.5px] font-black text-[#B4761F]"
+                      >1/1</span
+                    >
+                    <span
+                      class="flex h-[14px] w-[14px] items-center justify-center rounded-full border-[1.5px] border-[#5E8F2E] bg-[#A7DC64]"
+                    >
+                      <span
+                        class="block h-[7px] w-[4px] -rotate-45 border-b-[2px] border-l-[2px] border-[#3F6A1C]"
+                      ></span>
+                    </span>
+                  </div>
+                </div>
+                <div class="flex w-[58px] flex-col items-center gap-[3px]">
+                  <button
+                    type="button"
+                    data-action="deliver"
+                    class="w-full rounded-[10px] border-2 border-[#D9BE94] border-b-[3px] bg-[#FFF3D8] py-[3px] text-[10.5px] font-black text-[#A0855F] active:translate-y-[1px]"
+                  >
+                    差1木板
+                  </button>
+                  <span class="text-[9px] font-bold text-[#B08A5C]"
+                    >待满足</span
+                  >
+                </div>
+              </div>
+              <div
+                class="flex h-[24px] items-center justify-between rounded-b-[13px] border-t-2 border-[#A96B36] bg-[#F6B63F] px-[8px]"
+              >
+                <span class="flex items-center gap-[4px]">
+                  <span
+                    class="flex h-[15px] w-[15px] items-center justify-center rounded-full border-2 border-[#A96B36] bg-[#FFD982] text-[8.5px] font-black text-[#8A5620]"
+                    >¥</span
+                  >
+                  <span class="text-[11px] font-black text-[#624125]"
+                    >金币奖励 120</span
+                  >
+                </span>
+                <span
+                  class="rounded-full bg-[#FFF8DF] px-[6px] py-[1px] text-[9px] font-bold text-[#A96B36]"
+                  >猫咪订单</span
+                >
+              </div>
+              <!-- 橘白猫 -->
+              <svg
+                viewBox="0 0 64 68"
+                class="pointer-events-none absolute -left-[8px] top-[-4px] h-[62px] w-[58px]"
+                aria-hidden="true"
+              >
+                <g
+                  stroke="#A96B36"
+                  stroke-width="2.6"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                >
+                  <path d="M14 24 11 8l16 8z" fill="#F6B63F" />
+                  <path d="M50 24 53 8 37 16z" fill="#F6B63F" />
+                  <ellipse cx="32" cy="36" rx="22" ry="20" fill="#FFF8DF" />
+                  <path
+                    d="M11 27c5-11 37-11 42 0-6-5-36-5-42 0z"
+                    fill="#F6B63F"
+                  />
+                  <ellipse
+                    cx="24"
+                    cy="37"
+                    rx="3.4"
+                    ry="4.2"
+                    fill="#4A3020"
+                    stroke="none"
+                  />
+                  <ellipse
+                    cx="40"
+                    cy="37"
+                    rx="3.4"
+                    ry="4.2"
+                    fill="#4A3020"
+                    stroke="none"
+                  />
+                  <circle
+                    cx="25.2"
+                    cy="35.6"
+                    r="1.2"
+                    fill="#FFFFFF"
+                    stroke="none"
+                  />
+                  <circle
+                    cx="41.2"
+                    cy="35.6"
+                    r="1.2"
+                    fill="#FFFFFF"
+                    stroke="none"
+                  />
+                  <path d="M32 43l-3-2.6h6z" fill="#EE932B" />
+                  <path
+                    d="M32 43v2.6M32 45.6c-1.6 2-4.4 1.4-5-.6M32 45.6c1.6 2 4.4 1.4 5-.6"
+                    fill="none"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M12 41h7M12 47h7M52 41h-7M52 47h-7"
+                    fill="none"
+                    stroke-width="1.8"
+                  />
+                  <ellipse
+                    cx="17"
+                    cy="44"
+                    rx="4"
+                    ry="2.4"
+                    fill="#F7A9A0"
+                    stroke="none"
+                    opacity="0.75"
+                  />
+                  <ellipse
+                    cx="47"
+                    cy="44"
+                    rx="4"
+                    ry="2.4"
+                    fill="#F7A9A0"
+                    stroke="none"
+                    opacity="0.75"
+                  />
+                  <rect
+                    x="18"
+                    y="52"
+                    width="12"
+                    height="12"
+                    rx="5"
+                    fill="#FFF8DF"
+                  />
+                  <rect
+                    x="34"
+                    y="52"
+                    width="12"
+                    height="12"
+                    rx="5"
+                    fill="#F6B63F"
+                  />
+                </g>
+              </svg>
+            </article>
+
+            <!-- 订单卡：布料卷与花盆（右侧露出） -->
+            <article
+              class="relative w-[272px] shrink-0 rounded-[16px] border-[2.5px] border-[#A96B36] border-b-[4px] bg-[#FFF8DF] shadow-[0_2px_0_rgba(169,107,54,0.16)]"
+            >
+              <div
+                class="flex h-[62px] items-center gap-[6px] pl-[54px] pr-[7px]"
+              >
+                <div class="flex-1">
+                  <div class="flex items-center gap-[4px]">
+                    <span
+                      class="flex h-[22px] w-[22px] items-center justify-center rounded-[7px] border-2 border-[#DCC39C] bg-[#FFF1D6]"
+                    >
+                      <span class="relative block h-[15px] w-[15px]">
+                        <span
+                          class="absolute inset-x-0 bottom-[2px] top-[2px] rounded-[3px] border-[1.5px] border-[#A96B36] bg-[#F3C6C0]"
+                        ></span>
+                        <span
+                          class="absolute left-0 bottom-[2px] top-[2px] w-[4px] rounded-l-[3px] border-[1.5px] border-[#A96B36] bg-[#FBDCD6]"
+                        ></span>
+                      </span>
+                    </span>
+                    <span class="text-[11.5px] font-bold text-[#624125]"
+                      >布料卷</span
+                    >
+                    <span class="text-[10.5px] font-black text-[#B4761F]"
+                      >2/2</span
+                    >
+                    <span
+                      class="flex h-[14px] w-[14px] items-center justify-center rounded-full border-[1.5px] border-[#5E8F2E] bg-[#A7DC64]"
+                    >
+                      <span
+                        class="block h-[7px] w-[4px] -rotate-45 border-b-[2px] border-l-[2px] border-[#3F6A1C]"
+                      ></span>
+                    </span>
+                  </div>
+                  <div class="mt-[5px] flex items-center gap-[4px]">
+                    <span
+                      class="flex h-[22px] w-[22px] items-center justify-center rounded-[7px] border-2 border-[#DCC39C] bg-[#FFF1D6]"
+                    >
+                      <span class="relative block h-[15px] w-[15px]">
+                        <span
+                          class="absolute left-[2px] top-[1px] h-[5px] w-[5px] rounded-full border-[1.5px] border-[#A96B36] bg-[#A7DC64]"
+                        ></span>
+                        <span
+                          class="absolute right-[1px] top-[3px] h-[4px] w-[4px] rounded-full border-[1.5px] border-[#A96B36] bg-[#8FCB4E]"
+                        ></span>
+                        <span
+                          class="absolute inset-x-[1px] bottom-[1px] top-[7px] rounded-b-[3px] rounded-t-[2px] border-[1.5px] border-[#A96B36] bg-[#EE932B]"
+                        ></span>
+                      </span>
+                    </span>
+                    <span class="text-[11.5px] font-bold text-[#624125]"
+                      >花盆</span
+                    >
+                    <span class="text-[10.5px] font-black text-[#B4761F]"
+                      >0/1</span
+                    >
+                  </div>
+                </div>
+                <div class="flex w-[58px] flex-col items-center gap-[3px]">
+                  <button
+                    type="button"
+                    data-action="deliver-next"
+                    class="w-full rounded-[10px] border-2 border-[#A96B36] border-b-[3px] bg-[#A7DC64] py-[3px] text-[10.5px] font-black text-[#3F6A1C] active:translate-y-[1px]"
+                  >
+                    交付
+                  </button>
+                  <span class="text-[9px] font-bold text-[#B08A5C]"
+                    >可交付</span
+                  >
+                </div>
+              </div>
+              <div
+                class="flex h-[24px] items-center justify-between rounded-b-[13px] border-t-2 border-[#A96B36] bg-[#F6B63F] px-[8px]"
+              >
+                <span class="flex items-center gap-[4px]">
+                  <span
+                    class="flex h-[15px] w-[15px] items-center justify-center rounded-full border-2 border-[#A96B36] bg-[#FFD982] text-[8.5px] font-black text-[#8A5620]"
+                    >¥</span
+                  >
+                  <span class="text-[11px] font-black text-[#624125]"
+                    >金币奖励 90</span
+                  >
+                </span>
+                <span
+                  class="rounded-full bg-[#FFF8DF] px-[6px] py-[1px] text-[9px] font-bold text-[#A96B36]"
+                  >猫咪订单</span
+                >
+              </div>
+              <!-- 蓝灰猫 -->
+              <svg
+                viewBox="0 0 64 68"
+                class="pointer-events-none absolute -left-[8px] top-[-4px] h-[62px] w-[58px]"
+                aria-hidden="true"
+              >
+                <g
+                  stroke="#A96B36"
+                  stroke-width="2.6"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                >
+                  <path d="M14 24 11 8l16 8z" fill="#BFD2D8" />
+                  <path d="M50 24 53 8 37 16z" fill="#BFD2D8" />
+                  <ellipse cx="32" cy="36" rx="22" ry="20" fill="#E8F1F2" />
+                  <path
+                    d="M12 28c6-9 34-9 40 0-8-4-32-4-40 0z"
+                    fill="#BFD2D8"
+                  />
+                  <path
+                    d="M27 34c0 2.6-2 2.6-2 5.4M37 34c0 2.6 2 2.6 2 5.4"
+                    fill="none"
+                    stroke-width="2"
+                  />
+                  <ellipse
+                    cx="24"
+                    cy="38"
+                    rx="3.2"
+                    ry="4"
+                    fill="#4A3020"
+                    stroke="none"
+                  />
+                  <ellipse
+                    cx="40"
+                    cy="38"
+                    rx="3.2"
+                    ry="4"
+                    fill="#4A3020"
+                    stroke="none"
+                  />
+                  <path d="M32 43l-3-2.4h6z" fill="#EE932B" />
+                  <path
+                    d="M32 43v2.4M32 45.4c-2 1.4-3.6.6-4-.8M32 45.4c2 1.4 3.6.6 4-.8"
+                    fill="none"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M13 41h6M13 47h6M51 41h-6M51 47h-6"
+                    fill="none"
+                    stroke-width="1.8"
+                  />
+                  <ellipse
+                    cx="18"
+                    cy="44"
+                    rx="3.6"
+                    ry="2.2"
+                    fill="#F7A9A0"
+                    stroke="none"
+                    opacity="0.7"
+                  />
+                  <ellipse
+                    cx="46"
+                    cy="44"
+                    rx="3.6"
+                    ry="2.2"
+                    fill="#F7A9A0"
+                    stroke="none"
+                    opacity="0.7"
+                  />
+                  <rect
+                    x="18"
+                    y="52"
+                    width="12"
+                    height="12"
+                    rx="5"
+                    fill="#E8F1F2"
+                  />
+                  <rect
+                    x="34"
+                    y="52"
+                    width="12"
+                    height="12"
+                    rx="5"
+                    fill="#BFD2D8"
+                  />
+                </g>
+              </svg>
+            </article>
+          </div>
+          <!-- 横滑提示 -->
+          <div
+            class="pointer-events-none absolute right-[2px] top-[44px] flex h-[20px] w-[20px] items-center justify-center rounded-full border-2 border-[#A96B36] bg-[#FFF8DF]"
+          >
+            <span
+              class="block h-[7px] w-[7px] rotate-45 border-r-2 border-t-2 border-[#A96B36]"
+            ></span>
+          </div>
+        </div>
+        <!-- qb:section:order-strip:end -->
+
+        <!-- qb:section:board-panel:start -->
+        <div
+          class="absolute left-[12px] top-[218px] h-[428px] w-[336px] rounded-[20px] border-[2.5px] border-[#A96B36] bg-[#91C2D0] p-[8px] shadow-[0_4px_0_rgba(169,107,54,0.2)]"
+          data-qb-section="board-panel"
+        >
+          <div
+            id="board-grid"
+            class="relative grid h-[412px] w-[320px] grid-cols-7 gap-[2px] rounded-[13px] bg-[#FFF8DF]"
+          >
+            <!-- 选中高亮 -->
+            <div
+              id="sel-ring"
+              class="pointer-events-none absolute left-0 top-0 z-20 block h-[44px] w-[44px] rounded-[12px] border-[2.5px] border-[#F6B63F] shadow-[0_0_0_3px_rgba(246,182,63,0.4)]"
+            ></div>
+
+            <!-- 第1行 -->
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <svg class="h-[18px] w-[18px] fill-[#D3E1E4]">
+                <use href="#paw-mark" />
+              </svg>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="crate"
+                data-level="1"
+                data-label="木箱"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute inset-x-[1px] top-[5px] h-[25px] rounded-[7px] border-2 border-[#A96B36] bg-[#E7B36A]"
+                ></span>
+                <span
+                  class="absolute left-[4px] top-[6px] h-[5px] w-[24px] rounded-t-[5px] bg-[#F2C894]"
+                ></span>
+                <span
+                  class="absolute left-[5px] top-[16px] h-[2px] w-[22px] rotate-[16deg] rounded-full bg-[#B27C43]"
+                ></span>
+                <span
+                  class="absolute left-[5px] top-[16px] h-[2px] w-[22px] -rotate-[16deg] rounded-full bg-[#B27C43]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="plank"
+                data-level="1"
+                data-label="木板"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[1px] top-[6px] h-[9px] w-[32px] rounded-[4px] border-2 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+                <span
+                  class="absolute left-[2px] top-[17px] h-[9px] w-[30px] rounded-[4px] border-2 border-[#A96B36] bg-[#DDB273]"
+                ></span>
+                <span
+                  class="absolute left-[6px] top-[9px] h-[2px] w-[7px] rounded-full bg-[#C08B4C]"
+                ></span>
+                <span
+                  class="absolute left-[19px] top-[20px] h-[2px] w-[7px] rounded-full bg-[#C08B4C]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="plank"
+                data-level="1"
+                data-label="木板"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[1px] top-[6px] h-[9px] w-[32px] rounded-[4px] border-2 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+                <span
+                  class="absolute left-[2px] top-[17px] h-[9px] w-[30px] rounded-[4px] border-2 border-[#A96B36] bg-[#DDB273]"
+                ></span>
+                <span
+                  class="absolute left-[6px] top-[9px] h-[2px] w-[7px] rounded-full bg-[#C08B4C]"
+                ></span>
+                <span
+                  class="absolute left-[19px] top-[20px] h-[2px] w-[7px] rounded-full bg-[#C08B4C]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="cloth"
+                data-level="1"
+                data-label="布料卷"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute inset-x-[2px] top-[8px] h-[20px] rounded-[7px] border-2 border-[#A96B36] bg-[#F3C6C0]"
+                ></span>
+                <span
+                  class="absolute left-[2px] top-[8px] h-[20px] w-[9px] rounded-l-[7px] border-2 border-[#A96B36] bg-[#FBDCD6]"
+                ></span>
+                <span
+                  class="absolute left-[13px] top-[12px] h-[2px] w-[15px] rounded-full bg-[#E0A29A]"
+                ></span>
+                <span
+                  class="absolute left-[13px] top-[21px] h-[2px] w-[15px] rounded-full bg-[#E0A29A]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+
+            <!-- 第2行 -->
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] border-2 border-dashed border-[#EE932B] bg-[#FFF2CE] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="bench"
+                data-level="1"
+                data-label="木材堆放台"
+                class="relative h-[36px] w-[36px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[1px] top-[6px] h-[26px] w-[26px] -rotate-[5deg] rounded-[6px] border-2 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+                <span
+                  class="absolute left-[9px] top-[1px] h-[26px] w-[26px] rotate-[6deg] rounded-[6px] border-2 border-[#A96B36] bg-[#E7B36A]"
+                ></span>
+                <span
+                  class="absolute bottom-[0px] right-[0px] flex h-[15px] w-[15px] items-center justify-center rounded-full border-2 border-[#A96B36] bg-[#F6B63F]"
+                >
+                  <span
+                    class="absolute h-[7px] w-[2px] rounded-full bg-[#7A4A1E]"
+                  ></span>
+                  <span
+                    class="absolute h-[2px] w-[7px] rounded-full bg-[#7A4A1E]"
+                  ></span>
+                </span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="crate"
+                data-level="1"
+                data-label="木箱"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute inset-x-[1px] top-[5px] h-[25px] rounded-[7px] border-2 border-[#A96B36] bg-[#E7B36A]"
+                ></span>
+                <span
+                  class="absolute left-[4px] top-[6px] h-[5px] w-[24px] rounded-t-[5px] bg-[#F2C894]"
+                ></span>
+                <span
+                  class="absolute left-[5px] top-[16px] h-[2px] w-[22px] rotate-[16deg] rounded-full bg-[#B27C43]"
+                ></span>
+                <span
+                  class="absolute left-[5px] top-[16px] h-[2px] w-[22px] -rotate-[16deg] rounded-full bg-[#B27C43]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="screws"
+                data-level="1"
+                data-label="螺丝盒"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute inset-x-[1px] top-[8px] h-[22px] rounded-[7px] border-2 border-[#A96B36] bg-[#DDE9EB]"
+                ></span>
+                <span
+                  class="absolute inset-x-[1px] top-[8px] h-[8px] rounded-t-[6px] border-b-2 border-[#A96B36] bg-[#FFF8DF]"
+                ></span>
+                <span
+                  class="absolute left-[6px] top-[19px] h-[5px] w-[5px] rounded-full border-[1.5px] border-[#7E9AA3] bg-[#C6D6DA]"
+                ></span>
+                <span
+                  class="absolute left-[15px] top-[15px] h-[5px] w-[5px] rounded-full border-[1.5px] border-[#7E9AA3] bg-[#C6D6DA]"
+                ></span>
+                <span
+                  class="absolute left-[23px] top-[19px] h-[5px] w-[5px] rounded-full border-[1.5px] border-[#7E9AA3] bg-[#C6D6DA]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="screws"
+                data-level="1"
+                data-label="螺丝盒"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute inset-x-[1px] top-[8px] h-[22px] rounded-[7px] border-2 border-[#A96B36] bg-[#DDE9EB]"
+                ></span>
+                <span
+                  class="absolute inset-x-[1px] top-[8px] h-[8px] rounded-t-[6px] border-b-2 border-[#A96B36] bg-[#FFF8DF]"
+                ></span>
+                <span
+                  class="absolute left-[6px] top-[19px] h-[5px] w-[5px] rounded-full border-[1.5px] border-[#7E9AA3] bg-[#C6D6DA]"
+                ></span>
+                <span
+                  class="absolute left-[15px] top-[15px] h-[5px] w-[5px] rounded-full border-[1.5px] border-[#7E9AA3] bg-[#C6D6DA]"
+                ></span>
+                <span
+                  class="absolute left-[23px] top-[19px] h-[5px] w-[5px] rounded-full border-[1.5px] border-[#7E9AA3] bg-[#C6D6DA]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="plant"
+                data-level="1"
+                data-label="花盆"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[9px] top-[2px] h-[11px] w-[10px] rounded-full border-2 border-[#A96B36] bg-[#A7DC64]"
+                ></span>
+                <span
+                  class="absolute left-[18px] top-[5px] h-[9px] w-[9px] rounded-full border-2 border-[#A96B36] bg-[#8FCB4E]"
+                ></span>
+                <span
+                  class="absolute inset-x-[4px] top-[14px] h-[16px] rounded-b-[9px] rounded-t-[4px] border-2 border-[#A96B36] bg-[#EE932B]"
+                ></span>
+                <span
+                  class="absolute left-[8px] top-[16px] h-[3px] w-[6px] rounded-full bg-[#F8B267]"
+                ></span>
+              </div>
+            </div>
+
+            <!-- 第3行 -->
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="plank"
+                data-level="1"
+                data-label="木板"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[1px] top-[6px] h-[9px] w-[32px] rounded-[4px] border-2 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+                <span
+                  class="absolute left-[2px] top-[17px] h-[9px] w-[30px] rounded-[4px] border-2 border-[#A96B36] bg-[#DDB273]"
+                ></span>
+                <span
+                  class="absolute left-[6px] top-[9px] h-[2px] w-[7px] rounded-full bg-[#C08B4C]"
+                ></span>
+                <span
+                  class="absolute left-[19px] top-[20px] h-[2px] w-[7px] rounded-full bg-[#C08B4C]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              data-selected
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="hammer"
+                data-level="1"
+                data-label="锤子"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[16px] top-[11px] h-[21px] w-[5px] -rotate-[20deg] rounded-full border-2 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+                <span
+                  class="absolute left-[5px] top-[6px] h-[10px] w-[23px] -rotate-[8deg] rounded-[5px] border-2 border-[#A96B36] bg-[#A9BFC6]"
+                ></span>
+                <span
+                  class="absolute left-[9px] top-[9px] h-[3px] w-[9px] -rotate-[8deg] rounded-full bg-[#D8E4E7]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="stool"
+                data-level="1"
+                data-label="小凳子"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[2px] top-[7px] h-[9px] w-[30px] rounded-[4px] border-2 border-[#A96B36] bg-[#F6B63F]"
+                ></span>
+                <span
+                  class="absolute left-[5px] top-[9px] h-[3px] w-[9px] rounded-full bg-[#FFD982]"
+                ></span>
+                <span
+                  class="absolute left-[7px] top-[16px] h-[13px] w-[5px] rounded-b-[3px] border-2 border-t-0 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+                <span
+                  class="absolute right-[7px] top-[16px] h-[13px] w-[5px] rounded-b-[3px] border-2 border-t-0 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+
+            <!-- 第4行 -->
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] border-2 border-dashed border-[#EE932B] bg-[#FFF2CE] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="paintpress"
+                data-level="1"
+                data-label="油漆补给台"
+                class="relative h-[36px] w-[36px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[7px] top-[1px] h-[8px] w-[22px] rounded-t-full border-2 border-b-0 border-[#A96B36]"
+                ></span>
+                <span
+                  class="absolute inset-x-[2px] top-[8px] h-[24px] rounded-[7px] border-2 border-[#A96B36] bg-[#DDE9EB]"
+                ></span>
+                <span
+                  class="absolute inset-x-[2px] top-[12px] h-[8px] border-b-2 border-[#A96B36] bg-[#F6B63F]"
+                ></span>
+                <span
+                  class="absolute bottom-[0px] right-[0px] flex h-[15px] w-[15px] items-center justify-center rounded-full border-2 border-[#A96B36] bg-[#F6B63F]"
+                >
+                  <span
+                    class="absolute h-[7px] w-[2px] rounded-full bg-[#7A4A1E]"
+                  ></span>
+                  <span
+                    class="absolute h-[2px] w-[7px] rounded-full bg-[#7A4A1E]"
+                  ></span>
+                </span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="paint"
+                data-level="1"
+                data-label="油漆桶"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[7px] top-[3px] h-[7px] w-[20px] rounded-t-full border-2 border-b-0 border-[#A96B36]"
+                ></span>
+                <span
+                  class="absolute inset-x-[2px] top-[9px] h-[22px] rounded-[6px] border-2 border-[#A96B36] bg-[#DDE9EB]"
+                ></span>
+                <span
+                  class="absolute inset-x-[2px] top-[12px] h-[7px] border-b-2 border-[#A96B36] bg-[#F6B63F]"
+                ></span>
+                <span
+                  class="absolute left-[5px] top-[15px] h-[5px] w-[4px] rounded-b-full bg-[#EE932B]"
+                ></span>
+                <span
+                  class="absolute -right-[3px] -top-[3px] flex h-[13px] w-[13px] items-center justify-center rounded-full border-[1.5px] border-[#5E8F2E] bg-[#A7DC64]"
+                >
+                  <span
+                    class="block h-[6px] w-[3px] -rotate-45 border-b-[2px] border-l-[2px] border-[#3F6A1C]"
+                  ></span>
+                </span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="paint"
+                data-level="1"
+                data-label="油漆桶"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[7px] top-[3px] h-[7px] w-[20px] rounded-t-full border-2 border-b-0 border-[#A96B36]"
+                ></span>
+                <span
+                  class="absolute inset-x-[2px] top-[9px] h-[22px] rounded-[6px] border-2 border-[#A96B36] bg-[#DDE9EB]"
+                ></span>
+                <span
+                  class="absolute inset-x-[2px] top-[12px] h-[7px] border-b-2 border-[#A96B36] bg-[#F6B63F]"
+                ></span>
+                <span
+                  class="absolute left-[5px] top-[15px] h-[5px] w-[4px] rounded-b-full bg-[#EE932B]"
+                ></span>
+                <span
+                  class="absolute -right-[3px] -top-[3px] flex h-[13px] w-[13px] items-center justify-center rounded-full border-[1.5px] border-[#5E8F2E] bg-[#A7DC64]"
+                >
+                  <span
+                    class="block h-[6px] w-[3px] -rotate-45 border-b-[2px] border-l-[2px] border-[#3F6A1C]"
+                  ></span>
+                </span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="cloth"
+                data-level="1"
+                data-label="布料卷"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute inset-x-[2px] top-[8px] h-[20px] rounded-[7px] border-2 border-[#A96B36] bg-[#F3C6C0]"
+                ></span>
+                <span
+                  class="absolute left-[2px] top-[8px] h-[20px] w-[9px] rounded-l-[7px] border-2 border-[#A96B36] bg-[#FBDCD6]"
+                ></span>
+                <span
+                  class="absolute left-[13px] top-[12px] h-[2px] w-[15px] rounded-full bg-[#E0A29A]"
+                ></span>
+                <span
+                  class="absolute left-[13px] top-[21px] h-[2px] w-[15px] rounded-full bg-[#E0A29A]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="screws"
+                data-level="1"
+                data-label="螺丝盒"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute inset-x-[1px] top-[8px] h-[22px] rounded-[7px] border-2 border-[#A96B36] bg-[#DDE9EB]"
+                ></span>
+                <span
+                  class="absolute inset-x-[1px] top-[8px] h-[8px] rounded-t-[6px] border-b-2 border-[#A96B36] bg-[#FFF8DF]"
+                ></span>
+                <span
+                  class="absolute left-[6px] top-[19px] h-[5px] w-[5px] rounded-full border-[1.5px] border-[#7E9AA3] bg-[#C6D6DA]"
+                ></span>
+                <span
+                  class="absolute left-[15px] top-[15px] h-[5px] w-[5px] rounded-full border-[1.5px] border-[#7E9AA3] bg-[#C6D6DA]"
+                ></span>
+                <span
+                  class="absolute left-[23px] top-[19px] h-[5px] w-[5px] rounded-full border-[1.5px] border-[#7E9AA3] bg-[#C6D6DA]"
+                ></span>
+              </div>
+            </div>
+
+            <!-- 第5行 -->
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="plank"
+                data-level="1"
+                data-label="木板"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[1px] top-[6px] h-[9px] w-[32px] rounded-[4px] border-2 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+                <span
+                  class="absolute left-[2px] top-[17px] h-[9px] w-[30px] rounded-[4px] border-2 border-[#A96B36] bg-[#DDB273]"
+                ></span>
+                <span
+                  class="absolute left-[6px] top-[9px] h-[2px] w-[7px] rounded-full bg-[#C08B4C]"
+                ></span>
+                <span
+                  class="absolute left-[19px] top-[20px] h-[2px] w-[7px] rounded-full bg-[#C08B4C]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="brush"
+                data-level="1"
+                data-label="刷子"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[14px] top-[2px] h-[14px] w-[8px] rotate-[14deg] rounded-[4px] border-2 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+                <span
+                  class="absolute left-[7px] top-[14px] h-[15px] w-[19px] rotate-[14deg] rounded-b-[9px] rounded-t-[4px] border-2 border-[#A96B36] bg-[#F6B63F]"
+                ></span>
+                <span
+                  class="absolute left-[10px] top-[25px] h-[3px] w-[4px] rotate-[14deg] rounded-full bg-[#EE932B]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <svg class="h-[18px] w-[18px] fill-[#D3E1E4]">
+                <use href="#paw-mark" />
+              </svg>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="crate"
+                data-level="1"
+                data-label="木箱"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute inset-x-[1px] top-[5px] h-[25px] rounded-[7px] border-2 border-[#A96B36] bg-[#E7B36A]"
+                ></span>
+                <span
+                  class="absolute left-[4px] top-[6px] h-[5px] w-[24px] rounded-t-[5px] bg-[#F2C894]"
+                ></span>
+                <span
+                  class="absolute left-[5px] top-[16px] h-[2px] w-[22px] rotate-[16deg] rounded-full bg-[#B27C43]"
+                ></span>
+                <span
+                  class="absolute left-[5px] top-[16px] h-[2px] w-[22px] -rotate-[16deg] rounded-full bg-[#B27C43]"
+                ></span>
+              </div>
+            </div>
+
+            <!-- 第6行 -->
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="toolbox"
+                data-level="1"
+                data-label="工具箱"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[11px] top-[4px] h-[9px] w-[12px] rounded-t-[5px] border-2 border-b-0 border-[#A96B36] bg-[#FFF8DF]"
+                ></span>
+                <span
+                  class="absolute inset-x-[1px] top-[11px] h-[20px] rounded-[7px] border-2 border-[#A96B36] bg-[#F6B63F]"
+                ></span>
+                <span
+                  class="absolute left-[4px] top-[14px] h-[3px] w-[10px] rounded-full bg-[#FFE3A9]"
+                ></span>
+                <span
+                  class="absolute left-[13px] top-[17px] h-[5px] w-[7px] rounded-[2px] border-[1.5px] border-[#A96B36] bg-[#FFD982]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="lamp"
+                data-level="1"
+                data-label="台灯"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[8px] top-[3px] h-[13px] w-[20px] rounded-b-[3px] rounded-t-[10px] border-2 border-[#A96B36] bg-[#F6B63F]"
+                ></span>
+                <span
+                  class="absolute left-[10px] top-[6px] h-[3px] w-[7px] rounded-full bg-[#FFD982]"
+                ></span>
+                <span
+                  class="absolute left-[16px] top-[16px] h-[9px] w-[3px] rounded bg-[#A96B36]"
+                ></span>
+                <span
+                  class="absolute left-[8px] top-[24px] h-[5px] w-[19px] rounded-full border-2 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+
+            <!-- 第7行 -->
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="stool"
+                data-level="1"
+                data-label="小凳子"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[2px] top-[7px] h-[9px] w-[30px] rounded-[4px] border-2 border-[#A96B36] bg-[#F6B63F]"
+                ></span>
+                <span
+                  class="absolute left-[5px] top-[9px] h-[3px] w-[9px] rounded-full bg-[#FFD982]"
+                ></span>
+                <span
+                  class="absolute left-[7px] top-[16px] h-[13px] w-[5px] rounded-b-[3px] border-2 border-t-0 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+                <span
+                  class="absolute right-[7px] top-[16px] h-[13px] w-[5px] rounded-b-[3px] border-2 border-t-0 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="plank"
+                data-level="1"
+                data-label="木板"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[1px] top-[6px] h-[9px] w-[32px] rounded-[4px] border-2 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+                <span
+                  class="absolute left-[2px] top-[17px] h-[9px] w-[30px] rounded-[4px] border-2 border-[#A96B36] bg-[#DDB273]"
+                ></span>
+                <span
+                  class="absolute left-[6px] top-[9px] h-[2px] w-[7px] rounded-full bg-[#C08B4C]"
+                ></span>
+                <span
+                  class="absolute left-[19px] top-[20px] h-[2px] w-[7px] rounded-full bg-[#C08B4C]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="plank"
+                data-level="1"
+                data-label="木板"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[1px] top-[6px] h-[9px] w-[32px] rounded-[4px] border-2 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+                <span
+                  class="absolute left-[2px] top-[17px] h-[9px] w-[30px] rounded-[4px] border-2 border-[#A96B36] bg-[#DDB273]"
+                ></span>
+                <span
+                  class="absolute left-[6px] top-[9px] h-[2px] w-[7px] rounded-full bg-[#C08B4C]"
+                ></span>
+                <span
+                  class="absolute left-[19px] top-[20px] h-[2px] w-[7px] rounded-full bg-[#C08B4C]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="plant"
+                data-level="1"
+                data-label="花盆"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[9px] top-[2px] h-[11px] w-[10px] rounded-full border-2 border-[#A96B36] bg-[#A7DC64]"
+                ></span>
+                <span
+                  class="absolute left-[18px] top-[5px] h-[9px] w-[9px] rounded-full border-2 border-[#A96B36] bg-[#8FCB4E]"
+                ></span>
+                <span
+                  class="absolute inset-x-[4px] top-[14px] h-[16px] rounded-b-[9px] rounded-t-[4px] border-2 border-[#A96B36] bg-[#EE932B]"
+                ></span>
+                <span
+                  class="absolute left-[8px] top-[16px] h-[3px] w-[6px] rounded-full bg-[#F8B267]"
+                ></span>
+              </div>
+            </div>
+
+            <!-- 第8行 -->
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="crate"
+                data-level="1"
+                data-label="木箱"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute inset-x-[1px] top-[5px] h-[25px] rounded-[7px] border-2 border-[#A96B36] bg-[#E7B36A]"
+                ></span>
+                <span
+                  class="absolute left-[4px] top-[6px] h-[5px] w-[24px] rounded-t-[5px] bg-[#F2C894]"
+                ></span>
+                <span
+                  class="absolute left-[5px] top-[16px] h-[2px] w-[22px] rotate-[16deg] rounded-full bg-[#B27C43]"
+                ></span>
+                <span
+                  class="absolute left-[5px] top-[16px] h-[2px] w-[22px] -rotate-[16deg] rounded-full bg-[#B27C43]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="hammer"
+                data-level="1"
+                data-label="锤子"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[16px] top-[11px] h-[21px] w-[5px] -rotate-[20deg] rounded-full border-2 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+                <span
+                  class="absolute left-[5px] top-[6px] h-[10px] w-[23px] -rotate-[8deg] rounded-[5px] border-2 border-[#A96B36] bg-[#A9BFC6]"
+                ></span>
+                <span
+                  class="absolute left-[9px] top-[9px] h-[3px] w-[9px] -rotate-[8deg] rounded-full bg-[#D8E4E7]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="cloth"
+                data-level="1"
+                data-label="布料卷"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute inset-x-[2px] top-[8px] h-[20px] rounded-[7px] border-2 border-[#A96B36] bg-[#F3C6C0]"
+                ></span>
+                <span
+                  class="absolute left-[2px] top-[8px] h-[20px] w-[9px] rounded-l-[7px] border-2 border-[#A96B36] bg-[#FBDCD6]"
+                ></span>
+                <span
+                  class="absolute left-[13px] top-[12px] h-[2px] w-[15px] rounded-full bg-[#E0A29A]"
+                ></span>
+                <span
+                  class="absolute left-[13px] top-[21px] h-[2px] w-[15px] rounded-full bg-[#E0A29A]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+
+            <!-- 第9行 -->
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="screws"
+                data-level="1"
+                data-label="螺丝盒"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute inset-x-[1px] top-[8px] h-[22px] rounded-[7px] border-2 border-[#A96B36] bg-[#DDE9EB]"
+                ></span>
+                <span
+                  class="absolute inset-x-[1px] top-[8px] h-[8px] rounded-t-[6px] border-b-2 border-[#A96B36] bg-[#FFF8DF]"
+                ></span>
+                <span
+                  class="absolute left-[6px] top-[19px] h-[5px] w-[5px] rounded-full border-[1.5px] border-[#7E9AA3] bg-[#C6D6DA]"
+                ></span>
+                <span
+                  class="absolute left-[15px] top-[15px] h-[5px] w-[5px] rounded-full border-[1.5px] border-[#7E9AA3] bg-[#C6D6DA]"
+                ></span>
+                <span
+                  class="absolute left-[23px] top-[19px] h-[5px] w-[5px] rounded-full border-[1.5px] border-[#7E9AA3] bg-[#C6D6DA]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <div
+                data-item
+                data-kind="brush"
+                data-level="1"
+                data-label="刷子"
+                class="relative h-[34px] w-[34px] cursor-grab transition-transform duration-150 active:cursor-grabbing"
+              >
+                <span
+                  class="absolute left-[14px] top-[2px] h-[14px] w-[8px] rotate-[14deg] rounded-[4px] border-2 border-[#A96B36] bg-[#EAC58E]"
+                ></span>
+                <span
+                  class="absolute left-[7px] top-[14px] h-[15px] w-[19px] rotate-[14deg] rounded-b-[9px] rounded-t-[4px] border-2 border-[#A96B36] bg-[#F6B63F]"
+                ></span>
+                <span
+                  class="absolute left-[10px] top-[25px] h-[3px] w-[4px] rotate-[14deg] rounded-full bg-[#EE932B]"
+                ></span>
+              </div>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            >
+              <svg class="h-[18px] w-[18px] fill-[#D3E1E4]">
+                <use href="#paw-mark" />
+              </svg>
+            </div>
+            <div
+              data-cell
+              class="relative flex h-[44px] w-[44px] items-center justify-center rounded-[12px] bg-[#E5EFF0] shadow-[inset_0_-2px_0_rgba(169,107,54,0.1)]"
+            ></div>
+          </div>
+        </div>
+        <!-- qb:section:board-panel:end -->
+
+        <!-- qb:section:action-bar:start -->
+        <div
+          class="absolute left-[12px] top-[662px] flex h-[92px] w-[336px] items-stretch gap-[10px]"
+          data-qb-section="action-bar"
+        >
+          <!-- 修缮 -->
+          <button
+            type="button"
+            data-action="repair"
+            class="flex h-[92px] w-[48px] flex-col items-center justify-center gap-[5px] rounded-[16px] border-[2.5px] border-[#A96B36] border-b-[4px] bg-[#FFF8DF] shadow-[0_2px_0_rgba(169,107,54,0.16)] active:translate-y-[1px]"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              class="h-[24px] w-[24px]"
+              fill="none"
+              stroke="#624125"
+              stroke-width="2.1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3.6 11.6 11.8 4.6l8.2 7" />
+              <path d="M6 10.6V19h11.6v-8.4" />
+              <path d="M10.2 14.4h3.4" />
+              <path d="M15.4 19.6l3.6-3.6" />
+              <path d="M17.9 13.7l2.4 1.2-1.2 2.4z" />
+            </svg>
+            <span class="text-[11.5px] font-black leading-none text-[#624125]"
+              >修缮</span
+            >
+          </button>
+
+          <!-- 固定信息栏 -->
+          <div
+            class="flex h-[92px] w-[220px] flex-col justify-center rounded-[16px] border-[2.5px] border-[#A96B36] border-b-[4px] bg-[#FFF8DF] px-[11px] shadow-[0_2px_0_rgba(169,107,54,0.16)]"
+          >
+            <p
+              id="tip-title"
+              class="text-[14px] font-black leading-[19px] text-[#624125]"
+            >
+              点击物品查看详情
+            </p>
+            <p
+              id="tip-sub"
+              class="mt-[3px] text-[11.5px] leading-[16px] text-[#8A6A48]"
+            >
+              拖动相同物品进行合成
+            </p>
+            <span
+              class="mt-[3px] h-[3px] w-[34px] rounded-full bg-[#F6B63F]"
+            ></span>
+          </div>
+
+          <!-- 仓库 -->
+          <button
+            type="button"
+            data-action="storage"
+            class="flex h-[92px] w-[48px] flex-col items-center justify-center gap-[3px] rounded-[16px] border-[2.5px] border-[#A96B36] border-b-[4px] bg-[#FFF8DF] shadow-[0_2px_0_rgba(169,107,54,0.16)] active:translate-y-[1px]"
+          >
+            <span class="relative block">
+              <svg
+                viewBox="0 0 24 24"
+                class="h-[23px] w-[23px]"
+                fill="none"
+                stroke="#624125"
+                stroke-width="2.1"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4.2 8.4h15.6V19a2 2 0 0 1-2 2H6.2a2 2 0 0 1-2-2z" />
+                <path d="M4.2 8.4 6.6 3.6h10.8l2.4 4.8" />
+                <path d="M12 8.4V21" />
+                <path d="M8.6 13.4h1.8M13.6 13.4h1.8" />
+              </svg>
+              <span
+                class="absolute -right-[8px] -top-[3px] flex h-[13px] w-[13px] items-center justify-center rounded-full border-[1.5px] border-[#A96B36] bg-[#F6B63F]"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-[8px] w-[8px]"
+                  fill="none"
+                  stroke="#7A4A1E"
+                  stroke-width="3.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect
+                    x="4"
+                    y="10.5"
+                    width="16"
+                    height="10.5"
+                    rx="2.6"
+                    fill="#FFE3A9"
+                  />
+                  <path d="M7.6 10.5V7.8a4.4 4.4 0 0 1 8.8 0v2.7" />
+                </svg>
+              </span>
+            </span>
+            <span class="text-[11.5px] font-black leading-none text-[#624125]"
+              >仓库</span
+            >
+            <span
+              class="rounded-full bg-[#FFEFC7] px-[3px] text-[8px] font-bold leading-[11px] text-[#A96B36]"
+              >第4天开放</span
+            >
+          </button>
+        </div>
+        <!-- qb:section:action-bar:end -->
+
+        <!-- qb:section:app-overlays:start -->
+        <div
+          id="app-overlays"
+          data-qb-section="app-overlays"
+          class="pointer-events-none absolute inset-0 z-40 flex flex-col items-center justify-end gap-[6px] pb-[116px]"
+          aria-live="polite"
+        ></div>
+        <!-- qb:section:app-overlays:end -->
+
+        <!-- 类名守卫：保证动态使用的工具类已生成 -->
+        <div
+          class="hidden -translate-y-1 scale-110 z-30 opacity-0 opacity-100"
+        ></div>
+      </div>
+    </div>
+    <!-- qb:region:app-shell:end -->
+
+    <script>
+      (function () {
+        var stage = document.getElementById("canvas-stage");
+        var board = document.getElementById("board-grid");
+        if (!stage || !board) return;
+
+        var ring = document.getElementById("sel-ring");
+        var tipTitle = document.getElementById("tip-title");
+        var tipSub = document.getElementById("tip-sub");
+        var overlay = document.getElementById("app-overlays");
+
+        function setTip(title, sub) {
+          if (tipTitle) tipTitle.textContent = title;
+          if (tipSub) tipSub.textContent = sub;
+        }
+
+        function toast(message) {
+          if (!overlay) return;
+          var el = document.createElement("div");
+          el.className =
+            "w-[228px] rounded-[14px] border-[2.5px] border-[#A96B36] border-b-[4px] bg-[#FFF8DF] px-[10px] py-[7px] text-center text-[12px] font-bold text-[#624125] shadow-[0_3px_0_rgba(169,107,54,0.16)] transition-opacity duration-300";
+          el.textContent = message;
+          overlay.appendChild(el);
+          setTimeout(function () {
+            el.classList.add("opacity-0");
+          }, 1500);
+          setTimeout(function () {
+            if (el.parentNode) el.parentNode.removeChild(el);
+          }, 1900);
+        }
+
+        function moveRing(cell) {
+          if (!ring || !cell) return;
+          ring.style.left = cell.offsetLeft + "px";
+          ring.style.top = cell.offsetTop + "px";
+        }
+
+        function select(cell) {
+          if (!cell) return;
+          var lifted = board.querySelectorAll(".\\-translate-y-1");
+          for (var i = 0; i < lifted.length; i++)
+            lifted[i].classList.remove("-translate-y-1");
+          moveRing(cell);
+          var item = cell.querySelector("[data-item]");
+          if (item) {
+            item.classList.add("-translate-y-1");
+            var label = item.getAttribute("data-label") || "材料";
+            var level = item.getAttribute("data-level") || "1";
+            setTip(label + " · " + level + " 级", "拖动到相同物品上即可合成");
+          } else {
+            setTip("空格子", "把材料拖到这里摆放");
+          }
+        }
+
+        var dragEl = null;
+        var startX = 0;
+        var startY = 0;
+        var dragging = false;
+
+        stage.addEventListener("pointerdown", function (event) {
+          var cell = event.target.closest("[data-cell]");
+          if (cell) select(cell);
+          var item = event.target.closest("[data-item]");
+          if (!item) return;
+          dragEl = item;
+          startX = event.clientX;
+          startY = event.clientY;
+          dragging = false;
+        });
+
+        stage.addEventListener("pointermove", function (event) {
+          if (!dragEl) return;
+          var dx = event.clientX - startX;
+          var dy = event.clientY - startY;
+          if (!dragging && Math.abs(dx) + Math.abs(dy) > 8) {
+            dragging = true;
+            dragEl.classList.add("z-30", "scale-110");
+            dragEl.style.pointerEvents = "none";
+          }
+          if (dragging)
+            dragEl.style.transform =
+              "translate(" + dx + "px," + dy + "px) scale(1.1)";
+        });
+
+        function endDrag(event) {
+          if (!dragEl) return;
+          var el = dragEl;
+          var moved = dragging;
+          dragEl = null;
+          dragging = false;
+          el.style.pointerEvents = "";
+          el.style.transform = "";
+          el.classList.remove("z-30", "scale-110", "cursor-grabbing");
+          if (!moved) {
+            select(el.parentElement);
+            return;
+          }
+          var target = document.elementFromPoint(event.clientX, event.clientY);
+          var cell = target && target.closest("[data-cell]");
+          if (!cell || cell === el.parentElement) {
+            select(el.parentElement);
+            return;
+          }
+          var other = cell.querySelector("[data-item]");
+          if (!other) {
+            cell.appendChild(el);
+            select(cell);
+            toast("材料已换成新位置");
+            return;
+          }
+          var sameKind =
+            other.getAttribute("data-kind") === el.getAttribute("data-kind");
+          var sameLevel =
+            other.getAttribute("data-level") === el.getAttribute("data-level");
+          if (sameKind && sameLevel) {
+            var next = parseInt(other.getAttribute("data-level"), 10) + 1;
+            other.setAttribute("data-level", String(next));
+            other.classList.add("scale-110");
+            setTimeout(function () {
+              other.classList.remove("scale-110");
+            }, 190);
+            if (el.parentNode) el.parentNode.removeChild(el);
+            select(cell);
+            setTip(
+              other.getAttribute("data-label") + " · " + next + " 级",
+              "继续合成可以升级材料",
+            );
+            toast(
+              "合成成功：" +
+                other.getAttribute("data-label") +
+                "升到 " +
+                next +
+                " 级",
+            );
+          } else {
+            select(el.parentElement);
+            toast("只有相同物品才能合成");
+          }
+        }
+
+        stage.addEventListener("pointerup", endDrag);
+        stage.addEventListener("pointercancel", function () {
+          if (!dragEl) return;
+          dragEl.style.pointerEvents = "";
+          dragEl.style.transform = "";
+          dragEl.classList.remove("z-30", "scale-110");
+          dragEl = null;
+          dragging = false;
+        });
+
+        stage.addEventListener("click", function (event) {
+          var trigger = event.target.closest("[data-action]");
+          if (!trigger) return;
+          var action = trigger.getAttribute("data-action");
+          if (action === "repair") {
+            toast("完成订单后就能修缮：客厅木地板");
+          } else if (action === "storage") {
+            toast("仓库第 4 天开放，先把材料堆好");
+          } else if (action === "deliver") {
+            toast("还差 1 块木板，去左侧木材堆补货");
+          } else if (action === "deliver-next") {
+            toast("布料卷已备齐，可以交付啦");
+          } else if (action === "settings") {
+            toast("设置：音效与推送");
+          }
+        });
+
+        var initial = board.querySelector("[data-selected]");
+        if (initial) select(initial);
+      })();
+    </script>
+  </body>
+</html>

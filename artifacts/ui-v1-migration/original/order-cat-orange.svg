@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="272"
+                viewBox="0 0 64 68"
+                class="pointer-events-none absolute -left-[8px] top-[-4px] h-[62px] w-[58px]"
+                aria-hidden="true"
+              >
+                <g
+                  stroke="#A96B36"
+                  stroke-width="2.6"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                >
+                  <path d="M14 24 11 8l16 8z" fill="#F6B63F" />
+                  <path d="M50 24 53 8 37 16z" fill="#F6B63F" />
+                  <ellipse cx="32" cy="36" rx="22" ry="20" fill="#FFF8DF" />
+                  <path
+                    d="M11 27c5-11 37-11 42 0-6-5-36-5-42 0z"
+                    fill="#F6B63F"
+                  />
+                  <ellipse
+                    cx="24"
+                    cy="37"
+                    rx="3.4"
+                    ry="4.2"
+                    fill="#4A3020"
+                    stroke="none"
+                  />
+                  <ellipse
+                    cx="40"
+                    cy="37"
+                    rx="3.4"
+                    ry="4.2"
+                    fill="#4A3020"
+                    stroke="none"
+                  />
+                  <circle
+                    cx="25.2"
+                    cy="35.6"
+                    r="1.2"
+                    fill="#FFFFFF"
+                    stroke="none"
+                  />
+                  <circle
+                    cx="41.2"
+                    cy="35.6"
+                    r="1.2"
+                    fill="#FFFFFF"
+                    stroke="none"
+                  />
+                  <path d="M32 43l-3-2.6h6z" fill="#EE932B" />
+                  <path
+                    d="M32 43v2.6M32 45.6c-1.6 2-4.4 1.4-5-.6M32 45.6c1.6 2 4.4 1.4 5-.6"
+                    fill="none"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M12 41h7M12 47h7M52 41h-7M52 47h-7"
+                    fill="none"
+                    stroke-width="1.8"
+                  />
+                  <ellipse
+                    cx="17"
+                    cy="44"
+                    rx="4"
+                    ry="2.4"
+                    fill="#F7A9A0"
+                    stroke="none"
+                    opacity="0.75"
+                  />
+                  <ellipse
+                    cx="47"
+                    cy="44"
+                    rx="4"
+                    ry="2.4"
+                    fill="#F7A9A0"
+                    stroke="none"
+                    opacity="0.75"
+                  />
+                  <rect
+                    x="18"
+                    y="52"
+                    width="12"
+                    height="12"
+                    rx="5"
+                    fill="#FFF8DF"
+                  />
+                  <rect
+                    x="34"
+                    y="52"
+                    width="12"
+                    height="12"
+                    rx="5"
+                    fill="#F6B63F"
+                  />
+                </g>
+              </svg>
