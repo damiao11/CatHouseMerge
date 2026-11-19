@@ -53,17 +53,17 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 
 | 目录 | 内容 | 谁看 |
 |---|---|---|
-| `HANDOFF.md` | 交付说明：开工顺序、数据对应、必须知道的三个坑 | **开发先看这个** |
-| `docs/` | 14 份设计文档（[07 开发规格](docs/07-技术方案与数据架构.md) 是核心） | 开发 / 评审 |
+| `HANDOFF.md` | 接手注意、自动资源同步、已知限制与验收边界 | **开发先看这个** |
+| `docs/` | 设计规范、制作指南与版本记录（[07 开发规格](docs/07-技术方案与数据架构.md) 是核心） | 开发 / 评审 |
 | `docs/data/` | 7 份内容 JSON（订单、台词、链、物品、天数、产出表、音频清单） | 开发 |
-| `android-assets/` | 透明 PNG / WebP；当前打包原透明生成器，旧木托变体仅保留源文件 | 开发直接用 |
+| `android-assets/` | 透明 PNG / WebP；当前使用原透明生成器，旧木托变体已清理 | 开发直接用 |
 | `art/` | 源图 1024 + 提示词存档（112 MB） | 只在重导图时用 |
-| `ui/figma/` | 旧组件 SVG（历史参考） | 历史追溯 |
+| `docs/archive/` | 旧Figma资料与历史资料入口（非当前规范） | 历史追溯 |
 | `UI-v1/` | 当前已确认原型与 MasterGo 原始导出 | 设计对照 |
 | `app/` | Android Compose 界面、存档、设置、设备端测试 | 开发 |
 | `core/` | 纯 Kotlin 引擎、数据校验和单元测试 | 开发 |
 
-> `art/` 占 112 MB，第一次 clone 会比较慢；只做开发可以只取 `android-assets/` 和 `docs/`。
+> `art/` 占 112 MB，第一次 clone 会比较慢；Android构建需保留app、core、Gradle文件、android-assets与docs/data；art源图不参与当前构建。
 
 ## 文档索引
 
@@ -80,10 +80,10 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 | [09 待确认与遗漏清单](docs/09-待确认与遗漏清单.md) | 还有哪些坑没踩 | ★★★ |
 | [10 订单表](docs/10-订单表.md) | 112 条订单的具体需求、奖励、体力 | ★★★ |
 | [11 美术清单](docs/11-美术清单.md) | 要做哪些图、多少、先做哪个 | ★★ |
-| [12 AI 出图指南](docs/12-AI出图指南.md) | Gemini 中文提示词、尺寸、后处理 | ★★ |
+| [12 美术制作指南](docs/12-AI出图指南.md) | 出图规格、后处理与原13提示词使用说明 | ★★ |
 | [14 剧情文本](docs/14-剧情文本.md) | 24 天全部台词、图鉴、信件 | ★★★ |
-| [15 音效与 BGM](docs/15-音效与BGM.md) | 5 段 BGM + 44 条 SFX、混音、接入建议 | ★★ |
-| [13 出图提示词](docs/13-出图提示词-直接复制.md) | 101 条拼好的提示词，复制即用 | ★★★ |
+| [15 音频规范与制作](docs/15-音效与BGM.md) | 音频规格、混音、原16制作流程与提示词说明 | ★★ |
+| [仓库清理记录](docs/maintenance/repository-cleanup-2026-11-19.md) | 清理范围、保留项和实际验证 | ★ |
 
 ## 美术资源
 

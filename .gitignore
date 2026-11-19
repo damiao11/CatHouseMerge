@@ -26,3 +26,14 @@ local.properties
 *.keystore
 *.jks
 keystore.properties
+
+# Local Kotlin cache and original prototype download
+.kotlin/
+/v1.zip
+
+# Exact local debugging leftovers; retain final verification logs and SVG sources
+/artifacts/ui-v1-migration/device-tests.log
+/artifacts/ui-v1-migration/emulator-error.log
+/artifacts/ui-v1-migration/emulator.log
+/artifacts/ui-v1-migration/first-native-test.log
+/artifacts/ui-v1-migration/original/*.kt

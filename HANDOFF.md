@@ -1,69 +1,30 @@
-# 交付说明（给开发同学）
+# 开发接手说明
 
-> 仓库已接入 Android 应用与纯 Kotlin 游戏引擎。运行方法见 README，文档 v0.3，应用目标 0.3.0 / 3（未发布）；设计先读 DESIGN 和06，技术落点见07。
+> 应用仍为0.3.0 / 3（待验收、未发布）。本文件只维护接手事项，不重复项目目录、运行命令和UI参数。
 
-## 一、仓库里有什么
+## 阅读入口
 
-| 目录 | 内容 | 这份要不要读 |
-|---|---|---|
-| `docs/` | 14 份设计文档（概念、系统、关卡、数值、剧情、UI、技术、风险…） | 先读 07，其余当字典查 |
-| `docs/data/` | 7 份内容 JSON（订单、台词、链、物品、天数、产出表、音频清单） | 直接读进内存 |
-| `android-assets/` | **成品资源 113 张**（已去白底、已压尺寸） | 直接复制进工程 |
-| `UI-v1/` | 当前已确认原型与 MasterGo 原始导出 | 对布局，正式规则看引擎 |
-| `ui/figma/` | 旧组件 SVG、导入说明 | 仅历史参考 |
-| `art/` | 原始 1024 素材与对照图（112 MB） | 不用，重导时才用 |
-| `tools/` | 订单生成脚本 | 改了数值再跑 |
+1. [README](README.md)：项目目录、运行方法、当前版本与文档索引。
+2. [DESIGN](DESIGN.md)：当前方案与规范分工。
+3. [06 UI规范](docs/06-UI-UX设计规范.md)：唯一的颜色、布局、尺寸及交互依据。
+4. [07 技术方案](docs/07-技术方案与数据架构.md)：代码落点、数据和验收清单。
+5. [版本记录](docs/版本迭代记录.md)：历史变更与实际验证范围。
 
-## 二、开工顺序
+## 修改资源与数据时
 
-现有工程已通过 Gradle 任务接入下述资源，无需手工复制。修改 `docs/data/*.json` 或 `android-assets/` 后重新构建即可生效。
+- Gradle已经从 `android-assets/` 与 `docs/data/` 自动同步资源和JSON，**无需手工复制进app**。入口见 `app/build.gradle.kts` 的 prepareGameAssets / prepareGameResources。
+- 图标使用现有透明PNG，不拿 `art/` 的白底源图直接替代。尺寸和显示规则查06；房间原图放大后用于手机展示，不等于新增高清原画。
+- 对应关系：days.orderIds → orders；days.room → room_{room}_{before|after}.webp；items.asset → 同名drawable；dialogue.who → 同名猫头像。
+- 订单表由 `tools/gen_orders.py` 生成；改数值应同步生成Markdown和JSON，不分别手填。其他生成脚本先读脚本，再检查输出差异。
 
-1. 读 `docs/07` 的 7.1（技术栈与依赖）→ 建 Gradle 工程
-2. 把 `android-assets/drawable/` 复制到 `app/src/main/res/drawable-nodpi/`
-3. 把 `android-assets/rooms/`、`scenes/` 复制到 `app/src/main/assets/`
-4. 把 `docs/data/*.json` 复制到 `app/src/main/assets/content/`
-5. 按 7.12 的四个里程碑推进
+## 当前实现与边界
 
-## 三、三个必须知道的点
+主界面和修缮页是原生Compose，不是WebView。维持7×9棋盘稳定槽位、按钮交付、拖放入仓与引擎售价，不用网页简化规则覆盖正式逻辑。
 
-**1. 资源已经处理好了**
-`android-assets/` 里的图标是**透明 PNG**，别再从 `art/` 拿原图（那是白底 1024 的源文件）。
+当前音效仍为本地提示音，正式BGM接入等目标未全部完成；原有素材清单不证明播放功能已实现。封面字体再分发授权仍须素材提供者确认，授权文件不能删除。
 
-**2. 尺寸规格**
+2026-11-19清理删除了35张旧木托变体和无调用的RestorationDecor.kt，原透明生成器、纹理图片及工具脚本保留。旧Figma组件统一放在 [历史资料目录](docs/archive/README.md)，不是当前视觉依据。
 
-| 类型 | 文件尺寸 | 显示尺寸 |
-|---|---|---|
-| 物品 | 288×288 | 40dp（棋盘 44dp 格内） |
-| 生成器 | 384×384 | 44dp |
-| 猫 | 384×384 | 44dp 圆形裁切 |
-| 房间 / 插画 | 1080×1920 | 全屏 Crop |
+## 验收与记录
 
-**3. 房间图是放大过的**
-原图 572×1024，升到 1080×1920。全屏显示够用、不锐利，演示没问题，别拿去做高清截图。
-
-## 四、数据之间的对应
-
-```
-days.json ──orderIds──→ orders.json
-    │
-    └─room──→ android-assets/rooms/room_{room}_{before|after}.webp
-
-dialogue.json 的 who：daju / huahua / tuanzi / meiqiu / ali / huzi
-    └──→ android-assets/drawable/cat_{who}.png（表情加 _happy / _turned）
-
-items.json 的 asset：ic_wood_3
-    └──→ android-assets/drawable/ic_wood_3.png
-```
-
-## 五、验收
-
-`docs/07` 的 7.13 有 45 条验收清单，逐条打勾即可。
-
-
-## 当前 UI-v1 接手注意（2026-11-17）
-
-主题在 `Theme.kt` / `GameSkin.kt`，主界面和修缮页是原生 Compose，不是 WebView。遵循 DESIGN 和06，旧 SVG 与11月16日木质参考不覆盖当前方案。
-
-订单点按钮交付，奖励仅右下图标数额；空格无介绍文字；出售独立且按引擎折半；拖入仓库收纳，保留D4与容量。打包透明生成器而非木托。修好后仅底部前后对比入口；成功提示1200ms。
-
-网页调试开关、仓库开放预览、模拟音频设置不是原生功能。未改版页面及旧动效清单仍含待实现目标，验收只认实际证据。版本与测试范围见 `docs/design/implementation-2026-11-17.md`。
+按07验收清单检查；运行命令只维护在README。过去44项核心测试、29项设备测试对应清理前迁移状态，不代表之后每个APK都重跑过。当前清理范围和检查见 [清理记录](docs/maintenance/repository-cleanup-2026-11-19.md)。本轮不改引擎、存档、版本号，也不自动提交、推送或合并分支。

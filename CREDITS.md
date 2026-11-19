@@ -65,5 +65,5 @@
 
 ## 本轮界面资源处理
 
-- 发射器木托：`tools/prepare_generator_icons.py` 对既有 35 张生成器图进行确定性合成，输出 `gen_*_tray.png`；原 `gen_*.png` 不修改，不改变源图授权。
+- 历史发射器木托由 `tools/prepare_generator_icons.py` 对既有生成器确定性合成。2026-11-19已按用户要求移除35张 `gen_*_tray.png`；原透明 `gen_*.png`、生成工具及源图授权保留，当前App不使用木托。
 - 封面狸叶黑体：项目所有者按问题文档提供的 `LeeeafHei-Regular.ttf`，嵌入包内用于封面；原文件未附授权正文，使用范围待素材提供者确认，说明见 `app/src/main/assets/licenses/LeeeafHei-NOTICE.txt`。
