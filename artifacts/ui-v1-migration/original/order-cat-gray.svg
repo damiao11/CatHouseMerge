@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="272"
+                viewBox="0 0 64 68"
+                class="pointer-events-none absolute -left-[8px] top-[-4px] h-[62px] w-[58px]"
+                aria-hidden="true"
+              >
+                <g
+                  stroke="#A96B36"
+                  stroke-width="2.6"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                >
+                  <path d="M14 24 11 8l16 8z" fill="#BFD2D8" />
+                  <path d="M50 24 53 8 37 16z" fill="#BFD2D8" />
+                  <ellipse cx="32" cy="36" rx="22" ry="20" fill="#E8F1F2" />
+                  <path
+                    d="M12 28c6-9 34-9 40 0-8-4-32-4-40 0z"
+                    fill="#BFD2D8"
+                  />
+                  <path
+                    d="M27 34c0 2.6-2 2.6-2 5.4M37 34c0 2.6 2 2.6 2 5.4"
+                    fill="none"
+                    stroke-width="2"
+                  />
+                  <ellipse
+                    cx="24"
+                    cy="38"
+                    rx="3.2"
+                    ry="4"
+                    fill="#4A3020"
+                    stroke="none"
+                  />
+                  <ellipse
+                    cx="40"
+                    cy="38"
+                    rx="3.2"
+                    ry="4"
+                    fill="#4A3020"
+                    stroke="none"
+                  />
+                  <path d="M32 43l-3-2.4h6z" fill="#EE932B" />
+                  <path
+                    d="M32 43v2.4M32 45.4c-2 1.4-3.6.6-4-.8M32 45.4c2 1.4 3.6.6 4-.8"
+                    fill="none"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M13 41h6M13 47h6M51 41h-6M51 47h-6"
+                    fill="none"
+                    stroke-width="1.8"
+                  />
+                  <ellipse
+                    cx="18"
+                    cy="44"
+                    rx="3.6"
+                    ry="2.2"
+                    fill="#F7A9A0"
+                    stroke="none"
+                    opacity="0.7"
+                  />
+                  <ellipse
+                    cx="46"
+                    cy="44"
+                    rx="3.6"
+                    ry="2.2"
+                    fill="#F7A9A0"
+                    stroke="none"
+                    opacity="0.7"
+                  />
+                  <rect
+                    x="18"
+                    y="52"
+                    width="12"
+                    height="12"
+                    rx="5"
+                    fill="#E8F1F2"
+                  />
+                  <rect
+                    x="34"
+                    y="52"
+                    width="12"
+                    height="12"
+                    rx="5"
+                    fill="#BFD2D8"
+                  />
+                </g>
+              </svg>

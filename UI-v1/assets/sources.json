@@ -1,0 +1,182 @@
+{
+  "porch-before.webp": {
+    "source": "android-assets/rooms/room_porch_before.webp",
+    "usage": "Existing before illustration, not an intermediate restoration state"
+  },
+  "porch-after.webp": {
+    "source": "android-assets/rooms/room_porch_after.webp",
+    "usage": "Existing whole-room after illustration"
+  },
+  "noto-sans-sc.ttf": {
+    "source": "app/src/main/res/font/noto_sans_sc.ttf",
+    "license": "NotoSansSC-OFL.txt"
+  },
+  "ui": {
+    "source": "../source-mastergo.html",
+    "usage": "User-provided MasterGo export, preserved unchanged"
+  },
+  "items/ic_wood_1.png": {
+    "source": "android-assets/drawable/ic_wood_1.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_wood_2.png": {
+    "source": "android-assets/drawable/ic_wood_2.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_wood_3.png": {
+    "source": "android-assets/drawable/ic_wood_3.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_wood_4.png": {
+    "source": "android-assets/drawable/ic_wood_4.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_wood_5.png": {
+    "source": "android-assets/drawable/ic_wood_5.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_wood_6.png": {
+    "source": "android-assets/drawable/ic_wood_6.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_metal_1.png": {
+    "source": "android-assets/drawable/ic_metal_1.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_metal_2.png": {
+    "source": "android-assets/drawable/ic_metal_2.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_metal_3.png": {
+    "source": "android-assets/drawable/ic_metal_3.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_metal_4.png": {
+    "source": "android-assets/drawable/ic_metal_4.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_metal_5.png": {
+    "source": "android-assets/drawable/ic_metal_5.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_fabric_1.png": {
+    "source": "android-assets/drawable/ic_fabric_1.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_fabric_2.png": {
+    "source": "android-assets/drawable/ic_fabric_2.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_fabric_3.png": {
+    "source": "android-assets/drawable/ic_fabric_3.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_fabric_4.png": {
+    "source": "android-assets/drawable/ic_fabric_4.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_fabric_5.png": {
+    "source": "android-assets/drawable/ic_fabric_5.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_fabric_6.png": {
+    "source": "android-assets/drawable/ic_fabric_6.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_light_1.png": {
+    "source": "android-assets/drawable/ic_light_1.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_light_2.png": {
+    "source": "android-assets/drawable/ic_light_2.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_light_3.png": {
+    "source": "android-assets/drawable/ic_light_3.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_light_4.png": {
+    "source": "android-assets/drawable/ic_light_4.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_light_5.png": {
+    "source": "android-assets/drawable/ic_light_5.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_ceramic_1.png": {
+    "source": "android-assets/drawable/ic_ceramic_1.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_ceramic_2.png": {
+    "source": "android-assets/drawable/ic_ceramic_2.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_ceramic_3.png": {
+    "source": "android-assets/drawable/ic_ceramic_3.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_ceramic_4.png": {
+    "source": "android-assets/drawable/ic_ceramic_4.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_ceramic_5.png": {
+    "source": "android-assets/drawable/ic_ceramic_5.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_ceramic_6.png": {
+    "source": "android-assets/drawable/ic_ceramic_6.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_plant_1.png": {
+    "source": "android-assets/drawable/ic_plant_1.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_plant_2.png": {
+    "source": "android-assets/drawable/ic_plant_2.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_plant_3.png": {
+    "source": "android-assets/drawable/ic_plant_3.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_plant_4.png": {
+    "source": "android-assets/drawable/ic_plant_4.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_plant_5.png": {
+    "source": "android-assets/drawable/ic_plant_5.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_plant_6.png": {
+    "source": "android-assets/drawable/ic_plant_6.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_relic_1.png": {
+    "source": "android-assets/drawable/ic_relic_1.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_relic_2.png": {
+    "source": "android-assets/drawable/ic_relic_2.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_relic_3.png": {
+    "source": "android-assets/drawable/ic_relic_3.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_relic_4.png": {
+    "source": "android-assets/drawable/ic_relic_4.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/ic_relic_5.png": {
+    "source": "android-assets/drawable/ic_relic_5.png",
+    "usage": "Existing project item artwork; copied unchanged"
+  },
+  "items/gen_wood_1.png": {
+    "source": "android-assets/drawable/gen_wood_1.png",
+    "usage": "Existing generator artwork, without a tray; copied unchanged"
+  },
+  "items/gen_ceramic_1.png": {
+    "source": "android-assets/drawable/gen_ceramic_1.png",
+    "usage": "Existing generator artwork, without a tray; copied unchanged"
+  }
+}

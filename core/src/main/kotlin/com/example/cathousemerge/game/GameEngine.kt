@@ -1,5 +1,6 @@
 package com.example.cathousemerge.game
 
+import kotlin.math.abs
 import kotlin.math.min
 import kotlin.random.Random
 
@@ -90,7 +91,11 @@ class GameEngine(val content: GameContent) {
             if (row > 0) index - BOARD_COLS else -1,
         )
         val empty = neighbors.firstOrNull { it in state.board.indices && state.board[it] == null }
-            ?: return GameResult(state, "先腾个位置，工具旁边需要空格")
+            ?: state.board.indices.filter { state.board[it] == null }.minWithOrNull(
+                compareBy<Int> { abs(it / BOARD_COLS - row) + abs(it % BOARD_COLS - column) }
+                    .thenBy { it / BOARD_COLS }.thenBy { it % BOARD_COLS },
+            )
+            ?: return GameResult(state, "棋盘已满，先合成或收进仓库腾出空格")
         val weights = content.dropTables[generator.level] ?: return GameResult(state, "工具产出配置缺失")
         var remaining = if (random.isFinite()) random.coerceIn(0.0, Math.nextDown(1.0)) else 0.0
         var level = weights.last().level

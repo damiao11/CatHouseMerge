@@ -33,24 +33,24 @@ import com.example.cathousemerge.game.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-internal val Paper = Color(0xFFFBF6EC)
-internal val CardPaper = Color(0xFFFFFDF8)
-internal val Ink = Color(0xFF3E3226)
-internal val Muted = Color(0xFF8A7A66)
-internal val Wood = Color(0xFFD9A15B)
-internal val DarkWood = Color(0xFFA9703C)
+internal val Paper = Color(0xFFDCE89C)
+internal val CardPaper = Color(0xFFFFF8DF)
+internal val Ink = Color(0xFF624125)
+internal val Muted = Color(0xFF795333)
+internal val Wood = Color(0xFFF6B63F)
+internal val DarkWood = Color(0xFFA96B36)
 internal val Clay = Color(0xFFE2703A)
-internal val Leaf = Color(0xFF55703C)
-internal val Line = Color(0xFFE8DCC8)
+internal val Leaf = Color(0xFF345221)
+internal val Line = Color(0xFFDCC39C)
 internal val ErrorInk = Color(0xFFAD463C)
 internal val BodyFont = FontFamily(Font(R.font.noto_sans_sc))
-internal val TitleFont = FontFamily(Font(R.font.noto_serif_sc))
+internal val TitleFont = BodyFont
 
 @Composable
 internal fun CatTheme(content: @Composable () -> Unit) {
     MaterialTheme(
         colorScheme = lightColorScheme(
-            primary = Clay, onPrimary = CardPaper, secondary = DarkWood,
+            primary = Ink, onPrimary = CardPaper, secondary = DarkWood,
             background = Paper, onBackground = Ink, surface = CardPaper,
             onSurface = Ink, onSurfaceVariant = Muted, outline = Line,
             error = ErrorInk, secondaryContainer = Color(0xFFF0E1C9),
@@ -68,7 +68,7 @@ internal fun CatTheme(content: @Composable () -> Unit) {
             labelMedium = androidx.compose.ui.text.TextStyle(fontFamily = BodyFont, fontSize = 12.sp, fontWeight = FontWeight.Medium),
         ),
         shapes = Shapes(medium = RoundedCornerShape(16.dp), large = RoundedCornerShape(24.dp)),
-        content = content,
+        content = { CompositionLocalProvider(LocalContentColor provides Ink) { content() } },
     )
 }
 
@@ -80,7 +80,7 @@ internal fun GameImage(asset: String, description: String?, modifier: Modifier =
 }
 
 @Composable
-internal fun SceneImage(path: String, description: String?, modifier: Modifier = Modifier) {
+internal fun SceneImage(path: String, description: String?, modifier: Modifier = Modifier, alignment: Alignment = Alignment.Center) {
     val context = LocalContext.current
     val bitmap by produceState<androidx.compose.ui.graphics.ImageBitmap?>(null, path) {
         value = withContext(Dispatchers.IO) {
@@ -88,7 +88,7 @@ internal fun SceneImage(path: String, description: String?, modifier: Modifier =
         }
     }
     Box(modifier.background(Paper)) {
-        bitmap?.let { Image(it, description, Modifier.fillMaxSize(), contentScale = ContentScale.Crop) }
+        bitmap?.let { Image(it, description, Modifier.fillMaxSize(), contentScale = ContentScale.Crop, alignment = alignment) }
     }
 }
 
@@ -116,7 +116,7 @@ internal fun PageHeader(title: String, onBack: () -> Unit, trailing: @Composable
 
 @Composable
 internal fun MainButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier, enabled: Boolean = true) {
-    Button(onClick, modifier.heightIn(min = 56.dp), enabled = enabled, shape = CircleShape, contentPadding = PaddingValues(horizontal = 20.dp, vertical = 12.dp)) {
+    Button(onClick, modifier.heightIn(min = 56.dp), enabled = enabled, shape = CircleShape, colors = ButtonDefaults.buttonColors(containerColor = Wood, contentColor = Ink), contentPadding = PaddingValues(horizontal = 20.dp, vertical = 12.dp)) {
         Text(text, maxLines = 2, overflow = TextOverflow.Ellipsis)
     }
 }

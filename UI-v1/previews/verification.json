@@ -1,0 +1,550 @@
+{
+  "errors": [],
+  "results": [
+    {
+      "name": "board-desktop",
+      "stage": {
+        "x": 621,
+        "y": 80,
+        "width": 360,
+        "height": 780,
+        "bottom": 860,
+        "right": 981
+      },
+      "cells": 63,
+      "cell": {
+        "x": 643,
+        "y": 308.5625,
+        "width": 43.421875,
+        "height": 43.421875,
+        "bottom": 351.984375,
+        "right": 686.421875
+      },
+      "scrollWidth": 1280,
+      "scrollHeight": 940,
+      "action": {
+        "x": 633,
+        "y": 742,
+        "width": 336,
+        "height": 92,
+        "bottom": 834,
+        "right": 969
+      },
+      "repairPanel": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "imageLoaded": true
+    },
+    {
+      "name": "board-sketch",
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 780,
+        "bottom": 780,
+        "right": 360
+      },
+      "cells": 63,
+      "cell": {
+        "x": 22,
+        "y": 228.5625,
+        "width": 43.421875,
+        "height": 43.421875,
+        "bottom": 271.984375,
+        "right": 65.421875
+      },
+      "scrollWidth": 360,
+      "scrollHeight": 780,
+      "action": {
+        "x": 12,
+        "y": 662,
+        "width": 336,
+        "height": 92,
+        "bottom": 754,
+        "right": 348
+      },
+      "repairPanel": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "imageLoaded": true
+    },
+    {
+      "name": "repair-desktop",
+      "stage": {
+        "x": 621,
+        "y": 80,
+        "width": 360,
+        "height": 780,
+        "bottom": 860,
+        "right": 981
+      },
+      "cells": 63,
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "scrollWidth": 1280,
+      "scrollHeight": 940,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "repairPanel": {
+        "x": 633,
+        "y": 553,
+        "width": 336,
+        "height": 281,
+        "bottom": 834,
+        "right": 969
+      },
+      "scene": {
+        "x": 633,
+        "y": 162,
+        "width": 336,
+        "height": 377,
+        "bottom": 539,
+        "right": 969
+      },
+      "imageLoaded": true
+    },
+    {
+      "name": "board-mobile",
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 780,
+        "bottom": 780,
+        "right": 360
+      },
+      "cells": 63,
+      "cell": {
+        "x": 22,
+        "y": 228.5625,
+        "width": 43.421875,
+        "height": 43.421875,
+        "bottom": 271.984375,
+        "right": 65.421875
+      },
+      "scrollWidth": 360,
+      "scrollHeight": 780,
+      "action": {
+        "x": 12,
+        "y": 662,
+        "width": 336,
+        "height": 92,
+        "bottom": 754,
+        "right": 348
+      },
+      "repairPanel": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "imageLoaded": true
+    },
+    {
+      "name": "repair-mobile",
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 780,
+        "bottom": 780,
+        "right": 360
+      },
+      "cells": 63,
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "scrollWidth": 360,
+      "scrollHeight": 780,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "repairPanel": {
+        "x": 12,
+        "y": 473,
+        "width": 336,
+        "height": 281,
+        "bottom": 754,
+        "right": 348
+      },
+      "scene": {
+        "x": 12,
+        "y": 82,
+        "width": 336,
+        "height": 377,
+        "bottom": 459,
+        "right": 348
+      },
+      "imageLoaded": true
+    },
+    {
+      "name": "repair-insufficient",
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 780,
+        "bottom": 780,
+        "right": 360
+      },
+      "cells": 63,
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "scrollWidth": 360,
+      "scrollHeight": 780,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "repairPanel": {
+        "x": 12,
+        "y": 473,
+        "width": 336,
+        "height": 281,
+        "bottom": 754,
+        "right": 348
+      },
+      "scene": {
+        "x": 12,
+        "y": 82,
+        "width": 336,
+        "height": 377,
+        "bottom": 459,
+        "right": 348
+      },
+      "imageLoaded": true
+    },
+    {
+      "name": "repair-completed",
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 780,
+        "bottom": 780,
+        "right": 360
+      },
+      "cells": 63,
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "scrollWidth": 360,
+      "scrollHeight": 780,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "repairPanel": {
+        "x": 12,
+        "y": 473,
+        "width": 336,
+        "height": 281,
+        "bottom": 754,
+        "right": 348
+      },
+      "scene": {
+        "x": 12,
+        "y": 82,
+        "width": 336,
+        "height": 377,
+        "bottom": 459,
+        "right": 348
+      },
+      "imageLoaded": true
+    },
+    {
+      "name": "board-compact",
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 640,
+        "bottom": 640,
+        "right": 320
+      },
+      "cells": 63,
+      "cell": {
+        "x": 29.5625,
+        "y": 194,
+        "width": 35.546875,
+        "height": 35.546875,
+        "bottom": 229.546875,
+        "right": 65.109375
+      },
+      "scrollWidth": 320,
+      "scrollHeight": 640,
+      "action": {
+        "x": 12,
+        "y": 552,
+        "width": 296,
+        "height": 72,
+        "bottom": 624,
+        "right": 308
+      },
+      "repairPanel": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "imageLoaded": true
+    },
+    {
+      "name": "repair-compact",
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 640,
+        "bottom": 640,
+        "right": 320
+      },
+      "cells": 63,
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "scrollWidth": 320,
+      "scrollHeight": 640,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "repairPanel": {
+        "x": 12,
+        "y": 376,
+        "width": 296,
+        "height": 248,
+        "bottom": 624,
+        "right": 308
+      },
+      "scene": {
+        "x": 12,
+        "y": 66,
+        "width": 296,
+        "height": 300,
+        "bottom": 366,
+        "right": 308
+      },
+      "imageLoaded": true
+    },
+    {
+      "name": "board-small",
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 568,
+        "bottom": 568,
+        "right": 320
+      },
+      "cells": 63,
+      "cell": {
+        "x": 57.5625,
+        "y": 194,
+        "width": 27.546875,
+        "height": 27.546875,
+        "bottom": 221.546875,
+        "right": 85.109375
+      },
+      "scrollWidth": 320,
+      "scrollHeight": 568,
+      "action": {
+        "x": 12,
+        "y": 480,
+        "width": 296,
+        "height": 72,
+        "bottom": 552,
+        "right": 308
+      },
+      "repairPanel": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "imageLoaded": true
+    },
+    {
+      "name": "repair-small",
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 568,
+        "bottom": 568,
+        "right": 320
+      },
+      "cells": 63,
+      "cell": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "scrollWidth": 320,
+      "scrollHeight": 568,
+      "action": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "repairPanel": {
+        "x": 12,
+        "y": 304,
+        "width": 296,
+        "height": 248,
+        "bottom": 552,
+        "right": 308
+      },
+      "scene": {
+        "x": 12,
+        "y": 66,
+        "width": 296,
+        "height": 228,
+        "bottom": 294,
+        "right": 308
+      },
+      "imageLoaded": true
+    }
+  ],
+  "interactionChecks": [
+    "header uses icons and numbers, with a day label above the numeral",
+    "cream order cards put coins in their lower-right corner without status hints",
+    "order completion checks use a normal non-mirrored SVG tick",
+    "order contents shift together while enlarged detail text stays clear of selling",
+    "empty selection clears the information panel without shifting the board",
+    "select item updates info and unique highlight",
+    "project artwork loads for every board item and order requirement",
+    "artwork comparison preserves inventory and selection",
+    "description and sell control match the selected item with no store button",
+    "generator produces one item and consumes one energy",
+    "delivery uses real board items and rewards once",
+    "locked storage dialog opens and Escape closes",
+    "repair navigation has no redundant top-right comparison button",
+    "repair spends exactly once and reaches 3 of 3",
+    "insufficient funds explain deficit and return to board",
+    "reset restores demo without touching save state",
+    "drag to empty cell moves one item",
+    "matching items merge and selection follows target",
+    "different items do not merge",
+    "keyboard moves grid selection",
+    "dragging into locked storage leaves the item on the board",
+    "opened storage accepts dragged items and returns them intact",
+    "stored materials cannot be used to deliver an order",
+    "full storage rejects another item without losing it",
+    "reward toast is raised on compact screens too",
+    "local HTML entry works without a web server"
+  ]
+}

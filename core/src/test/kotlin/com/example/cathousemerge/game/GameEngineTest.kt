@@ -71,8 +71,9 @@ class GameEngineTest {
     }
 
     @Test
-    fun blockedGeneratorAndInsufficientEnergyKeepResources() {
-        val state = withBoard(0 to generator(1), 1 to item(2), 7 to item(3))
+    fun fullBoardAndInsufficientEnergyKeepResources() {
+        val board = List<Piece?>(BOARD_SIZE) { if (it == 0) generator(1) else item(it.toLong() + 1) }
+        val state = engine.newGame(now).copy(board = board, nextUid = 100)
         assertEquals(state, engine.reduce(state, GameAction.Spawn(0), now).state)
         val emptyEnergy = withBoard(0 to generator(1)).copy(energy = 0)
         assertEquals(emptyEnergy, engine.reduce(emptyEnergy, GameAction.Spawn(0), now).state)

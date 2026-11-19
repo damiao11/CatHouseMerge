@@ -1,0 +1,11 @@
+{
+  "recorded_date": "2026-11-14",
+  "source_commit": "90216940b9b0c255d389efe6d36a94ee61b832f7",
+  "source_version": "0.1.0",
+  "original_apk": "artifacts/versions/v0.1.0/CatHouseMerge-v0.1.0-original.apk",
+  "original_apk_version": "0.1.0 (versionCode 1, aapt verified)",
+  "original_apk_sha256": "fd2b7504f662c328eecb6db39214452046251ba712e6f95e7ceee64000d1d529",
+  "requirements_sha256": "0115224065967cffee2ae0910260ee5b12440decccc13e810ea8bd202e3e3598",
+  "apk_provenance": "用户提供的初版 APK，未证实由上述源码提交构建；不把版本号相同当作构建来源一致。",
+  "original_signer_certificate_sha256": "34e107e195d14024d1177a1fe5c6df0cb0bed7091de6c5259eb8c21fb558b014"
+}

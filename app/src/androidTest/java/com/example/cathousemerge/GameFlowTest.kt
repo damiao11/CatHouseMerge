@@ -74,7 +74,7 @@ class GameFlowTest {
         for (id in listOf("o1_1", "o1_2", "o1_3")) {
             compose.runOnIdle { model().dispatch(GameAction.DebugFillOrder(id)) }
             compose.onNodeWithTag("orders").performScrollToNode(hasTestTag("order_$id"))
-            compose.onNodeWithTag("order_$id").performClick()
+            compose.onNodeWithTag("deliver_$id").performClick()
             skipDialogue()
         }
         compose.runOnIdle { assertEquals(180, model().ui.value.game!!.coins) }
@@ -130,7 +130,10 @@ class GameFlowTest {
             assertTrue("d14_choice_warm" in model().ui.value.game!!.seenDialogue)
         }
         compose.onNodeWithTag("cell_0").performClick()
-        compose.onNodeWithText("收进仓库").performClick()
+        val storedFrom = compose.onNodeWithTag("cell_0").fetchSemanticsNode().boundsInRoot.center
+        val warehouse = compose.onNodeWithTag("warehouse_open").fetchSemanticsNode().boundsInRoot.center
+        val boardOrigin = compose.onNodeWithTag("board").fetchSemanticsNode().boundsInRoot.topLeft
+        compose.onNodeWithTag("board").performTouchInput { swipe(storedFrom - boardOrigin, warehouse - boardOrigin, durationMillis = 400) }
         compose.runOnIdle { assertEquals(1, model().ui.value.game!!.warehouse.size) }
         compose.onNodeWithTag("warehouse_open").performClick()
         compose.onNodeWithTag("warehouse_slot_0").performClick()

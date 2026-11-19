@@ -1,6 +1,6 @@
 # audio · 音频资源
 
-> 规格见 [docs/15](../../docs/15-音效与BGM.md)，提示词见 [docs/16](../../docs/16-音乐提示词-直接复制.md)。
+> 规格见 [docs/15](../../docs/15-音效与BGM.md)，提示词见 [制作附录](../../docs/15-音效与BGM.md#music-production)。
 > 代码读 `manifest.json`；**每个文件的触发点与描述就在下面两张表里**，来源授权见 [CREDITS.md](../../CREDITS.md)。
 
 ## BGM / 环境声（7 个）

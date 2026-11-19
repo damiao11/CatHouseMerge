@@ -64,6 +64,7 @@ class MainActivity : ComponentActivity() {
                     settings = ui.settings,
                     message = ui.message,
                     messageId = ui.messageId,
+                    messageEffect = ui.messageEffect,
                     onAction = model::dispatch,
                     onSettings = model::changeSettings,
                     onReset = model::reset,
