@@ -2,6 +2,7 @@ package com.example.cathousemerge.game
 
 import java.io.File
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
 import org.junit.Assert.fail
 import org.junit.Test
@@ -106,8 +107,38 @@ class ContentTest {
     }
 
     @Test
+    fun duplicateNumericGeneratorLevelsAreRejected() {
+        val tables = """{"1":[[1,1.0]],"01":[[1,1.0]],"2":[[1,1.0]],"3":[[1,1.0]],"4":[[1,1.0]],"5":[[1,1.0]]}"""
+        assertInvalid(mapOf("gen_tables.json" to tables), "生成器等级重复")
+    }
+
+    @Test
     fun malformedContentReportsItsFilename() {
         assertInvalid(mapOf("chains.json" to "{"), "chains.json")
+    }
+
+    @Test
+    fun dayQueriesReuseOrderedResultsAndCopiesHaveIndependentIndexes() {
+        val content = load()
+        val original = content.ordersForDay(1)
+        assertSame(original, content.ordersForDay(1))
+        assertEquals(content.day(1).orderIds, original.map(OrderDef::id))
+        val changedDay = content.day(1).copy(orderIds = content.day(1).orderIds.reversed())
+        val changedOrder = original.first().copy(reward = original.first().reward + 1)
+        val changed = content.copy(
+            days = content.days.map { if (it.day == 1) changedDay else it },
+            orders = content.orders.map { if (it.id == changedOrder.id) changedOrder else it },
+        )
+        assertSame(changedDay, changed.day(1))
+        assertEquals(original.map(OrderDef::id).reversed(), changed.ordersForDay(1).map(OrderDef::id))
+        assertEquals(changedOrder, changed.ordersForDay(1).last())
+        assertEquals(original, content.ordersForDay(1))
+    }
+
+    @Test
+    fun invalidDayOrderReferencesKeepTheirValidationMessage() {
+        val days = File(contentDirectory, "days.json").readText().replaceFirst("o1_1", "missing")
+        assertInvalid(mapOf("days.json" to days), "订单必须恰好归属一个游戏日")
     }
 
     private fun assertFile(path: String) {

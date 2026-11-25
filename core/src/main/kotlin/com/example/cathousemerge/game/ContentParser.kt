@@ -12,7 +12,7 @@ object ContentParser {
 
     fun parse(readText: (String) -> String): GameContent {
         val rawTables = read<Map<String, List<List<Double>>>>("gen_tables.json", readText)
-        val tables = rawTables.map { (key, rows) ->
+        val tables = rawTables.entries.associate { (key, rows) ->
             val generatorLevel = key.toIntOrNull()
                 ?: throw IllegalArgumentException("gen_tables.json 的生成器等级无效：$key")
             val weights = rows.map { row ->
@@ -23,19 +23,17 @@ object ContentParser {
                 DropWeight(row[0].toInt(), row[1])
             }
             generatorLevel to weights
-        }.toMap()
+        }
         require(tables.size == rawTables.size) { "gen_tables.json 的生成器等级重复" }
 
-        val content = GameContent(
+        return GameContent(
             chains = read("chains.json", readText),
             items = read("items.json", readText),
             orders = read("orders.json", readText),
             days = read("days.json", readText),
             dialogue = read("dialogue.json", readText),
             dropTables = tables,
-        )
-        validate(content)
-        return content
+        ).also(::validate)
     }
 
     private inline fun <reified T> read(name: String, readText: (String) -> String): T =

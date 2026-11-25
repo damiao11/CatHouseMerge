@@ -90,8 +90,14 @@ data class GameContent(
     val itemById = items.associateBy(ItemDef::id)
     val chainById = chains.associateBy(ChainDef::id)
     val orderById = orders.associateBy(OrderDef::id)
-    fun day(number: Int): DayDef = days.first { it.day == number }
-    fun ordersForDay(number: Int): List<OrderDef> = day(number).orderIds.map(orderById::getValue)
+    private val dayByNumber = days.associateBy(DayDef::day)
+    // Delay resolution so ContentParser can report invalid references with context.
+    private val ordersByDay by lazy {
+        days.associate { it.day to it.orderIds.map(orderById::getValue) }
+    }
+
+    fun day(number: Int): DayDef = dayByNumber.getValue(number)
+    fun ordersForDay(number: Int): List<OrderDef> = ordersByDay.getValue(number)
 }
 
 @Serializable

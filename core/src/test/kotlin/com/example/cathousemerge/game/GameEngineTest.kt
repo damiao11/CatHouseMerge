@@ -365,6 +365,49 @@ class GameEngineTest {
         assertNotEquals(engine.newGame(now), state)
     }
 
+    @Test
+    fun boardActionsDoNotMutateTheOriginalSnapshot() {
+        val initial = withBoard(0 to generator(10), 1 to item(11)).copy(
+            day = 4, bubble = listOf(generator(12)), warehouse = listOf(item(13)),
+        )
+        val before = initial.board.toList()
+        val actions = listOf(
+            GameAction.Spawn(0), GameAction.TakeBubble(12, 2), GameAction.Store(1),
+            GameAction.Retrieve(13), GameAction.Sell(1), GameAction.Move(1, 2),
+        )
+        for (action in actions) {
+            val changed = engine.reduce(initial, action, now, 0.0).state
+            assertNotEquals("$action should change the board", before, changed.board)
+            assertEquals("$action mutated its input", before, initial.board)
+        }
+    }
+
+    @Test
+    fun allCoinRewardsSaturateInsteadOfOverflowing() {
+        val rich = withBoard(0 to item(1, level = 2)).copy(day = 2, coins = Int.MAX_VALUE - 1)
+        assertEquals(Int.MAX_VALUE, engine.reduce(rich, GameAction.Sell(0), now).state.coins)
+        assertEquals(Int.MAX_VALUE, engine.reduce(rich, GameAction.DebugCoins, now).state.coins)
+        val order = content.ordersForDay(1).first()
+        val ready = fillOrder(engine.newGame(now), order).copy(coins = Int.MAX_VALUE - 1)
+        assertEquals(Int.MAX_VALUE, engine.reduce(ready, GameAction.Deliver(order.id), now).state.coins)
+    }
+
+    @Test
+    fun duplicateRequirementsConsumeOnlyTheirMatchingBoardItems() {
+        val original = content.ordersForDay(1).first()
+        val order = original.copy(req = List(2) { Requirement("wood", 1, 1) })
+        val customEngine = GameEngine(content.copy(orders = content.orders.map { if (it.id == order.id) order else it }))
+        val ready = withBoard(0 to item(1), 1 to item(2), 2 to generator(3), 3 to item(4, level = 2))
+            .copy(warehouse = listOf(item(5)))
+        val delivered = customEngine.reduce(ready, GameAction.Deliver(order.id), now).state
+        assertTrue(order.id in delivered.delivered)
+        assertNull(delivered.board[0])
+        assertNull(delivered.board[1])
+        assertEquals(ready.board.drop(2), delivered.board.drop(2))
+        assertEquals(ready.warehouse, delivered.warehouse)
+        assertEquals(listOf(1, 1), customEngine.orderProgress(ready, order))
+    }
+
     private fun item(uid: Long, chain: String = "wood", level: Int = 1): Piece =
         Piece(uid, chain, level, PieceKind.ITEM)
 

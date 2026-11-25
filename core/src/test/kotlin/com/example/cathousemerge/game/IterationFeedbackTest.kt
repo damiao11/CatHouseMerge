@@ -1,6 +1,7 @@
 package com.example.cathousemerge.game
 
 import java.io.File
+import kotlin.random.Random
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -109,6 +110,33 @@ class IterationFeedbackTest {
         assertEquals(GeneratorHintPhase.BADGE, hint(7_000).phase)
         assertNull(GeneratorHints.at(board, "wood", 1, 9_999, 0, mapOf(1L to 0L)))
         assertNotNull(GeneratorHints.at(board, "wood", 1, 10_000, 0, mapOf(1L to 0L)))
+    }
+
+    @Test fun generatorSelectionMatchesStablePriorityAcrossMixedBoardsAndCooldowns() {
+        val random = Random(42)
+        repeat(200) {
+            val board = List<Piece?>(BOARD_SIZE) { index ->
+                when (random.nextInt(4)) {
+                    0 -> null
+                    1 -> item(index.toLong() + 1)
+                    else -> generator(index.toLong() + 1, if (random.nextBoolean()) "wood" else "fabric", random.nextInt(1, 6))
+                }
+            }
+            val taps = board.filterNotNull().filter { random.nextBoolean() }.associate { it.uid to 1L }
+            val expected = board.filterNotNull().filter {
+                it.kind == PieceKind.GENERATOR && it.uid !in taps
+            }.sortedWith(compareByDescending<Piece> { it.chain == "fabric" }.thenByDescending { it.level }).firstOrNull()
+            assertEquals(expected?.uid, GeneratorHints.at(board, "fabric", 10, 10_000, 0, taps)?.uid)
+        }
+    }
+
+    @Test fun orderProgressDoesNotConsumeTheSharedInventory() {
+        val available = mapOf("wood_1" to 2, "metal_1" to 1)
+        val duplicate = order("duplicate", Requirement("wood", 1, 2), Requirement("wood", 1, 1))
+        val other = order("other", Requirement("wood", 1, 1), Requirement("metal", 1, 1))
+        assertEquals(listOf(2, 0), duplicate.progress(available))
+        assertEquals(listOf(1, 1), other.progress(available))
+        assertEquals(mapOf("wood_1" to 2, "metal_1" to 1), available)
     }
 
     @Test fun lowEnergyAndReducedMotionNeverPulse() {

@@ -10,21 +10,32 @@ data class ItemDemandFeedback(
     val satisfied: Boolean get() = available >= required
 }
 
-fun GameEngine.itemDemandFeedback(state: GameState): Map<String, ItemDemandFeedback> {
-    val available = state.board.filterNotNull().filter { it.kind == PieceKind.ITEM }
+internal fun GameState.boardItemCounts(): Map<String, Int> =
+    board.asSequence().filterNotNull().filter { it.kind == PieceKind.ITEM }
         .groupingBy(Piece::itemId).eachCount()
-    val active = content.ordersForDay(state.day).filter { it.id !in state.delivered }
-    // Kotlin's stable sort retains the left-to-right order when remaining counts tie.
-    val prioritized = active.map { order ->
-        val progress = orderProgress(state, order)
-        order to order.req.indices.sumOf { order.req[it].count - progress[it] }
-    }.sortedBy { it.second }
+
+internal fun OrderDef.progress(available: Map<String, Int>): List<Int> {
+    val remaining = available.toMutableMap()
+    return req.map { requirement ->
+        val count = remaining[requirement.itemId] ?: 0
+        val used = minOf(count, requirement.count)
+        remaining[requirement.itemId] = count - used
+        used
+    }
+}
+
+fun GameEngine.itemDemandFeedback(state: GameState): Map<String, ItemDemandFeedback> {
+    val available = state.boardItemCounts()
     return buildMap {
-        for ((order, remaining) in prioritized) {
-            val requirements = order.req.groupBy(Requirement::itemId)
-            for ((itemId, requirementsForItem) in requirements) {
-                val required = requirementsForItem.sumOf(Requirement::count)
-                if (itemId !in this) {
+        for (order in content.ordersForDay(state.day)) {
+            if (order.id in state.delivered) continue
+            val progress = order.progress(available)
+            val remaining = order.req.indices.sumOf { order.req[it].count - progress[it] }
+            for ((itemId, requirements) in order.req.groupBy(Requirement::itemId)) {
+                // Strict comparison keeps display order when two orders are equally close.
+                val previous = get(itemId)
+                if (previous == null || remaining < previous.orderRemaining) {
+                    val required = requirements.sumOf(Requirement::count)
                     put(itemId, ItemDemandFeedback(order.id, (available[itemId] ?: 0).coerceAtMost(required), required, remaining))
                 }
             }

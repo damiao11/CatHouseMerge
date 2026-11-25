@@ -28,9 +28,9 @@ object GeneratorHints {
         tappedAt: Map<Long, Long>,
         reducedMotion: Boolean = false,
     ): GeneratorHint? {
-        val candidate = board.filterNotNull().filter { piece ->
+        val candidate = board.asSequence().filterNotNull().filter { piece ->
             piece.kind == PieceKind.GENERATOR && tappedAt[piece.uid]?.let { now - it >= COOLDOWN_MS } != false
-        }.sortedWith(compareByDescending<Piece> { it.chain == mainChain }.thenByDescending { it.level }).firstOrNull()
+        }.maxWithOrNull(compareBy<Piece> { it.chain == mainChain }.thenBy { it.level })
             ?: return null
         val idle = (now - lastInteractionAt).coerceAtLeast(0)
         if (idle < IDLE_MS) {

@@ -21,7 +21,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -42,7 +44,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     val ui = mutableUi.asStateFlow()
     private val mutableEffects = MutableSharedFlow<GameEffect>(extraBufferCapacity = 8)
     val effects = mutableEffects.asSharedFlow()
-    private val saves = MutableStateFlow<GameState?>(null)
     private val settingsRepository = SettingsRepository(application)
     private var engine: GameEngine? = null
     private var repository: SaveRepository? = null
@@ -64,22 +65,14 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 engine = gameEngine
                 repository = saveRepository
                 mutableUi.update { it.copy(content = content, game = game) }
-                saves.value = game
                 if (loaded.recoveredFromDamage) showMessage("存档读取失败，已保留原文件并开启新旅程")
             } catch (error: Exception) {
                 mutableUi.update { it.copy(error = error.message ?: "游戏内容加载失败") }
             }
         }
         viewModelScope.launch {
-            saves.filterNotNull().debounce(350).collect { state ->
-                try {
-                    withContext(Dispatchers.IO) {
-                        // Read the newest state inside the serialized IO write to avoid an older queued write.
-                        repository?.saveLatest { saves.value ?: state }
-                    }
-                } catch (error: Exception) {
-                    showMessage("保存失败，请检查设备剩余空间")
-                }
+            ui.map { it.game }.filterNotNull().distinctUntilChanged().debounce(350).collect {
+                withContext(Dispatchers.IO) { flushSave() }
             }
         }
         viewModelScope.launch {
@@ -128,7 +121,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun flushSave() {
         val state = mutableUi.value.game ?: return
         try {
-            repository?.saveLatest { saves.value ?: state }
+            // Read the newest state inside the serialized IO write to avoid an older queued write.
+            repository?.saveLatest { mutableUi.value.game ?: state }
         } catch (error: Exception) {
             showMessage("保存失败，请检查设备剩余空间")
         }
@@ -137,7 +131,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     private fun updateGame(state: GameState) {
         if (state == mutableUi.value.game) return
         mutableUi.update { it.copy(game = state) }
-        saves.value = state
     }
 
     private fun showMessage(message: String, effect: GameEffect? = null) {

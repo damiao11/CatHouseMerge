@@ -6,10 +6,8 @@ import kotlin.random.Random
 
 /** Applies one event to an immutable game snapshot. Rendering and persistence stay outside this class. */
 class GameEngine(val content: GameContent) {
-    fun newGame(now: Long): GameState {
-        val initial = GameState(energyAt = now)
-        return enterDay(initial, 1, now, grantEnergy = false)
-    }
+    fun newGame(now: Long): GameState =
+        enterDay(GameState(energyAt = now), 1, now, grantEnergy = false)
 
     fun recoverEnergy(state: GameState, now: Long): GameState {
         if (state.energy >= MAX_ENERGY) {
@@ -26,18 +24,8 @@ class GameEngine(val content: GameContent) {
 
     fun generatorCap(day: Int): Int = if (day <= 3) 1 else ((day - 1) / 6 + 2).coerceIn(2, 5)
 
-    fun orderProgress(state: GameState, order: OrderDef): List<Int> {
-        val available = state.board.filterNotNull()
-            .filter { it.kind == PieceKind.ITEM }
-            .groupingBy(Piece::itemId)
-            .eachCount()
-            .toMutableMap()
-        return order.req.map { requirement ->
-            val count = min(available[requirement.itemId] ?: 0, requirement.count)
-            available[requirement.itemId] = (available[requirement.itemId] ?: 0) - count
-            count
-        }
-    }
+    fun orderProgress(state: GameState, order: OrderDef): List<Int> =
+        order.progress(state.boardItemCounts())
 
     fun isOrderReady(state: GameState, order: OrderDef): Boolean =
         order.day == state.day && order.id !in state.delivered &&
@@ -70,7 +58,7 @@ class GameEngine(val content: GameContent) {
             GameAction.TutorialComplete -> GameResult(current.copy(tutorialDone = true))
             GameAction.DebugEnergy -> GameResult(current.copy(energy = MAX_ENERGY, energyAt = now), "体力已补满")
             GameAction.DebugCoins -> GameResult(
-                current.copy(coins = (current.coins.toLong() + 1_000).coerceAtMost(Int.MAX_VALUE.toLong()).toInt()),
+                current.copy(coins = current.coinsAfterReward(1_000)),
                 "获得 1000 金币",
             )
             is GameAction.DebugJump -> debugJump(current, action.day, now)
@@ -91,10 +79,10 @@ class GameEngine(val content: GameContent) {
             if (row > 0) index - BOARD_COLS else -1,
         )
         val empty = neighbors.firstOrNull { it in state.board.indices && state.board[it] == null }
-            ?: state.board.indices.filter { state.board[it] == null }.minWithOrNull(
-                compareBy<Int> { abs(it / BOARD_COLS - row) + abs(it % BOARD_COLS - column) }
-                    .thenBy { it / BOARD_COLS }.thenBy { it % BOARD_COLS },
-            )
+            // Indices are already in top-to-bottom, left-to-right order, including ties.
+            ?: state.board.indices.asSequence().filter { state.board[it] == null }.minByOrNull {
+                abs(it / BOARD_COLS - row) + abs(it % BOARD_COLS - column)
+            }
             ?: return GameResult(state, "棋盘已满，先合成或收进仓库腾出空格")
         val weights = content.dropTables[generator.level] ?: return GameResult(state, "工具产出配置缺失")
         var remaining = if (random.isFinite()) random.coerceIn(0.0, Math.nextDown(1.0)) else 0.0
@@ -107,10 +95,12 @@ class GameEngine(val content: GameContent) {
             remaining -= weight.probability
         }
         if ("${generator.chain}_$level" !in content.itemById) return GameResult(state, "物品配置缺失")
-        val board = state.board.toMutableList()
-        board[empty] = Piece(state.nextUid, generator.chain, level, PieceKind.ITEM)
         return GameResult(
-            state.copy(board = board, energy = state.energy - 1, nextUid = state.nextUid + 1),
+            state.copy(
+                board = state.board.withPieceAt(empty, Piece(state.nextUid, generator.chain, level, PieceKind.ITEM)),
+                energy = state.energy - 1,
+                nextUid = state.nextUid + 1,
+            ),
             effect = GameEffect.SPAWN,
         )
     }
@@ -148,18 +138,14 @@ class GameEngine(val content: GameContent) {
         val piece = state.bubble.firstOrNull { it.uid == uid } ?: return GameResult(state)
         val empty = target ?: state.board.indexOfFirst { it == null }
         if (empty !in state.board.indices || state.board[empty] != null) return GameResult(state, "这里放不下，先腾个空格")
-        val board = state.board.toMutableList()
-        board[empty] = piece
-        return GameResult(state.copy(board = board, bubble = state.bubble.filterNot { it.uid == uid }))
+        return GameResult(state.copy(board = state.board.withPieceAt(empty, piece), bubble = state.bubble.filterNot { it.uid == uid }))
     }
 
     private fun store(state: GameState, index: Int): GameResult {
         if (state.day < 4) return GameResult(state, "第 4 天开放仓库")
         val piece = state.board.getOrNull(index) ?: return GameResult(state)
         if (state.warehouse.size >= state.warehouseCapacity) return GameResult(state, "仓库满了，先取出一件物品")
-        val board = state.board.toMutableList()
-        board[index] = null
-        return GameResult(state.copy(board = board, warehouse = state.warehouse + piece), "已收进仓库")
+        return GameResult(state.copy(board = state.board.withPieceAt(index, null), warehouse = state.warehouse + piece), "已收进仓库")
     }
 
     private fun retrieve(state: GameState, uid: Long): GameResult {
@@ -167,9 +153,7 @@ class GameEngine(val content: GameContent) {
         val piece = state.warehouse.firstOrNull { it.uid == uid } ?: return GameResult(state)
         val empty = state.board.indexOfFirst { it == null }
         if (empty == -1) return GameResult(state, "棋盘满了，先腾个位置")
-        val board = state.board.toMutableList()
-        board[empty] = piece
-        return GameResult(state.copy(board = board, warehouse = state.warehouse.filterNot { it.uid == uid }))
+        return GameResult(state.copy(board = state.board.withPieceAt(empty, piece), warehouse = state.warehouse.filterNot { it.uid == uid }))
     }
 
     private fun deliver(state: GameState, orderId: String): GameResult {
@@ -197,7 +181,7 @@ class GameEngine(val content: GameContent) {
             state.copy(
                 board = board,
                 delivered = state.delivered + order.id,
-                coins = (state.coins.toLong() + order.reward).coerceAtMost(Int.MAX_VALUE.toLong()).toInt(),
+                coins = state.coinsAfterReward(order.reward),
             ),
             "订单完成，获得 ${order.reward} 金币",
             GameEffect.DELIVER,
@@ -251,10 +235,8 @@ class GameEngine(val content: GameContent) {
         if (piece.kind == PieceKind.GENERATOR) return GameResult(state, "工具需要留着，可以收进仓库")
         val definition = content.itemById[piece.itemId] ?: return GameResult(state)
         val price = (definition.value / 2).coerceAtLeast(1)
-        val board = state.board.toMutableList()
-        board[index] = null
         return GameResult(
-            state.copy(board = board, coins = (state.coins.toLong() + price).coerceAtMost(Int.MAX_VALUE.toLong()).toInt()),
+            state.copy(board = state.board.withPieceAt(index, null), coins = state.coinsAfterReward(price)),
             "卖出${definition.name}，获得 $price 金币",
         )
     }
@@ -344,6 +326,12 @@ class GameEngine(val content: GameContent) {
         }
         return GameResult(state.copy(board = board, nextUid = state.nextUid + missing.size), "订单物品已补齐")
     }
+
+    private fun List<Piece?>.withPieceAt(index: Int, piece: Piece?): List<Piece?> =
+        toMutableList().apply { this[index] = piece }
+
+    private fun GameState.coinsAfterReward(amount: Int): Int =
+        (coins.toLong() + amount).coerceAtMost(Int.MAX_VALUE.toLong()).toInt()
 
     companion object {
         val WAREHOUSE_PRICES = listOf(450, 630, 885, 1235, 1730, 2420)
