@@ -1,0 +1,78 @@
+{
+  "iterationDate": "2026-11-25",
+  "timezone": "Asia/Shanghai",
+  "version": "0.3.0",
+  "versionCode": 3,
+  "status": "verified-development-iteration-not-a-release",
+  "branch": "codex/problems-v1",
+  "sourceCommit": "09386db740b74d6245db980d46d9ac119fcba9f8",
+  "sourceBaseCommit": "8aad262bb82f055367c1886b4fc2eaea15ff7d78",
+  "verification": {
+    "gradleTasks": [
+      ":core:test",
+      ":app:assembleDebug",
+      ":app:lintDebug",
+      ":app:assembleDebugAndroidTest"
+    ],
+    "gradleResult": "BUILD SUCCESSFUL",
+    "coreTests": {
+      "tests": 52,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "newTests": 8,
+      "suites": [
+        {
+          "name": "com.example.cathousemerge.game.ContentTest",
+          "tests": 13,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "name": "com.example.cathousemerge.game.GameEngineTest",
+          "tests": 26,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "name": "com.example.cathousemerge.game.IterationFeedbackTest",
+          "tests": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "name": "com.example.cathousemerge.game.SaveAndChoiceTest",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      ]
+    },
+    "lint": {
+      "errors": 0,
+      "warnings": 11,
+      "note": "保留原有 SDK/依赖版本、竖屏、备份和未使用资源等警告；未禁用检查或创建 baseline。"
+    },
+    "androidTestPackage": "compiled-successfully-not-executed-on-a-device",
+    "deviceTests": {
+      "status": "not-run",
+      "reason": "本轮没有连接模拟器或真机；历史设备测试结果不代表本次验证。"
+    },
+    "executionNote": "修改后实际执行了 52 项核心测试。最终整体验证的核心测试命中增量缓存；未声称全部任务均强制重跑。",
+    "windowsJvmWorkaround": "仅在验证进程中设置 JAVA_TOOL_OPTIONS 的 jdk.net.unixdomain.tmpdir 到被忽略的 .gradle/socket-tmp；未改全局 Java 或 Gradle 配置。"
+  },
+  "apk": {
+    "path": "app/build/outputs/apk/debug/app-debug.apk",
+    "sizeBytes": 38238972,
+    "sha256": "6301759b9673bcc306938d10fbc36f2b85a33955c02e6c46cbaf0521d440bbce",
+    "availability": "本机调试构建产物，被 Git 忽略；本轮不上传 APK 或创建 GitHub Release。"
+  },
+  "publicationScope": "用户授权推送 origin/codex/problems-v1；不合并 main、不创建 Git 标签或 GitHub Release。实际推送状态以远程分支为准。",
+  "excludedLocalFiles": [
+    "gradle/gradle-daemon-jvm.properties"
+  ]
+}
