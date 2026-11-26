@@ -1,0 +1,68 @@
+{
+  "iterationDate": "2026-11-26",
+  "timezone": "Asia/Shanghai",
+  "version": "0.3.0",
+  "versionCode": 3,
+  "status": "local-verified-preview-not-committed-or-pushed",
+  "sourceBaseCommit": "9e4c82825d1a21bec454b267ede529ac88222d5d",
+  "sourceDirty": true,
+  "changes": [
+    "真实猫咪订单头像",
+    "需求图标与名称数量比例调整",
+    "触摸及横滑惯性期间暂停生成器提示",
+    "封面延伸到透明系统栏后方",
+    "使用用户图三字标"
+  ],
+  "coreTests": {
+    "tests": 53,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "androidTests": {
+    "tests": 34,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "androidDevice": "Medium_Phone_API_36.1 / Android 16",
+  "lint": {
+    "errors": 0,
+    "warnings": 13,
+    "note": "原有11项警告加2个已停用的橙/灰猫占位图未使用警告；旧图按保留边界不删除、不屏蔽检查。"
+  },
+  "tasks": [
+    ":core:test",
+    ":app:assembleDebug",
+    ":app:lintDebug",
+    ":app:connectedDebugAndroidTest"
+  ],
+  "apk": {
+    "path": "app/build/outputs/apk/debug/app-debug.apk",
+    "sha256": "90123853c4a55f5b830e422a4dd4652e3b6e410acc27d795358855bf98bd951b",
+    "sizeBytes": 38875682,
+    "localArchivePath": "artifacts/versions/v0.3.0-ui-feedback-preview-20261126/CatHouseMerge-v0.3.0-ui-feedback-preview-20261126.apk"
+  },
+  "titleAsset": {
+    "path": "app/src/main/res/drawable-nodpi/ui_cover_title.png",
+    "sha256": "07689b373cbaa98ea2517c3351fb9a5efdf6834ecb3b9369ae2b8562628856a2",
+    "source": "用户2026-11-26提供的图三，保留原字形与装饰并转为透明字标；不再用多层文字模拟。"
+  },
+  "localScreenshots": {
+    "build/ui-review-20261126/device-final/board-paused-during-order-drag.png": "9566c64dec0c2a29f422e85ee211843ca19c256ab7137f0e3411637b74b35474",
+    "build/ui-review-20261126/device-final/orders-large-font.png": "ec281f9849c9ef16fac4977bd3e440b534632045bff5b3832804eaf3d0a8c600",
+    "build/ui-review-20261126/device-final/orders-normal.png": "cc1e6e611fd4cc2781fefd9a32f8b40d709b46d00e301cb07325b437eececb0c",
+    "build/ui-review-20261126/device-final/six-real-cat-orders.png": "463bc59d023cba1125458074877c742e3a50d83b2c4b9acb5558e01902a3f0d0",
+    "build/ui-review-20261126/device-final/welcome-full-screen.png": "cf808c2ea3b430cd2efc5d03b9818332b14f18884b49a1cc7cd58b23b1137d65"
+  },
+  "evidenceAvailability": "APK、原始测试报告及截图位于被Git忽略的本机构建目录；后续构建可覆盖，校验值仅标识本次产物。",
+  "notes": [
+    "新增1项核心策略测试与5项设备回归。数量文字包含排版完整性断言；横滑测试比较保持手势超过3秒时的棋盘像素不变。",
+    "初轮发现订单栏折叠后复用滚动状态的问题，修复后完整34项设备测试重新通过。",
+    "不改变版本号、核心玩法、存档格式、内容数据或棋盘槽位；未提交、推送、打标签或创建Release。"
+  ],
+  "excludedLocalFiles": [
+    "gradle/gradle-daemon-jvm.properties"
+  ],
+  "subsequentVersionNote": "这是用户授权升版前的0.3.0本地预览验证；其版本、测试与哈希保留原值。后续0.3.1另有独立验证索引。"
+}

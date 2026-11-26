@@ -38,14 +38,14 @@ export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
 
 ## 版本与迭代留档
 
-当前目标应用版本：**0.3.0（versionCode 3，待验收／未发布）**。
+当前目标应用版本：**0.3.1（versionCode 4，待验收／未发布）**。
 
 - [更新日志](CHANGELOG.md)：每版改了什么。
 - [版本迭代记录](docs/版本迭代记录.md)：原问题、修改对应、真实提交历史、测试结果和前后截图，供课程验收。
 - [初版基线记录](docs/iterations/v0.1.0-baseline.json)：源码提交号与用户提供的初版 APK 校验值；二者的构建对应关系未核对。
 - `tools/archive-version.ps1`：测试、构建、留档 APK 与提交号；不覆盖旧版本，不自动提交、打标签或推送。
 
-初版 APK 保持原样；本地安装包归档放在被忽略的 `artifacts/versions/`，正式演示版本可上传 GitHub Release。封面按问题文档指定使用随包的狸叶黑体；其素材提供者应在公开分发前确认字体嵌入与再分发授权。
+初版 APK 保持原样；本地安装包归档放在被忽略的 `artifacts/versions/`，正式演示版本可上传 GitHub Release。封面标题采用用户提供的猫耳木色字标，文案与按钮继续使用随包的狸叶黑体；其素材提供者应在公开分发前确认字体嵌入与再分发授权。
 
 ## 仓库
 

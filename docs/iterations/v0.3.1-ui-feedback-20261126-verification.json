@@ -1,0 +1,76 @@
+{
+  "version": "0.3.1",
+  "versionCode": 4,
+  "iterationDate": "2026-11-26",
+  "timezone": "Asia/Shanghai",
+  "recordedAt": "2026-11-26T10:52:48.270517+08:00",
+  "sourceCommit": "b345ec1bb7e5aaad1cc8b0d026fba921a7f227c5",
+  "sourceBaseCommit": "9e4c82825d1a21bec454b267ede529ac88222d5d",
+  "branch": "codex/problems-v1",
+  "status": "verified-development-build-not-a-release",
+  "trackedBuildInputsMatchSourceCommit": true,
+  "workspaceNote": "源码先在工作区验证，随后提交为sourceCommit；记录时剩余变更仅为文档、证据及被排除的本机JVM配置，不影响APK输入。",
+  "verification": {
+    "commands": [
+      ":core:test --rerun-tasks --offline",
+      ":app:assembleDebug :app:lintDebug :app:connectedDebugAndroidTest --offline"
+    ],
+    "coreTests": {
+      "tests": 53,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "androidTests": {
+      "tests": 34,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "androidDevice": "Medium_Phone_API_36.1 / Android 16",
+    "lint": {
+      "errors": 0,
+      "warnings": 13,
+      "note": "保留原有11项警告及2个停用占位头像的未使用资源警告；不屏蔽检查。"
+    },
+    "apkVersionVerified": {
+      "versionName": "0.3.1",
+      "versionCode": 4,
+      "methods": [
+        "APK aapt badging",
+        "output-metadata.json",
+        "实际Activity封面版本显示断言"
+      ]
+    },
+    "executionNote": "0.3.1版本下核心53项强制重跑，设备34项完整重跑；不以0.3.0旧测试或哈希替代。"
+  },
+  "apk": {
+    "path": "app/build/outputs/apk/debug/app-debug.apk",
+    "localArchivePath": "artifacts/versions/v0.3.1-verified-20261126/CatHouseMerge-v0.3.1-debug.apk",
+    "sizeBytes": 38305298,
+    "sha256": "7f125ecdc54c4cafdd7900551bd4fe8f8102508464cd44b3b5773162a7418a2e"
+  },
+  "trackedScreenshots": {
+    "docs/design/v0.3.1-20261126/orders-large-font.png": "ec281f9849c9ef16fac4977bd3e440b534632045bff5b3832804eaf3d0a8c600",
+    "docs/design/v0.3.1-20261126/orders-normal.png": "cc1e6e611fd4cc2781fefd9a32f8b40d709b46d00e301cb07325b437eececb0c",
+    "docs/design/v0.3.1-20261126/welcome-full-screen.png": "18e7f13519949b8ad93af14cdcb6d50d516edec53e79c1316473f845e66d838b"
+  },
+  "titleAsset": {
+    "path": "app/src/main/res/drawable-nodpi/ui_cover_title.png",
+    "sha256": "07689b373cbaa98ea2517c3351fb9a5efdf6834ecb3b9369ae2b8562628856a2",
+    "source": "用户2026-11-26提供的图三字标，透明化接入，保留字形与装饰。"
+  },
+  "previousPreviewVerification": "docs/iterations/v0.3.0-ui-feedback-20261126-verification.json",
+  "publicationScope": {
+    "pushAuthorized": true,
+    "target": "origin/codex/problems-v1",
+    "forcePush": false,
+    "mergeToMain": false,
+    "gitTagCreated": false,
+    "githubReleaseCreated": false
+  },
+  "excludedLocalFiles": [
+    "gradle/gradle-daemon-jvm.properties"
+  ],
+  "artifactAvailability": "Git保留源码、本文索引及3张实际0.3.1截图；APK、完整HTML/XML报告与本地版本归档不作为Git源码上传。"
+}
