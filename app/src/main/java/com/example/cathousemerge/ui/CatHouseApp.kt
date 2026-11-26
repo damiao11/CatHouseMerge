@@ -92,34 +92,40 @@ fun CatHouseApp(
             }
         }
         Surface(Modifier.fillMaxSize(), color = Paper) {
-            Box(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
+            Box(Modifier.fillMaxSize()) {
                 AnimatedContent(
                     targetState = screen,
+                    modifier = Modifier.fillMaxSize(),
                     transitionSpec = { fadeIn(tween(if (settings.reducedMotion) 0 else 180)) togetherWith fadeOut(tween(if (settings.reducedMotion) 0 else 120)) },
                     label = "screen",
                 ) { route ->
-                    when (route) {
-                        "welcome" -> WelcomeScreen(state, settings.reducedMotion) { started = true; screen = if (state.completed) "summary" else "board" }
-                        "build" -> BuildScreen(content, state, settings, onAction) { screen = it }
-                        "warehouse" -> WarehouseScreen(content, state, onAction) { screen = "board" }
-                        "almanac" -> AlmanacScreen(content, state) { screen = "board" }
-                        "settings" -> SettingsScreen(settings, onSettings, {
-                            dialogueId = null
-                            started = false
-                            screen = "welcome"
-                            onReset()
-                        }) { screen = "board" }
-                        "summary" -> SummaryScreen(content, state, onAction) { screen = it }
-                        else -> BoardScreen(content, state, settings, onAction, { screen = it }, { if (BuildConfig.DEBUG) showDebug = true })
+                    val contentInsets = if (route == "welcome") Modifier else Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
+                    Box(Modifier.fillMaxSize().then(contentInsets)) {
+                        when (route) {
+                            "welcome" -> WelcomeScreen(state, settings.reducedMotion) { started = true; screen = if (state.completed) "summary" else "board" }
+                            "build" -> BuildScreen(content, state, settings, onAction) { screen = it }
+                            "warehouse" -> WarehouseScreen(content, state, onAction) { screen = "board" }
+                            "almanac" -> AlmanacScreen(content, state) { screen = "board" }
+                            "settings" -> SettingsScreen(settings, onSettings, {
+                                dialogueId = null
+                                started = false
+                                screen = "welcome"
+                                onReset()
+                            }) { screen = "board" }
+                            "summary" -> SummaryScreen(content, state, onAction) { screen = it }
+                            else -> BoardScreen(content, state, settings, onAction, { screen = it }, { if (BuildConfig.DEBUG) showDebug = true })
+                        }
                     }
                 }
                 dialogueId?.let { id ->
                     content.dialogue.scenes[id]?.let { scene ->
                         val room = content.day(state.day).room
                         val roomRepaired = content.days.filter { it.room == room }.all { it.day in state.builtDays }
-                        DialogueOverlay(id, scene, room, roomRepaired, settings.reducedMotion) {
-                            latestOnAction(GameAction.SeenDialogue(id))
-                            dialogueId = null
+                        Box(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
+                            DialogueOverlay(id, scene, room, roomRepaired, settings.reducedMotion) {
+                                latestOnAction(GameAction.SeenDialogue(id))
+                                dialogueId = null
+                            }
                         }
                     }
                 }

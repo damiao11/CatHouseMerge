@@ -139,6 +139,18 @@ class IterationFeedbackTest {
         assertEquals(mapOf("wood_1" to 2, "metal_1" to 1), available)
     }
 
+    @Test fun activeGesturesAndScrollingSuspendEveryGeneratorHint() {
+        val board = state(0 to generator(1)).board
+        for (energy in listOf(0, 10)) {
+            for (reducedMotion in listOf(false, true)) {
+                assertNull(GeneratorHints.at(board, "wood", energy, 5_300, 0, emptyMap(), reducedMotion, interactionInProgress = true))
+            }
+        }
+        // The UI restarts idle timing when the last touch or inertial scroll ends.
+        assertEquals(GeneratorHintPhase.WAITING, GeneratorHints.at(board, "wood", 10, 7_999, 5_000, emptyMap())?.phase)
+        assertEquals(GeneratorHintPhase.BADGE, GeneratorHints.at(board, "wood", 10, 8_000, 5_000, emptyMap())?.phase)
+    }
+
     @Test fun lowEnergyAndReducedMotionNeverPulse() {
         val board = state(0 to generator(1)).board
         val noEnergy = GeneratorHints.at(board, "wood", 0, 5_300, 0, emptyMap())!!

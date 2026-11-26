@@ -1,6 +1,7 @@
 package com.example.cathousemerge.ui
 
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -28,7 +29,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -45,7 +47,6 @@ private val CoverFont = FontFamily(Font(R.font.leeeaf_hei))
 
 @Composable
 internal fun WelcomeScreen(state: GameState, reducedMotion: Boolean, onStart: () -> Unit) {
-    val fontScale = LocalDensity.current.fontScale
     val drift = if (reducedMotion) 0f else {
         val transition = rememberInfiniteTransition(label = "coverAtmosphere")
         val offset by transition.animateFloat(0f, 1f, infiniteRepeatable(tween(8_000, easing = LinearEasing), RepeatMode.Reverse), label = "leafDrift")
@@ -54,7 +55,7 @@ internal fun WelcomeScreen(state: GameState, reducedMotion: Boolean, onStart: ()
     BoxWithConstraints(Modifier.fillMaxSize().testTag("welcome")) {
         val coverWidth = maxWidth
         val coverHeight = maxHeight
-        SceneImage("scenes/scene_splash.webp", "一只猫独自守着旧屋", Modifier.fillMaxSize())
+        SceneImage("scenes/scene_splash.webp", "一只猫独自守着旧屋", Modifier.fillMaxSize().testTag("welcome_background"))
         Icon(Icons.Outlined.Cloud, null, Modifier.offset(x = coverWidth * 0.62f, y = coverHeight * 0.05f).size(72.dp), tint = CardPaper.copy(alpha = 0.26f))
         Icon(Icons.Outlined.Cloud, null, Modifier.offset(x = coverWidth * 0.08f, y = coverHeight * 0.27f).size(44.dp), tint = CardPaper.copy(alpha = 0.18f))
         listOf(Triple(0.08f, 0.14f, -22f), Triple(0.86f, 0.25f, 25f), Triple(0.12f, 0.38f, -38f)).forEachIndexed { index, (x, y, turn) ->
@@ -63,11 +64,15 @@ internal fun WelcomeScreen(state: GameState, reducedMotion: Boolean, onStart: ()
                     .size(if (index == 1) 20.dp else 25.dp).graphicsLayer { rotationZ = turn + drift * 8f },
                 tint = Color(0xFF9E985E).copy(alpha = 0.55f))
         }
-        CarvedTitle(Modifier.align(Alignment.TopCenter).padding(top = coverHeight * 0.115f),
-            (coverWidth.value * 0.176f / fontScale.coerceAtLeast(1f)).coerceIn(35f, 72f))
+        Image(painterResource(R.drawable.ui_cover_title), "猫屋合合",
+            Modifier.align(Alignment.TopCenter).statusBarsPadding().padding(top = coverHeight * 0.06f)
+                .fillMaxWidth(0.96f).aspectRatio(1225f / 492f).testTag("welcome_title"),
+            contentScale = ContentScale.Fit)
         GameImage("ic_fabric_1", null, Modifier.offset(x = coverWidth * 0.68f, y = coverHeight * 0.48f).size(30.dp)
             .graphicsLayer { rotationZ = -12f }.clearAndSetSemantics { })
-        Column(Modifier.align(Alignment.BottomCenter).fillMaxWidth().padding(horizontal = 24.dp, vertical = 28.dp),
+        Column(Modifier.align(Alignment.BottomCenter).fillMaxWidth()
+            .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom))
+            .padding(horizontal = 24.dp, vertical = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
             // Keep the note and action in the same flow: short screens or larger fonts cannot overlap them.
             Box(Modifier.align(Alignment.Start).padding(bottom = 8.dp).width(minOf(coverWidth * 0.72f, 292.dp))
@@ -83,18 +88,6 @@ internal fun WelcomeScreen(state: GameState, reducedMotion: Boolean, onStart: ()
             Text("第 ${state.day} 天 · v${BuildConfig.VERSION_NAME}", fontFamily = CoverFont, fontSize = 12.sp,
                 color = Ink, modifier = Modifier.background(Paper.copy(alpha = 0.88f), RoundedCornerShape(6.dp)).padding(horizontal = 10.dp, vertical = 3.dp))
         }
-    }
-}
-
-@Composable
-private fun CarvedTitle(modifier: Modifier, fontSize: Float) {
-    val style = TextStyle(fontFamily = CoverFont, fontSize = fontSize.sp)
-    Box(modifier.testTag("welcome_title")) {
-        Text("猫屋合合", Modifier.offset(y = 4.dp).clearAndSetSemantics { }, style = style, color = Color(0xFF704A32), maxLines = 1)
-        listOf(-2 to -2, 0 to -2, 2 to -2, -2 to 0, 2 to 0, -2 to 2, 0 to 2, 2 to 2).forEach { (x, y) ->
-            Text("猫屋合合", Modifier.offset(x = x.dp, y = y.dp).clearAndSetSemantics { }, style = style, color = Color(0xFF8E603B), maxLines = 1)
-        }
-        Text("猫屋合合", style = style, color = Color(0xFFFFDDA4), maxLines = 1)
     }
 }
 

@@ -12,6 +12,7 @@ import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -68,6 +69,15 @@ internal fun BoardScreen(
     val demands = remember(state.board, state.delivered, state.day, content) { engine.itemDemandFeedback(state) }
     var lastInteractionAt by remember { mutableLongStateOf(SystemClock.uptimeMillis()) }
     var generatorTaps by remember { mutableStateOf(emptyMap<Long, Long>()) }
+    var touching by remember { mutableStateOf(false) }
+    val remaining = content.ordersForDay(state.day).count { it.id !in state.delivered }
+    val ordersCollapsed = remaining == 0 && state.bubble.isEmpty()
+    // A newly reopened strip must not inherit a disposed list's scroll/layout state.
+    val ordersScroll = key(ordersCollapsed) { rememberLazyListState() }
+    val hintsPaused = touching || ordersScroll.isScrollInProgress
+    LaunchedEffect(ordersScroll.isScrollInProgress) {
+        lastInteractionAt = SystemClock.uptimeMillis()
+    }
     var now by remember { mutableLongStateOf(System.currentTimeMillis()) }
     var showInfo by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) { while (true) { delay(1000); now = System.currentTimeMillis() } }
@@ -75,10 +85,24 @@ internal fun BoardScreen(
         if (!state.tutorialDone && state.board.any { it?.kind == PieceKind.ITEM && it.level > 1 }) onAction(GameAction.TutorialComplete)
     }
     val piece = selected?.let { state.board.getOrNull(it) }
-    val remaining = content.ordersForDay(state.day).count { it.id !in state.delivered }
     val countdown = ((ENERGY_INTERVAL_MS - (now - state.energyAt).coerceAtLeast(0) % ENERGY_INTERVAL_MS) / 1000).toInt()
     BoxWithConstraints(Modifier.fillMaxSize().onGloballyPositioned { screenOrigin = it.boundsInRoot().topLeft }
-        .pointerInput(Unit) { awaitPointerEventScope { while (true) { val event = awaitPointerEvent(PointerEventPass.Initial); if (event.changes.any { it.pressed || it.previousPressed }) lastInteractionAt = SystemClock.uptimeMillis() } } }) {
+        .pointerInput(Unit) {
+            try {
+                awaitPointerEventScope {
+                    while (true) {
+                        val pressed = awaitPointerEvent(PointerEventPass.Initial).changes.any { it.pressed }
+                        if (touching != pressed) {
+                            touching = pressed
+                            lastInteractionAt = SystemClock.uptimeMillis()
+                        }
+                    }
+                }
+            } finally {
+                touching = false
+                lastInteractionAt = SystemClock.uptimeMillis()
+            }
+        }) {
         GameBackground(Modifier.matchParentSize())
         val fontScale = LocalDensity.current.fontScale
         val headerHeight = 60.dp * (fontScale * .9f).coerceAtLeast(1f)
@@ -103,7 +127,7 @@ internal fun BoardScreen(
             }
             // These slots stay fixed when a selection, reward, or end-of-day action appears.
             Box(Modifier.fillMaxWidth().height(120.dp).testTag("order_slot"), contentAlignment = Alignment.Center) {
-                if (remaining == 0 && state.bubble.isEmpty()) {
+                if (ordersCollapsed) {
                     GamePanel(Modifier.fillMaxWidth().testTag("orders_completed"), color = DemandSatisfied) {
                         Row(Modifier.heightIn(min = 54.dp).padding(horizontal = 10.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                             Icon(Icons.Outlined.CheckCircle, null, Modifier.size(20.dp), tint = Leaf)
@@ -114,7 +138,7 @@ internal fun BoardScreen(
                         }
                     }
                 } else {
-                    LazyRow(Modifier.fillMaxSize().testTag("orders"), contentPadding = PaddingValues(vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    LazyRow(Modifier.fillMaxSize().testTag("orders"), state = ordersScroll, contentPadding = PaddingValues(vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                         if (state.bubble.isNotEmpty()) item(key = "tools") { NewToolCard(state.bubble, boardRect, onAction) { dragPreview.value = it } }
                         if (engine.canAdvance(state)) item(key = "advance") {
                             GamePanel(Modifier.width(156.dp).height(104.dp).testTag("summary_open").clickable { onNavigate("summary") }, color = DemandSatisfied) {
@@ -132,7 +156,7 @@ internal fun BoardScreen(
                 }
             }
             MergeBoard(content, state.board, selected, engine.generatorCap(state.day), settings.reducedMotion,
-                Modifier.weight(1f).fillMaxWidth(), demands, GeneratorHints.mainChain(content, state.day), state.energy, lastInteractionAt, generatorTaps,
+                Modifier.weight(1f).fillMaxWidth(), demands, GeneratorHints.mainChain(content, state.day), state.energy, lastInteractionAt, generatorTaps, hintsPaused,
                 onBounds = { boardRect = it }, onDragPreview = { dragPreview.value = it },
                 onAccessibleStore = { index -> onAction(GameAction.Store(index)); if (state.day >= 4 && state.warehouse.size < state.warehouseCapacity) selected = null },
                 onTap = { index ->
@@ -296,6 +320,7 @@ private fun MergeBoard(
     energy: Int,
     lastInteractionAt: Long,
     generatorTaps: Map<Long, Long>,
+    hintsPaused: Boolean,
     onBounds: (Rect) -> Unit,
     onAccessibleStore: (Int) -> Unit,
     onDragPreview: (DragPreview?) -> Unit,
@@ -309,15 +334,17 @@ private fun MergeBoard(
     val currentDrop by rememberUpdatedState(onDrop)
     val currentStore by rememberUpdatedState(onAccessibleStore)
     val currentPreview by rememberUpdatedState(onDragPreview)
-    val hint by produceState<GeneratorHint?>(null, board, mainChain, energy, lastInteractionAt, generatorTaps, reducedMotion) {
+    val latestInteractionAt by rememberUpdatedState(lastInteractionAt)
+    val latestGeneratorTaps by rememberUpdatedState(generatorTaps)
+    val hint by produceState<GeneratorHint?>(null, board, mainChain, energy, hintsPaused, reducedMotion) {
         if (board.none { it?.kind == PieceKind.GENERATOR }) { value = null; return@produceState }
         while (true) {
             val time = SystemClock.uptimeMillis()
-            val next = GeneratorHints.at(board, mainChain, energy, time, lastInteractionAt, generatorTaps, reducedMotion)
+            val next = GeneratorHints.at(board, mainChain, energy, time, latestInteractionAt, latestGeneratorTaps, reducedMotion, hintsPaused)
             value = next
-            val cycle = (time - lastInteractionAt - GeneratorHints.IDLE_MS).coerceAtLeast(0) % GeneratorHints.CYCLE_MS
+            val cycle = (time - latestInteractionAt - GeneratorHints.IDLE_MS).coerceAtLeast(0) % GeneratorHints.CYCLE_MS
             // Animate the 600ms pulse at frame cadence. Steady badges do not recompose the board.
-            delay(if (next?.phase == GeneratorHintPhase.PULSE && cycle < 2_600) 16 else 100)
+            delay(if (hintsPaused) 250 else if (next?.phase == GeneratorHintPhase.PULSE && cycle < 2_600) 16 else 100)
         }
     }
     BoxWithConstraints(modifier, contentAlignment = Alignment.Center) {
@@ -394,7 +421,7 @@ private fun MergeBoard(
                                 var entered by remember { mutableStateOf(reducedMotion) }
                                 LaunchedEffect(Unit) { entered = true }
                                 val scale by animateFloatAsState(if (entered) 1f else 0.72f, tween(if (reducedMotion) 0 else 180), label = "pieceAppear")
-                                val activeHint = hint?.takeIf { it.uid == piece.uid }
+                                val activeHint = hint?.takeIf { !hintsPaused && it.uid == piece.uid }
                                 val cueScale = activeHint?.scale ?: 1f
                                 GameImage(piece.asset, null, Modifier.fillMaxSize().padding(if (piece.kind == PieceKind.ITEM) 2.dp else 0.dp)
                                     .graphicsLayer { scaleX = scale * cueScale; scaleY = scale * cueScale; shape = RoundedCornerShape(7.dp); shadowElevation = ((cueScale - 1f) / 0.06f).coerceIn(0f, 1f) * 2.dp.toPx() }

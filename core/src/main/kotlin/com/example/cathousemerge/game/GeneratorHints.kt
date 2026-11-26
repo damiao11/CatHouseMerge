@@ -27,7 +27,9 @@ object GeneratorHints {
         lastInteractionAt: Long,
         tappedAt: Map<Long, Long>,
         reducedMotion: Boolean = false,
+        interactionInProgress: Boolean = false,
     ): GeneratorHint? {
+        if (interactionInProgress) return null
         val candidate = board.asSequence().filterNotNull().filter { piece ->
             piece.kind == PieceKind.GENERATOR && tappedAt[piece.uid]?.let { now - it >= COOLDOWN_MS } != false
         }.maxWithOrNull(compareBy<Piece> { it.chain == mainChain }.thenBy { it.level })
